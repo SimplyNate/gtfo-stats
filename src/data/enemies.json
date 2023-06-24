@@ -1,507 +1,507 @@
 [
-	{
-		"Name": "Striker",
-		"Damage": [
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.12
-			}
-		],
-		"Health": 20,
-		"Stagger HP": 5,
-		"Speed": "Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 3
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 6
-			}
-		]
-	},
-	{
-		"Name": "Shooter",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.05
-			}
-		],
-		"Health": 30,
-		"Stagger HP": 5,
-		"Speed": "Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 5
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 10
-			}
-		]
-	},
-	{
-		"Name": "Scout",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.04
-			}
-		],
-		"Health": 42,
-		"Stagger HP": 5,
-		"Speed": "Slow/Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 3
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 6
-			}
-		]
-	},
-	{
-		"Name": "Giant",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.4
-			},
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.24
-			}
-		],
-		"Health": 120,
-		"Stagger HP": 40,
-		"Speed": "Slow",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 1.5
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 3
-			}
-		]
-	},
-	{
-		"Name": "Giant Shooter",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.06
-			}
-		],
-		"Health": 150,
-		"Stagger HP": 40,
-		"Speed": "Slow",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 4
-			}
-		]
-	},
-	{
-		"Name": "Hybrid",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.12
-			},
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.04
-			}
-		],
-		"Health": 150,
-		"Stagger HP": 5,
-		"Speed": "Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 4
-			}
-		]
-	},
-	{
-		"Name": "Charger",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.04
-			},
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.18
-			}
-		],
-		"Health": 30,
-		"Stagger HP": 6.5,
-		"Speed": "Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			}
-		]
-	},
-	{
-		"Name": "Giant Charger",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.4
-			},
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.24
-			}
-		],
-		"Health": 120,
-		"Stagger HP": 40,
-		"Speed": "Fast",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			}
-		]
-	},
-	{
-		"Name": "Charger Scout",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.12
-			}
-		],
-		"Health": 60,
-		"Stagger HP": 5,
-		"Speed": "Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			}
-		]
-	},
-	{
-		"Name": "Shadow",
-		"Damage": [
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.12
-			}
-		],
-		"Health": 20,
-		"Stagger HP": 5,
-		"Speed": "Slow",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 3
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 6
-			}
-		]
-	},
-	{
-		"Name": "Giant Shadow",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.4
-			},
-			{
-				"Name": "Tongue",
-				"Type": "Ranged Melee",
-				"Value": 0.24
-			}
-		],
-		"Health": 120,
-		"Stagger HP": 40,
-		"Speed": "Fast",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 3
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 6
-			}
-		]
-	},
-	{
-		"Name": "Shadow Scout",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.04
-			}
-		],
-		"Health": 42,
-		"Stagger HP": 5,
-		"Speed": "Slow/Average",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 3
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 6
-			}
-		]
-	},
-	{
-		"Name": "Baby",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.04
-			}
-		],
-		"Health": 5,
-		"Stagger HP": 5,
-		"Speed": "Very Fast",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Head",
-				"Multiplier": 2
-			},
-			{
-				"Area": "Occipital",
-				"Multiplier": 4
-			}
-		]
-	},
-	{
-		"Name": "Flyer",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.04
-			}
-		],
-		"Health": 16.2,
-		"Stagger HP": 4,
-		"Speed": "Average",
-		"Weak Points": [
-			{
-				"Area": "Mouth",
-				"Multiplier": 3
-			}
-		]
-	},
-	{
-		"Name": "Giant Flyer",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.04
-			}
-		],
-		"Health": 150,
-		"Stagger HP": 150,
-		"Speed": "Slow",
-		"Weak Points": [
-			{
-				"Area": "Mouth",
-				"Multiplier": 3
-			},
-			{
-				"Area": "Back",
-				"Multiplier": 3
-			}
-		]
-	},
-	{
-		"Name": "Snatcher",
-		"Damage": [
-			{
-				"Name": "Snatch",
-				"Type": "Melee",
-				"Value": 0.17
-			}
-		],
-		"Health": 225,
-		"Stagger HP": 40,
-		"Speed": "Fast",
-		"Weak Points": [
-			{
-				"Area": "Back",
-				"Multiplier": 2
-			}
-		]
-	},
-	{
-		"Name": "Mother",
-		"Damage": [],
-		"Health": 1000,
-		"Stagger HP": 1000,
-		"Speed": "Very Fast",
-		"Weak Points": [
-			{
-				"Area": "Tumors",
-				"Multiplier": 5,
-				"Health": 126
-			}
-		]
-	},
-	{
-		"Name": "Giant Mother",
-		"Damage": [],
-		"Health": 2500,
-		"Stagger HP": 2500,
-		"Speed": "Very Fast",
-		"Weak Points": [
-			{
-				"Area": "Tumors",
-				"Multiplier": 5,
-				"Health": 313
-			}
-		]
-	},
-	{
-		"Name": "Tank",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.32
-			},
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.14
-			}
-		],
-		"Health": 1000,
-		"Stagger HP": 400,
-		"Speed": "Slow",
-		"Weak Points": [
-			{
-				"Area": "Tumors",
-				"Multiplier": 3,
-				"Health": 150
-			}
-		]
-	},
-	{
-		"Name": "Immortal",
-		"Damage": [
-			{
-				"Name": "Strike",
-				"Type": "Melee",
-				"Value": 0.32
-			},
-			{
-				"Name": "Tongue",
-				"Type": "Melee",
-				"Value": 0.14
-			}
-		],
-		"Health": 1000000000,
-		"Stagger HP": 400,
-		"Speed": "Slow",
-		"Weak Points": []
-	},
-	{
-		"Name": "Kraken",
-		"Damage": [
-			{
-				"Name": "Shoot",
-				"Type": "Projectile",
-				"Value": 0.04
-			}
-		],
-		"Health": 6000,
-		"Stagger HP": 0,
-		"Speed": "Fast",
-		"Weak Points": [
-			{
-				"Area": "Tumors",
-				"Multiplier": 1.5,
-				"Health": 1200
-			}
-		]
-	}
+    {
+        "Name": "Striker",
+        "Damage": [
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.12
+            }
+        ],
+        "Health": 20,
+        "Stagger HP": 5,
+        "Speed": "Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 3
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 6
+            }
+        ]
+    },
+    {
+        "Name": "Shooter",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.05
+            }
+        ],
+        "Health": 30,
+        "Stagger HP": 5,
+        "Speed": "Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 5
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 10
+            }
+        ]
+    },
+    {
+        "Name": "Scout",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.04
+            }
+        ],
+        "Health": 42,
+        "Stagger HP": 5,
+        "Speed": "Slow/Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 3
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 6
+            }
+        ]
+    },
+    {
+        "Name": "Giant",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.4
+            },
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.24
+            }
+        ],
+        "Health": 120,
+        "Stagger HP": 40,
+        "Speed": "Slow",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 1.5
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 3
+            }
+        ]
+    },
+    {
+        "Name": "Giant Shooter",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.06
+            }
+        ],
+        "Health": 150,
+        "Stagger HP": 40,
+        "Speed": "Slow",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 4
+            }
+        ]
+    },
+    {
+        "Name": "Hybrid",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.12
+            },
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.04
+            }
+        ],
+        "Health": 150,
+        "Stagger HP": 5,
+        "Speed": "Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 4
+            }
+        ]
+    },
+    {
+        "Name": "Charger",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.04
+            },
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.18
+            }
+        ],
+        "Health": 30,
+        "Stagger HP": 6.5,
+        "Speed": "Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            }
+        ]
+    },
+    {
+        "Name": "Giant Charger",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.4
+            },
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.24
+            }
+        ],
+        "Health": 120,
+        "Stagger HP": 40,
+        "Speed": "Fast",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            }
+        ]
+    },
+    {
+        "Name": "Charger Scout",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.12
+            }
+        ],
+        "Health": 60,
+        "Stagger HP": 5,
+        "Speed": "Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            }
+        ]
+    },
+    {
+        "Name": "Shadow",
+        "Damage": [
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.12
+            }
+        ],
+        "Health": 20,
+        "Stagger HP": 5,
+        "Speed": "Slow",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 3
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 6
+            }
+        ]
+    },
+    {
+        "Name": "Giant Shadow",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.4
+            },
+            {
+                "Name": "Tongue",
+                "Type": "Ranged Melee",
+                "Value": 0.24
+            }
+        ],
+        "Health": 120,
+        "Stagger HP": 40,
+        "Speed": "Fast",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 3
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 6
+            }
+        ]
+    },
+    {
+        "Name": "Shadow Scout",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.04
+            }
+        ],
+        "Health": 42,
+        "Stagger HP": 5,
+        "Speed": "Slow/Average",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 3
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 6
+            }
+        ]
+    },
+    {
+        "Name": "Baby",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.04
+            }
+        ],
+        "Health": 5,
+        "Stagger HP": 5,
+        "Speed": "Very Fast",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Head",
+                "Multiplier": 2
+            },
+            {
+                "Area": "Occipital",
+                "Multiplier": 4
+            }
+        ]
+    },
+    {
+        "Name": "Flyer",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.04
+            }
+        ],
+        "Health": 16.2,
+        "Stagger HP": 4,
+        "Speed": "Average",
+        "Weak Points": [
+            {
+                "Area": "Mouth",
+                "Multiplier": 3
+            }
+        ]
+    },
+    {
+        "Name": "Giant Flyer",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.04
+            }
+        ],
+        "Health": 150,
+        "Stagger HP": 150,
+        "Speed": "Slow",
+        "Weak Points": [
+            {
+                "Area": "Mouth",
+                "Multiplier": 3
+            },
+            {
+                "Area": "Back",
+                "Multiplier": 3
+            }
+        ]
+    },
+    {
+        "Name": "Snatcher",
+        "Damage": [
+            {
+                "Name": "Snatch",
+                "Type": "Melee",
+                "Value": 0.17
+            }
+        ],
+        "Health": 225,
+        "Stagger HP": 40,
+        "Speed": "Fast",
+        "Weak Points": [
+            {
+                "Area": "Back",
+                "Multiplier": 2
+            }
+        ]
+    },
+    {
+        "Name": "Mother",
+        "Damage": [],
+        "Health": 1000,
+        "Stagger HP": 1000,
+        "Speed": "Very Fast",
+        "Weak Points": [
+            {
+                "Area": "Tumors",
+                "Multiplier": 5,
+                "Health": 126
+            }
+        ]
+    },
+    {
+        "Name": "Giant Mother",
+        "Damage": [],
+        "Health": 2500,
+        "Stagger HP": 2500,
+        "Speed": "Very Fast",
+        "Weak Points": [
+            {
+                "Area": "Tumors",
+                "Multiplier": 5,
+                "Health": 313
+            }
+        ]
+    },
+    {
+        "Name": "Tank",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.32
+            },
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.14
+            }
+        ],
+        "Health": 1000,
+        "Stagger HP": 400,
+        "Speed": "Slow",
+        "Weak Points": [
+            {
+                "Area": "Tumors",
+                "Multiplier": 3,
+                "Health": 150
+            }
+        ]
+    },
+    {
+        "Name": "Immortal",
+        "Damage": [
+            {
+                "Name": "Strike",
+                "Type": "Melee",
+                "Value": 0.32
+            },
+            {
+                "Name": "Tongue",
+                "Type": "Melee",
+                "Value": 0.14
+            }
+        ],
+        "Health": 1000000000,
+        "Stagger HP": 400,
+        "Speed": "Slow",
+        "Weak Points": []
+    },
+    {
+        "Name": "Kraken",
+        "Damage": [
+            {
+                "Name": "Shoot",
+                "Type": "Projectile",
+                "Value": 0.04
+            }
+        ],
+        "Health": 6000,
+        "Stagger HP": 0,
+        "Speed": "Fast",
+        "Weak Points": [
+            {
+                "Area": "Tumors",
+                "Multiplier": 1.5,
+                "Health": 1200
+            }
+        ]
+    }
 ]
