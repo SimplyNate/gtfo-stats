@@ -19,5 +19,5 @@ export interface Weapon {
 }
 
 import _main from './main.json';
-const main: Weapon[] = _main;
-export default main;
+const mainWeapons: Weapon[] = _main;
+export default mainWeapons;
