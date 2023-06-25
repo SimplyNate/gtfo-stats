@@ -1,51 +1,27 @@
 <template>
-    <div class="text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Enemies</h1>
-                    <ul>
-                        <li v-for="item of enemies" :key="item.Name">{{ item.Name }}</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h1>Main</h1>
-                    <ul>
-                        <li v-for="item of main" :key="item.Name">{{ item.Name }}</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h1>Special</h1>
-                    <ul>
-                        <li v-for="item of special" :key="item.Name">{{ item.Name }}</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h1>Melee</h1>
-                    <ul>
-                        <li v-for="item of melee" :key="item.Name">{{ item.Name }}</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h1>Tool</h1>
-                    <ul>
-                        <li v-for="item of tool" :key="item.Name">{{ item.Name }}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="app">
+        <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
     </div>
 </template>
 
 <script setup lang="ts">
-import enemies from './data/enemies.json';
-import main from './data/main.json';
-import melee from './data/melee.json';
-import special from './data/special.json';
-import tool from './data/tool.json';
+import enemies from './data/enemies';
+import main from './data/mainWeapons';
+import melee from './data/melee';
+import special from './data/special';
+import tool from './data/tool';
+
+import Weapon from './components/Weapon.vue';
 
 </script>
 
 <style scoped>
-
+.app {
+    width: 100%;
+    background-color: #242424;
+    color: white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
 </style>
