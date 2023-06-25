@@ -1,30 +1,51 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-    <div>
-        <a href="https://vitejs.dev" target="_blank">
-            <img src="/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-        </a>
+    <div class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Enemies</h1>
+                    <ul>
+                        <li v-for="item of enemies" :key="item.Name">{{ item.Name }}</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h1>Main</h1>
+                    <ul>
+                        <li v-for="item of main" :key="item.Name">{{ item.Name }}</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h1>Special</h1>
+                    <ul>
+                        <li v-for="item of special" :key="item.Name">{{ item.Name }}</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h1>Melee</h1>
+                    <ul>
+                        <li v-for="item of melee" :key="item.Name">{{ item.Name }}</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h1>Tool</h1>
+                    <ul>
+                        <li v-for="item of tool" :key="item.Name">{{ item.Name }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <HelloWorld msg="Vite + Vue" />
 </template>
 
+<script setup lang="ts">
+import enemies from './data/enemies.json';
+import main from './data/main.json';
+import melee from './data/melee.json';
+import special from './data/special.json';
+import tool from './data/tool.json';
+
+</script>
+
 <style scoped>
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-}
+
 </style>
