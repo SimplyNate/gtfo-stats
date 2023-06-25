@@ -5,6 +5,11 @@
                 <h1>{{ weapon.Type }}</h1>
                 <h2>{{ weapon.Name }}</h2>
             </div>
+            <div class="col">
+                <template v-for="key of keys" :key="key">
+                    {{ key }}: {{ weapon[key] }}
+                </template>
+            </div>
         </div>
     </div>
 </template>
@@ -16,6 +21,7 @@ const props = defineProps({
     weaponValues: Object,
 });
 const weapon: Weapon = <Weapon>props.weaponValues;
+const keys = Object.keys(weapon);
 
 </script>
 
