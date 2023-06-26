@@ -1,4 +1,5 @@
 export interface Weapon {
+    [index: string]: string | number | boolean;
     Name: string;
     Type: string;
     Firemode: string;

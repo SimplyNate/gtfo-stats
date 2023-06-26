@@ -1,6 +1,31 @@
 <template>
     <div class="app">
-        <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
+        <div>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="collapse" href="#mainWeapons">Main Weapons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#specialWeapons">Special Weapons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#meleeWeapons">Melee Weapons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#tools">Tools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#enemies">Enemies</a>
+                </li>
+            </ul>
+        </div>
+        <div class="fade show" id="mainWeapons">
+            <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
+        </div>
+        <div class="fade" id="specialWeapons">Special Weapons</div>
+        <div class="fade" id="meleeWeapons">Melee Weapons</div>
+        <div class="fade" id="tools">Tools</div>
+        <div class="fade" id="enemies">Enemies</div>
     </div>
 </template>
 
