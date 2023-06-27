@@ -43,8 +43,8 @@ import Weapon from './components/Weapon.vue';
 
 <style scoped>
 .app {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: #242424;
     color: white;
     overflow-x: hidden;
