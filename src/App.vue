@@ -1,31 +1,32 @@
 <template>
     <div class="app">
-        <div>
-            <ul class="nav nav-underline">
+        <div class="left-menu">
+            <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="collapse" href="#mainWeapons">Main Weapons</a>
+                    <button class="nav-link active">Main Weapons</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#specialWeapons">Special Weapons</a>
+                    <button class="nav-link active">Special Weapons</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#meleeWeapons">Melee Weapons</a>
+                    <button class="nav-link active">Melee Weapons</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#tools">Tools</a>
+                    <button class="nav-link active">Sentry Tools</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#enemies">Enemies</a>
+                    <button class="nav-link active">Enemies</button>
                 </li>
             </ul>
         </div>
-        <div class="fade show" id="mainWeapons">
-            <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
-        </div>
-        <div class="fade" id="specialWeapons">Special Weapons</div>
-        <div class="fade" id="meleeWeapons">Melee Weapons</div>
-        <div class="fade" id="tools">Tools</div>
-        <div class="fade" id="enemies">Enemies</div>
+        <div class="right-content">
+            <div class="fade show" id="mainWeapons">
+                <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
+            </div>
+            <div class="fade" id="specialWeapons">Special Weapons</div>
+            <div class="fade" id="meleeWeapons">Melee Weapons</div>
+            <div class="fade" id="tools">Tools</div>
+            <div class="fade" id="enemies">Enemies</div></div>
     </div>
 </template>
 
@@ -43,10 +44,21 @@ import Weapon from './components/Weapon.vue';
 <style scoped>
 .app {
     width: 100%;
+    height: 100%;
     background-color: #242424;
     color: white;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    display: flex;
+}
+.left-menu {
+    width: 20%;
+    height: 100%;
+}
+.right-content {
+    width: 80%;
+    height: 100%;
+    overflow-y: auto;
 }
 </style>
