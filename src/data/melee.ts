@@ -3,7 +3,7 @@ interface MeleeDamageType {
     Charged: number;
 }
 
-interface MeleeWeapon {
+export interface MeleeWeapon {
     Name: string;
     Type: string;
     Damage: MeleeDamageType;

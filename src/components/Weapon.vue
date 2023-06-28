@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <h1>{{ weapon.Type }}</h1>
-                <h2>{{ weapon.Name }}</h2>
+                <h3>{{ weapon.Name }}</h3>
             </div>
             <div class="col">
                 <div class="row">

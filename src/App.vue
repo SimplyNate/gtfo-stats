@@ -3,41 +3,45 @@
         <div class="left-menu">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <button class="nav-link active">Main Weapons</button>
+                    <button class="nav-link active" @click="setView('main')">Main Weapons</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link active">Special Weapons</button>
+                    <button class="nav-link" @click="setView('special')">Special Weapons</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link active">Melee Weapons</button>
+                    <button class="nav-link" @click="setView('melee')">Melee Weapons</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link active">Sentry Tools</button>
+                    <button class="nav-link" @click="setView('tools')">Sentry Tools</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link active">Enemies</button>
+                    <button class="nav-link" @click="setView('enemies')">Enemies</button>
                 </li>
             </ul>
         </div>
         <div class="right-content">
-            <div class="fade show" id="mainWeapons">
-                <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
-            </div>
-            <div class="fade" id="specialWeapons">Special Weapons</div>
-            <div class="fade" id="meleeWeapons">Melee Weapons</div>
-            <div class="fade" id="tools">Tools</div>
-            <div class="fade" id="enemies">Enemies</div></div>
+            <main-weapons v-if="view === 'main'" />
+            <special-weapons v-if="view === 'special'"/>
+            <melee-weapons v-if="view === 'melee'"/>
+            <tools v-if="view === 'tools'"/>
+            <enemies v-if="view === 'enemies'"/>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import enemies from './data/enemies';
-import main from './data/mainWeapons';
-import melee from './data/melee';
-import special from './data/special';
-import tool from './data/tool';
+import { ref } from 'vue';
+import MainWeapons from './pages/MainWeapons.vue';
+import SpecialWeapons from './pages/SpecialWeapons.vue';
+import MeleeWeapons from './pages/MeleeWeapons.vue';
+import Tools from './pages/Tools.vue';
+import Enemies from './pages/Enemies.vue';
 
-import Weapon from './components/Weapon.vue';
+const view = ref<string>('main');
+
+function setView(v: string) {
+    view.value = v;
+}
 
 </script>
 
