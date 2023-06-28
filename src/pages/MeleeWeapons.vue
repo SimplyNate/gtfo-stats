@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import type { MeleeWeapon } from '../data/melee';
 import meleeWeapons from '../data/melee';
 import enemies from '../data/enemies';
 
-const props = defineProps({
-    weaponValues: Object,
-});
 const striker = enemies.find(e => e.Name === 'Striker');
 const shooter = enemies.find(e => e.Name === 'Shooter');
 const gStriker = enemies.find(e => e.Name === 'Giant');
@@ -33,7 +29,10 @@ const gShooter = enemies.find(e => e.Name === 'Giant Shooter');
                 <div class="col">
                     <div class="row">
                         <div class="fw-bold">Stealth</div>
-                        <div>Striker: {{ melee.Damage.Charged * melee["Precision Multiplier"].Charged * striker["Weak Points"] }}</div>
+                        <div>Striker: {{ melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * striker["Weak Points"].Occipital.Multiplier / striker.Health * 100 }}%</div>
+                        <div>Shooter: {{ melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * shooter["Weak Points"].Occipital.Multiplier  / shooter.Health * 100 }}%</div>
+                        <div>Giant: {{ melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * gStriker["Weak Points"].Occipital.Multiplier / gStriker.Health * 100 }}%</div>
+                        <div>Giant Shooter: {{ melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * gShooter["Weak Points"].Occipital.Multiplier / gShooter.Health * 100 }}%</div>
                     </div>
                 </div>
             </div>

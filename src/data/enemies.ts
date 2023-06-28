@@ -4,8 +4,14 @@ interface EnemyDamageType {
     Value: number;
 }
 
+interface EnemyWeakPoints {
+    Head?: EnemyWeakPoint;
+    Back?: EnemyWeakPoint;
+    Occipital?: EnemyWeakPoint;
+    Tumors?: EnemyWeakPoint;
+}
+
 interface EnemyWeakPoint {
-    Area: string;
     Multiplier: number;
     Health?: number;
 }
@@ -15,7 +21,7 @@ interface Enemy {
     Health: number;
     'Stagger HP': number;
     Speed: string;
-    'Weak Points': EnemyWeakPoint[];
+    'Weak Points': EnemyWeakPoints;
 }
 
 import _enemies from './enemies.json';
