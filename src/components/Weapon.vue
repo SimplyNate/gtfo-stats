@@ -41,6 +41,12 @@
                     <h5>Giant Shooter max shots to kill: {{ gShooter.Health / weapon.Damage }}</h5>
                 </div>
             </div>
+            <div class="col">
+                <div class="row">
+                    <div>Scout: {{ weapon.Damage * weapon["Precision Multiplier"] * scout["Weak Points"].Head.Multiplier / scout.Health }}</div>
+                    <div>Charger: {{ weapon.Damage / charger.Health }}</div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -57,6 +63,8 @@ const striker = enemies.find(e => e.Name === 'Striker');
 const shooter = enemies.find(e => e.Name === 'Shooter');
 const gStriker = enemies.find(e => e.Name === 'Giant');
 const gShooter = enemies.find(e => e.Name === 'Giant Shooter');
+const scout = enemies.find(e => e.Name === 'Scout');
+const charger = enemies.find(e => e.Name === 'Charger');
 
 </script>
 
