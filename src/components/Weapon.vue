@@ -31,7 +31,7 @@
             <div class="col">
                 <div class="row">
                     <div>DPS: {{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</div>
-                    <div>DPS over time: {{ weapon['Damage Per Mag'] / (((weapon['Rate of Fire'] / 60 * weapon['Magazine Size']) + weapon['Reload Time (s)'])) }}</div>
+                    <div>DPS over time: {{ effectiveDPS.toFixed(2) }}</div>
                     <!--
                      Rounds per second: weapon['Rate of Fire'] / 60    | 60 / 60 = 1
                      Seconds per mag: weapon['Magazine Size'] * rps    | 10 * 1 = 10
@@ -83,6 +83,13 @@ const props = defineProps({
     weaponValues: Object,
 });
 const weapon: Weapon = <Weapon>props.weaponValues;
+
+const bulletsPerSecond = weapon["Rate of Fire"] / 60;
+const secondsPerMag = weapon["Magazine Size"] / bulletsPerSecond;
+const totalTime = secondsPerMag + weapon["Reload Time (s)"];
+const effectiveDPS = weapon["Damage Per Mag"] / totalTime;
+console.log(weapon.Type, bulletsPerSecond, secondsPerMag, totalTime, effectiveDPS);
+
 const striker = enemies.find(e => e.Name === 'Striker');
 const shooter = enemies.find(e => e.Name === 'Shooter');
 const gStriker = enemies.find(e => e.Name === 'Giant');
