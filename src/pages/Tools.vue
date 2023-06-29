@@ -1,9 +1,23 @@
 <script setup lang="ts">
+import tools from '../data/tool';
+import enemies from '../data/enemies';
 
+const headers = Object.keys(tools[0]);
 </script>
 
 <template>
-
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th v-for="header of headers" :key="header">{{ header }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="tool of tools" :key="tool.Name">
+            <td v-for="header of headers" :key="header">{{ tool[header] }}</td>
+        </tr>
+        </tbody>
+    </table>
 </template>
 
 <style scoped>

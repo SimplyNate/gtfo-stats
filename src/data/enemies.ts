@@ -25,5 +25,5 @@ interface Enemy {
 }
 
 import _enemies from './enemies.json';
-const enemies: Enemy[] = _enemies;
+const enemies: Enemy[] = <Enemy[]>_enemies;
 export default enemies;

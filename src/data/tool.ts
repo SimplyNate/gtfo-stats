@@ -1,4 +1,5 @@
 interface SentryTool {
+    [index: string]: string | number;
     Name: string;
     Type: string;
     Firemode: string;
