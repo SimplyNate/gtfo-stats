@@ -2,49 +2,73 @@
     <div class="container-fluid border rounded text-center p-3">
         <div class="row">
             <div class="col">
-                <h1>{{ weapon.Type }}</h1>
-                <h3>{{ weapon.Name }}</h3>
+                <h3>{{ weapon.Type }}</h3>
+                <h4>{{ weapon.Name }}</h4>
             </div>
             <div class="col">
                 <div class="row">
-                    <h4>Damage: {{ weapon.Damage }}</h4>
+                    <div>Damage: {{ weapon.Damage }}</div>
                 </div>
                 <div class="row">
-                    <h4>Stagger: {{ weapon["Stagger Multiplier"] * weapon.Damage }}</h4>
+                    <div>Stagger: {{ weapon["Stagger Multiplier"] * weapon.Damage }}</div>
                 </div>
                 <div class="row">
-                    <h4>Headshot Damage: {{ weapon['Headshot Damage']}}</h4>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <h4>DPS: {{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</h4>
+                    <div>Headshot: {{ (weapon['Headshot Damage']).toFixed(2) }}</div>
                 </div>
                 <div class="row">
-                    <h4>Damage Per Mag: {{ Math.round(weapon.Damage * weapon['Magazine Size']) }}</h4>
+                    <div>Reload Time: {{ weapon['Reload Time (s)'] }}s</div>
                 </div>
                 <div class="row">
-                    <h4>Total Damage: {{ Math.round(weapon.Damage * weapon['Max Ammo']) }}</h4>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <h5>Striker max shots to kill: {{ striker.Health / weapon.Damage }}</h5>
+                    <div>Range: {{ weapon['Range (m)']}}m</div>
                 </div>
                 <div class="row">
-                    <h5>Shooter max shots to kill: {{ shooter.Health / weapon.Damage }}</h5>
+                    <div>Mag Size: {{ weapon['Magazine Size'] }}</div>
                 </div>
                 <div class="row">
-                    <h5>Giant max shots to kill: {{ gStriker.Health / weapon.Damage }}</h5>
-                </div>
-                <div class="row">
-                    <h5>Giant Shooter max shots to kill: {{ gShooter.Health / weapon.Damage }}</h5>
+                    <div>RoF: {{ weapon['Rate of Fire'] }}r/m</div>
                 </div>
             </div>
             <div class="col">
                 <div class="row">
-                    <div>Scout: {{ weapon.Damage * weapon["Precision Multiplier"] * scout["Weak Points"].Head.Multiplier / scout.Health }}</div>
-                    <div>Charger: {{ weapon.Damage / charger.Health }}</div>
+                    <div>DPS: {{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</div>
+                    <div>DPS over time: {{ weapon['Damage Per Mag'] / (((weapon['Rate of Fire'] / 60 * weapon['Magazine Size']) + weapon['Reload Time (s)'])) }}</div>
+                    <!--
+                     Rounds per second: weapon['Rate of Fire'] / 60    | 60 / 60 = 1
+                     Seconds per mag: weapon['Magazine Size'] * rps    | 10 * 1 = 10
+                     Turn around time: spm + reload time               | 10 + 5 = 15 - take the ratio of these two times
+                     Damage per mag / turn around time?
+
+                     Turn arounds per minute: 60 / 15 = 4
+
+                     -->
+                </div>
+                <div class="row">
+                    <div>Damage Per Mag: {{ Math.round(weapon.Damage * weapon['Magazine Size']) }}</div>
+                </div>
+                <div class="row">
+                    <div>Total Damage: {{ Math.round(weapon.Damage * weapon['Max Ammo']) }}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="fw-bold">Max shots to kill:</div>
+                <div class="row">
+                    <div>Striker: {{ Math.ceil(striker.Health / weapon.Damage) }}</div>
+                </div>
+                <div class="row">
+                    <div>Shooter: {{ Math.ceil(shooter.Health / weapon.Damage) }}</div>
+                </div>
+                <div class="row">
+                    <div>Giant: {{ Math.ceil(gStriker.Health / weapon.Damage) }}</div>
+                </div>
+                <div class="row">
+                    <div>Giant Shooter: {{ Math.ceil(gShooter.Health / weapon.Damage) }}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="fw-bold">% Health per Shot</div>
+                <div class="row">
+                    <div>Scout: {{ (weapon.Damage * weapon["Precision Multiplier"] * scout["Weak Points"].Head.Multiplier / scout.Health).toFixed(2) }}</div>
+                    <div>Charger: {{ (weapon.Damage / charger.Health).toFixed(2) }}</div>
                 </div>
             </div>
         </div>
