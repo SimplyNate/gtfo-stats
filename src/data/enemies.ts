@@ -15,7 +15,7 @@ interface EnemyWeakPoint {
     Multiplier: number;
     Health?: number;
 }
-interface Enemy {
+export interface Enemy {
     Name: string;
     Damage: EnemyDamageType[];
     Health: number;

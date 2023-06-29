@@ -10,6 +10,9 @@
                     <div>Damage: {{ weapon.Damage }}</div>
                 </div>
                 <div class="row">
+                    <div>Precision: {{ weapon["Precision Damage"] }}</div>
+                </div>
+                <div class="row">
                     <div>Stagger: {{ weapon["Stagger Multiplier"] * weapon.Damage }}</div>
                 </div>
                 <div class="row">
@@ -78,24 +81,25 @@
 <script setup lang="ts">
 import type { Weapon } from '../data/mainWeapons';
 import enemies from '../data/enemies';
+import type { Enemy } from '../data/enemies';
 
 const props = defineProps({
     weaponValues: Object,
 });
 const weapon: Weapon = <Weapon>props.weaponValues;
 
-const bulletsPerSecond = weapon["Rate of Fire"] / 60;
-const secondsPerMag = weapon["Magazine Size"] / bulletsPerSecond;
-const totalTime = secondsPerMag + weapon["Reload Time (s)"];
-const effectiveDPS = weapon["Damage Per Mag"] / totalTime;
+const bulletsPerSecond = weapon['Rate of Fire'] / 60;
+const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
+const totalTime = secondsPerMag + weapon['Reload Time (s)'];
+const effectiveDPS = weapon['Damage Per Mag'] / totalTime;
 console.log(weapon.Type, bulletsPerSecond, secondsPerMag, totalTime, effectiveDPS);
 
-const striker = enemies.find(e => e.Name === 'Striker');
-const shooter = enemies.find(e => e.Name === 'Shooter');
-const gStriker = enemies.find(e => e.Name === 'Giant');
-const gShooter = enemies.find(e => e.Name === 'Giant Shooter');
-const scout = enemies.find(e => e.Name === 'Scout');
-const charger = enemies.find(e => e.Name === 'Charger');
+const striker = <Enemy>enemies.find(e => e.Name === 'Striker');
+const shooter = <Enemy>enemies.find(e => e.Name === 'Shooter');
+const gStriker = <Enemy>enemies.find(e => e.Name === 'Giant');
+const gShooter = <Enemy>enemies.find(e => e.Name === 'Giant Shooter');
+const scout = <Enemy>enemies.find(e => e.Name === 'Scout');
+const charger = <Enemy>enemies.find(e => e.Name === 'Charger');
 
 </script>
 
