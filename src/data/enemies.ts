@@ -5,10 +5,7 @@ interface EnemyDamageType {
 }
 
 interface EnemyWeakPoints {
-    Head?: EnemyWeakPoint;
-    Back?: EnemyWeakPoint;
-    Occipital?: EnemyWeakPoint;
-    Tumors?: EnemyWeakPoint;
+    [index: string]: EnemyWeakPoint;
 }
 
 interface EnemyWeakPoint {
