@@ -25,6 +25,9 @@ const gShooter = enemies.find(e => e.Name === 'Giant Shooter');
                         <h4>Uncharged Stagger: {{ melee["Stagger Damage"].Uncharged }}</h4>
                         <h4>Charged Stagger: {{ melee["Stagger Damage"].Charged }}</h4>
                     </div>
+                  <div class="row">
+                    <h5>DPS: {{ melee.Damage.Charged * (60 / melee["Charge Time"]) / 60 }}</h5>
+                  </div>
                 </div>
                 <div class="col">
                     <div class="row">
