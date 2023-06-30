@@ -35,15 +35,6 @@
                 <div class="row">
                     <div>DPS: {{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</div>
                     <div>DPS over time: {{ effectiveDPS.toFixed(2) }}</div>
-                    <!--
-                     Rounds per second: weapon['Rate of Fire'] / 60    | 60 / 60 = 1
-                     Seconds per mag: weapon['Magazine Size'] * rps    | 10 * 1 = 10
-                     Turn around time: spm + reload time               | 10 + 5 = 15 - take the ratio of these two times
-                     Damage per mag / turn around time?
-
-                     Turn arounds per minute: 60 / 15 = 4
-
-                     -->
                 </div>
                 <div class="row">
                     <div>Damage Per Mag: {{ Math.round(weapon.Damage * weapon['Magazine Size']) }}</div>
