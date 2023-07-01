@@ -7,40 +7,54 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div>Damage: {{ weapon.Damage }}</div>
+                    <div class="col text-end">Damage</div>
+                    <div class="col text-start">{{ weapon.Damage }}</div>
                 </div>
                 <div class="row">
-                    <div>Precision: {{ weapon["Precision Damage"] }}</div>
+                    <div class="col text-end">Precision</div>
+                    <div class="col text-start">{{ (weapon["Precision Damage"]).toFixed(2) }}</div>
                 </div>
                 <div class="row">
-                    <div>Stagger: {{ weapon["Stagger Multiplier"] * weapon.Damage }}</div>
+                    <div class="col text-end">Stagger</div>
+                    <div class="col text-start">{{ (weapon["Stagger Multiplier"] * weapon.Damage).toFixed(2) }}</div>
                 </div>
                 <div class="row">
-                    <div>Headshot: {{ (weapon['Headshot Damage']).toFixed(2) }}</div>
+                    <div class="col text-end">Headshot</div>
+                    <div class="col text-start">{{ (weapon['Headshot Damage']).toFixed(2) }}</div>
                 </div>
                 <div class="row">
-                    <div>Reload Time: {{ weapon['Reload Time (s)'] }}s</div>
+                    <div class="col text-end">Reload Time</div>
+                    <div class="col text-start">{{ weapon['Reload Time (s)'] }} seconds</div>
                 </div>
                 <div class="row">
-                    <div>Range: {{ weapon['Range (m)']}}m</div>
+                    <div class="col text-end">Range</div>
+                    <div class="col text-start">{{ weapon['Range (m)'] }} meters</div>
                 </div>
                 <div class="row">
-                    <div>Mag Size: {{ weapon['Magazine Size'] }}</div>
+                    <div class="col text-end">Mag Size</div>
+                    <div class="col text-start">{{ weapon['Magazine Size'] }}</div>
                 </div>
                 <div class="row">
-                    <div>RoF: {{ weapon['Rate of Fire'] }}r/m</div>
+                    <div class="col text-end">Rate of Fire</div>
+                    <div class="col text-start">{{ weapon['Rate of Fire'] }}</div>
                 </div>
             </div>
             <div class="col">
                 <div class="row">
-                    <div>DPS: {{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</div>
-                    <div>DPS over time: {{ effectiveDPS.toFixed(2) }}</div>
+                    <div class="col text-end">DPS</div>
+                    <div class="col text-start">{{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</div>
                 </div>
                 <div class="row">
-                    <div>Damage Per Mag: {{ Math.round(weapon.Damage * weapon['Magazine Size']) }}</div>
+                    <div class="col text-end">Effective DPS</div>
+                    <div class="col text-start">{{ effectiveDPS.toFixed(2) }}</div>
                 </div>
                 <div class="row">
-                    <div>Total Damage: {{ Math.round(weapon.Damage * weapon['Max Ammo']) }}</div>
+                    <div class="col text-end">Dmg/Mag</div>
+                    <div class="col text-start">{{ Math.round(weapon.Damage * weapon['Magazine Size']) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col text-end">Total Damage</div>
+                    <div class="col text-start">{{ Math.round(weapon.Damage * weapon['Max Ammo']) }}</div>
                 </div>
             </div>
             <div class="col">
