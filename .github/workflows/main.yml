@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Chechout
         uses: actions/checkout@v3
-        with:
-          path: main
       - name: Setup Node.js
         uses: actions/setup-node@v2.5.2
         with:
