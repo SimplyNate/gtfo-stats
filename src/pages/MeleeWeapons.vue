@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import meleeWeapons from '../data/melee';
-import enemies from '../data/enemies';
+import enemies, { Enemy } from '../data/enemies';
 
-const striker = enemies.find(e => e.Name === 'Striker');
-const shooter = enemies.find(e => e.Name === 'Shooter');
-const gStriker = enemies.find(e => e.Name === 'Giant');
-const gShooter = enemies.find(e => e.Name === 'Giant Shooter');
-const scout = enemies.find(e => e.Name === 'Scout');
-const charger = enemies.find(e => e.Name === 'Charger');
+const striker = <Enemy>enemies.find(e => e.Name === 'Striker');
+const shooter = <Enemy>enemies.find(e => e.Name === 'Shooter');
+const gStriker = <Enemy>enemies.find(e => e.Name === 'Giant');
+const gShooter = <Enemy>enemies.find(e => e.Name === 'Giant Shooter');
+const scout = <Enemy>enemies.find(e => e.Name === 'Scout');
+const charger = <Enemy>enemies.find(e => e.Name === 'Charger');
 </script>
 
 <template>

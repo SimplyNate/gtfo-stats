@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import tools from '../data/tool';
-import enemies from '../data/enemies';
 
 const headers = Object.keys(tools[0]);
 </script>
