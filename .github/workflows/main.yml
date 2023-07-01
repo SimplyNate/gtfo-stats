@@ -1,7 +1,9 @@
+name: Deploy static content to Pages
+
 on:
   push:
     branches:
-    - main
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,11 +18,13 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
       - name: Upload
         uses: actions/upload-pages-artifact@v1.0.9
         with:
           name: github-pages
-          path: dist/
+          path: './dist'
   deploy:
     needs: build
     permissions:
@@ -28,9 +32,11 @@ jobs:
       id-token: write
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Github Pages
+        id: deployment
         uses: actions/deploy-pages@v2.0.2
         with:
           artifact_name: github-pages
