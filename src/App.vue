@@ -17,6 +17,9 @@
                 <li class="nav-item">
                     <button class="nav-link" @click="setView('enemies')">Enemies</button>
                 </li>
+                <li class="nav-item">
+                    <button class="nav-link" @click="setView('graph')">Chart</button>
+                </li>
             </ul>
         </div>
         <div class="right-content aberration-red">
@@ -25,6 +28,7 @@
             <melee-weapons v-if="view === 'melee'"/>
             <tools v-if="view === 'tools'"/>
             <enemies v-if="view === 'enemies'"/>
+            <bar-chart v-if="view === 'graph'"/>
         </div>
     </div>
 </template>
@@ -36,6 +40,7 @@ import SpecialWeapons from './pages/SpecialWeapons.vue';
 import MeleeWeapons from './pages/MeleeWeapons.vue';
 import Tools from './pages/Tools.vue';
 import Enemies from './pages/Enemies.vue';
+import BarChart from './components/BarChart.vue';
 
 const view = ref<string>('main');
 
@@ -60,7 +65,6 @@ function parallax(e: MouseEvent) {
         wCompensation = 1/ratio;
     }
     let depth = `translate(${0 - (_mouseX - _w) * 0.002 * wCompensation}%, ${0 - (_mouseY - _h) * 0.002 * hCompensation}%)`;
-    console.log(depth);
     elem.setAttribute('style', `transform: ${depth}`);
 }
 

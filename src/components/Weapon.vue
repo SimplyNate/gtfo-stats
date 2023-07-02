@@ -97,7 +97,6 @@ const bulletsPerSecond = weapon['Rate of Fire'] / 60;
 const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
 const totalTime = secondsPerMag + weapon['Reload Time (s)'];
 const effectiveDPS = weapon['Damage Per Mag'] / totalTime;
-console.log(weapon.Type, bulletsPerSecond, secondsPerMag, totalTime, effectiveDPS);
 
 const striker = <Enemy>enemies.find(e => e.Name === 'Striker');
 const shooter = <Enemy>enemies.find(e => e.Name === 'Shooter');
