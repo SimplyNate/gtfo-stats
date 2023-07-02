@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div class="app" id="parallax">
         <div class="left-menu">
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -19,7 +19,7 @@
                 </li>
             </ul>
         </div>
-        <div class="right-content">
+        <div class="right-content aberration-red">
             <main-weapons v-if="view === 'main'" />
             <special-weapons v-if="view === 'special'"/>
             <melee-weapons v-if="view === 'melee'"/>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import MainWeapons from './pages/MainWeapons.vue';
 import SpecialWeapons from './pages/SpecialWeapons.vue';
 import MeleeWeapons from './pages/MeleeWeapons.vue';
@@ -43,18 +43,51 @@ function setView(v: string) {
     view.value = v;
 }
 
+let elem: HTMLElement;
+
+function parallax(e: MouseEvent) {
+    let _w = window.innerWidth / 2;
+    let _h = window.innerHeight / 2;
+    let _mouseX = e.clientX;
+    let _mouseY = e.clientY;
+    const ratio = window.innerWidth / window.innerHeight;
+    let wCompensation = 1;
+    let hCompensation = 1;
+    if (ratio > 1) {
+        hCompensation = ratio;
+    }
+    else {
+        wCompensation = 1/ratio;
+    }
+    let depth = `translate(${0 - (_mouseX - _w) * 0.002 * wCompensation}%, ${0 - (_mouseY - _h) * 0.002 * hCompensation}%)`;
+    console.log(depth);
+    elem.setAttribute('style', `transform: ${depth}`);
+}
+
+onMounted(() => {
+    elem = <HTMLElement>document.getElementById('parallax');
+    document.addEventListener('mousemove', parallax);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('mousemove', parallax)
+});
+
 </script>
 
 <style scoped>
 .app {
     width: 100vw;
     height: 100vh;
-    background-color: #242424;
-    color: white;
+    background-color: #010508;
+    color: #d3f7ff;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
     display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 .left-menu {
     width: 20%;
@@ -64,5 +97,8 @@ function setView(v: string) {
     width: 80%;
     height: 100%;
     overflow-y: auto;
+}
+.aberration-red {
+    text-shadow: 2px -2px 0 #3e0406;
 }
 </style>
