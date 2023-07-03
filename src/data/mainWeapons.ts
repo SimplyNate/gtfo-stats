@@ -19,6 +19,31 @@ export interface Weapon {
     Pierces: boolean;
 }
 
+export interface Enhancement {
+    DPS: number;
+    'Effective DPS': number;
+}
+
+export type EnhancedWeapon = Weapon & Enhancement;
+
+export function calculateDPS(weapon: Weapon) {
+    return weapon.Damage * weapon['Rate of Fire'] / 60;
+}
+
+export function calculateEffectiveDPS(weapon: Weapon) {
+    const bulletsPerSecond = weapon['Rate of Fire'] / 60;
+    const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
+    const totalTime = secondsPerMag + weapon['Reload Time (s)'];
+    return weapon['Damage Per Mag'] / totalTime;
+}
+
 import _main from './main.json';
-const mainWeapons: Weapon[] = _main;
+const mainWeapons: EnhancedWeapon[] = [];
+for (const item of _main) {
+    mainWeapons.push({
+        ...item,
+        DPS: calculateDPS(item),
+        'Effective DPS': calculateEffectiveDPS(item),
+    });
+}
 export default mainWeapons;
