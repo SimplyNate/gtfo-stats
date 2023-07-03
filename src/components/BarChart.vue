@@ -1,20 +1,39 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import Chart from 'chart.js/auto';
+
+const props = defineProps({
+    datasets: Array,
+});
+
+const baseDataset = {
+    borderWidth: 1,
+}
+// @ts-ignore
+const ds = computed(() => {
+    const vals = [];
+    // @ts-ignore
+    for (const dataset of props.datasets) {
+        vals.push({
+            // @ts-ignore
+            ...dataset,
+            ...baseDataset,
+        })
+    }
+    console.log(vals);
+    return vals;
+});
 
 onMounted(() => {
     const ctx = <HTMLCanvasElement>document.getElementById('mainChart');
-    const chart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }],
+            // @ts-ignore
+            datasets: ds.value,
         },
         options: {
+          indexAxis: 'y',
             scales: {
                 y: {
                     beginAtZero: true,

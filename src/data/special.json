@@ -39,7 +39,7 @@
     },
     {
         "Name": "Techman Arbalist V",
-        "Type": "Machine Gun",
+        "Type": "Machine Gun V",
         "Firemode": "Automatic",
         "Max Ammo": 169,
         "Magazine Size": 40,
@@ -58,7 +58,7 @@
     },
     {
         "Name": "Techman Veruta XII",
-        "Type": "Machine Gun",
+        "Type": "Machine Gun XII",
         "Firemode": "Automatic",
         "Max Ammo": 260,
         "Magazine Size": 60,

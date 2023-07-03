@@ -28,7 +28,7 @@
             <melee-weapons v-if="view === 'melee'"/>
             <tools v-if="view === 'tools'"/>
             <enemies v-if="view === 'enemies'"/>
-            <bar-chart v-if="view === 'graph'"/>
+            <weapon-chart v-if="view === 'graph'"/>
         </div>
     </div>
 </template>
@@ -40,7 +40,7 @@ import SpecialWeapons from './pages/SpecialWeapons.vue';
 import MeleeWeapons from './pages/MeleeWeapons.vue';
 import Tools from './pages/Tools.vue';
 import Enemies from './pages/Enemies.vue';
-import BarChart from './components/BarChart.vue';
+import WeaponChart from './pages/WeaponChart.vue';
 
 const view = ref<string>('main');
 
