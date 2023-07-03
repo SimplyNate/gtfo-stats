@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, watch } from 'vue';
 import Chart from 'chart.js/auto';
 
 const props = defineProps({
     datasets: Array,
+    labels: Array,
 });
 
 const baseDataset = {
@@ -24,11 +25,14 @@ const ds = computed(() => {
     return vals;
 });
 
+let chart: Chart;
+
 onMounted(() => {
     const ctx = <HTMLCanvasElement>document.getElementById('mainChart');
-    new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: 'bar',
         data: {
+            labels: props.labels,
             // @ts-ignore
             datasets: ds.value,
         },
@@ -41,6 +45,12 @@ onMounted(() => {
             },
         },
     });
+});
+watch(props, () => {
+    chart.data.labels = props.labels;
+    // @ts-ignore
+    chart.data.datasets = props.datasets;
+    chart.update();
 });
 </script>
 

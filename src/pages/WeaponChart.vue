@@ -1,39 +1,49 @@
 <script setup lang="ts">
 import BarChart from '../components/BarChart.vue';
 import mainWeapons from '../data/mainWeapons';
-import special from '../data/special';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
-const mainDataset = {
-    label: 'Main',
-    data: [],
-};
-const specialDataset = {
-    label: 'Special',
-    data: [],
-};
-for (const mainWeapon of mainWeapons) {
-    mainDataset.data.push({
-        x: mainWeapon.Type,
-        y: mainWeapon.Damage,
-    });
-}
-for (const spec of special) {
-    specialDataset.data.push({
-        x: spec.Type,
-        y: spec.Damage,
-    });
-}
+const validKeys = [
+    'Damage',
+    'Max Ammo',
+    'Magazine Size',
+    'Precision Damage',
+    'Stagger Multiplier',
+    'Damage Per Mag',
+    'Precision Per Mag',
+    'Headshot Damage',
+    'Reload Time (s)',
+    'Range (m)',
+    'Rate of Fire'
+];
+const key = ref('Damage');
 
-const datasets = ref([
-    mainDataset,
-    specialDataset,
-]);
+const barData = computed(() => {
+    const labels = [];
+    const mainDataset = {
+        label: `Main Weapon ${key.value}`,
+        data: [],
+    };
+    const sortedWeapons = [ ...mainWeapons ];
+    sortedWeapons.sort((a, b) => <number>b[key.value] - <number>a[key.value]);
+    for (const mainWeapon of sortedWeapons) {
+        labels.push(mainWeapon.Type);
+        // @ts-ignore
+        mainDataset.data.push(mainWeapon[key.value]);
+    }
+    return {dataset: [mainDataset], labels};
+});
+
 
 </script>
 
 <template>
-    <bar-chart :datasets="datasets" />
+    <div class="container">
+        <select class="form-select" v-model="key">
+            <option v-for="key of validKeys" :key="key">{{ key }}</option>
+        </select>
+    </div>
+    <bar-chart :datasets="barData.dataset" :labels="barData.labels" />
 </template>
 
 <style scoped>
