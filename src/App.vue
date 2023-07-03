@@ -18,7 +18,10 @@
                     <button class="nav-link" @click="setView('enemies')">Enemies</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" @click="setView('graph')">Chart</button>
+                    <button class="nav-link" @click="setView('main-graph')">Main Chart</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" @click="setView('special-graph')">Special Chart</button>
                 </li>
             </ul>
         </div>
@@ -28,7 +31,8 @@
             <melee-weapons v-if="view === 'melee'"/>
             <tools v-if="view === 'tools'"/>
             <enemies v-if="view === 'enemies'"/>
-            <weapon-chart v-if="view === 'graph'"/>
+            <weapon-chart v-if="view === 'main-graph'"/>
+            <special-chart v-if="view === 'special-graph'"/>
         </div>
     </div>
 </template>
@@ -41,6 +45,7 @@ import MeleeWeapons from './pages/MeleeWeapons.vue';
 import Tools from './pages/Tools.vue';
 import Enemies from './pages/Enemies.vue';
 import WeaponChart from './pages/WeaponChart.vue';
+import SpecialChart from './pages/SpecialChart.vue';
 
 const view = ref<string>('main');
 

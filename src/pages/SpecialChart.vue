@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BarChart from '../components/BarChart.vue';
-import mainWeapons from '../data/mainWeapons';
+import specialWeapons from '../data/special';
 import { ref, computed } from 'vue';
 
 const validKeys = [
@@ -23,15 +23,15 @@ const key = ref('Damage');
 const barData = computed(() => {
     const labels = [];
     const mainDataset = {
-        label: `Main Weapon ${key.value}`,
+        label: `Special Weapon ${key.value}`,
         data: [],
     };
-    const sortedWeapons = [ ...mainWeapons ];
+    const sortedWeapons = [ ...specialWeapons ];
     sortedWeapons.sort((a, b) => <number>b[key.value] - <number>a[key.value]);
-    for (const mainWeapon of sortedWeapons) {
-        labels.push(mainWeapon.Type);
+    for (const specialWeapon of sortedWeapons) {
+        labels.push(specialWeapon.Type);
         // @ts-ignore
-        mainDataset.data.push(mainWeapon[key.value]);
+        mainDataset.data.push(specialWeapon[key.value]);
     }
     return {dataset: [mainDataset], labels};
 });

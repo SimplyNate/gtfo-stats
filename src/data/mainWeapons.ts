@@ -22,12 +22,22 @@ export interface Weapon {
 export interface Enhancement {
     DPS: number;
     'Effective DPS': number;
+    'Precision DPS': number;
+    'Effective Precision DPS': number;
 }
 
 export type EnhancedWeapon = Weapon & Enhancement;
 
 export function calculateDPS(weapon: Weapon) {
     return weapon.Damage * weapon['Rate of Fire'] / 60;
+}
+
+export function calculatePDPS(weapon: Weapon) {
+    return weapon.Damage * weapon['Precision Multiplier'] * weapon['Rate of Fire'] / 60;
+}
+
+export function calculateEffectivePDPS(weapon: Weapon) {
+
 }
 
 export function calculateEffectiveDPS(weapon: Weapon) {
