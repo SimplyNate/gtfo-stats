@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { onMounted, computed, watch } from 'vue';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto';
+
+Chart.register(ChartDataLabels);
 
 const props = defineProps({
     datasets: Array,
@@ -37,13 +40,21 @@ onMounted(() => {
             datasets: ds.value,
         },
         options: {
-          indexAxis: 'y',
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
+            indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
             },
+            plugins: {
+                datalabels: {
+                    color: '#d3f7ff',
+                    anchor: 'end',
+                    align: 'end',
+                }
+            }
         },
+        plugins: [ChartDataLabels],
     });
 });
 watch(props, () => {
