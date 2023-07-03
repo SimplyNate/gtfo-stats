@@ -4,6 +4,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto';
 
 Chart.register(ChartDataLabels);
+Chart.defaults.color = '#d3f7ff';
 
 const props = defineProps({
     datasets: Array,
@@ -11,7 +12,7 @@ const props = defineProps({
 });
 
 const baseDataset = {
-    borderWidth: 1,
+    borderWidth: 0,
 }
 // @ts-ignore
 const ds = computed(() => {
@@ -24,7 +25,6 @@ const ds = computed(() => {
             ...baseDataset,
         })
     }
-    console.log(vals);
     return vals;
 });
 
@@ -41,16 +41,16 @@ onMounted(() => {
         },
         options: {
             indexAxis: 'y',
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
             },
             plugins: {
                 datalabels: {
                     color: '#d3f7ff',
                     anchor: 'end',
-                    align: 'end',
+                    align: 'start',
                 }
             }
         },
@@ -60,7 +60,7 @@ onMounted(() => {
 watch(props, () => {
     chart.data.labels = props.labels;
     // @ts-ignore
-    chart.data.datasets = props.datasets;
+    chart.data.datasets = ds.value;
     chart.update();
 });
 </script>
