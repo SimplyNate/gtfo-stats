@@ -37,7 +37,10 @@ export function calculatePDPS(weapon: Weapon) {
 }
 
 export function calculateEffectivePDPS(weapon: Weapon) {
-
+    const bulletsPerSecond = weapon['Rate of Fire'] / 60;
+    const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
+    const totalTime = secondsPerMag + weapon['Reload Time (s)'];
+    return weapon['Precision Per Mag'] / totalTime;
 }
 
 export function calculateEffectiveDPS(weapon: Weapon) {
@@ -47,13 +50,19 @@ export function calculateEffectiveDPS(weapon: Weapon) {
     return weapon['Damage Per Mag'] / totalTime;
 }
 
+export function processWeapon(weapon: Weapon) {
+    return {
+        ...weapon,
+        DPS: calculateDPS(weapon),
+        'Effective DPS': calculateEffectiveDPS(weapon),
+        'Precision DPS': calculatePDPS(weapon),
+        'Effective Precision DPS': calculateEffectivePDPS(weapon),
+    };
+}
+
 import _main from './main.json';
 const mainWeapons: EnhancedWeapon[] = [];
 for (const item of _main) {
-    mainWeapons.push({
-        ...item,
-        DPS: calculateDPS(item),
-        'Effective DPS': calculateEffectiveDPS(item),
-    });
+    mainWeapons.push(processWeapon(item));
 }
 export default mainWeapons;

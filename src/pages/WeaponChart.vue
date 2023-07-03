@@ -17,6 +17,8 @@ const validKeys = [
     'Rate of Fire',
     'DPS',
     'Effective DPS',
+    'Precision DPS',
+    'Effective Precision DPS',
 ];
 const key = ref('Damage');
 
