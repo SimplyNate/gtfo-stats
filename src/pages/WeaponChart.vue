@@ -15,6 +15,7 @@ const validKeys = [
     'Reload Time (s)',
     'Range (m)',
     'Rate of Fire',
+    'Total Damage',
     'DPS',
     'Effective DPS',
     'Precision DPS',

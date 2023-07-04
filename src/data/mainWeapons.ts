@@ -20,6 +20,7 @@ export interface Weapon {
 }
 
 export interface Enhancement {
+    'Total Damage': number;
     DPS: number;
     'Effective DPS': number;
     'Precision DPS': number;
@@ -27,6 +28,10 @@ export interface Enhancement {
 }
 
 export type EnhancedWeapon = Weapon & Enhancement;
+
+export function calculateTotalDamage(weapon: Weapon) {
+    return weapon.Damage * weapon['Max Ammo'];
+}
 
 export function calculateDPS(weapon: Weapon) {
     return weapon.Damage * weapon['Rate of Fire'] / 60;
@@ -53,6 +58,7 @@ export function calculateEffectiveDPS(weapon: Weapon) {
 export function processWeapon(weapon: Weapon) {
     return {
         ...weapon,
+        'Total Damage': calculateTotalDamage(weapon),
         DPS: calculateDPS(weapon),
         'Effective DPS': calculateEffectiveDPS(weapon),
         'Precision DPS': calculatePDPS(weapon),
