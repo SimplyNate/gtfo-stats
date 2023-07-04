@@ -29,33 +29,33 @@ export interface Enhancement {
 
 export type EnhancedWeapon = Weapon & Enhancement;
 
-export function calculateTotalDamage(weapon: Weapon) {
+export function calculateTotalDamage(weapon: Weapon): number {
     return weapon.Damage * weapon['Max Ammo'];
 }
 
-export function calculateDPS(weapon: Weapon) {
+export function calculateDPS(weapon: Weapon): number {
     return weapon.Damage * weapon['Rate of Fire'] / 60;
 }
 
-export function calculatePDPS(weapon: Weapon) {
+export function calculatePDPS(weapon: Weapon): number {
     return weapon.Damage * weapon['Precision Multiplier'] * weapon['Rate of Fire'] / 60;
 }
 
-export function calculateEffectivePDPS(weapon: Weapon) {
+export function calculateEffectivePDPS(weapon: Weapon): number {
     const bulletsPerSecond = weapon['Rate of Fire'] / 60;
     const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
     const totalTime = secondsPerMag + weapon['Reload Time (s)'];
     return weapon['Precision Per Mag'] / totalTime;
 }
 
-export function calculateEffectiveDPS(weapon: Weapon) {
+export function calculateEffectiveDPS(weapon: Weapon): number {
     const bulletsPerSecond = weapon['Rate of Fire'] / 60;
     const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
     const totalTime = secondsPerMag + weapon['Reload Time (s)'];
     return weapon['Damage Per Mag'] / totalTime;
 }
 
-export function processWeapon(weapon: Weapon) {
+export function processWeapon(weapon: Weapon): EnhancedWeapon {
     return {
         ...weapon,
         'Total Damage': calculateTotalDamage(weapon),
@@ -68,15 +68,77 @@ export function processWeapon(weapon: Weapon) {
 
 import _main from './main.json';
 export const mainWeapons: EnhancedWeapon[] = [];
+export const mainMaximums: EnhancedWeapon = {
+    'Back Headshot Damage': 0,
+    'Damage Per Mag': 0,
+    'Effective DPS': 0,
+    'Effective Precision DPS': 0,
+    'Headshot Damage': 0,
+    'Magazine Size': 0,
+    'Max Ammo': 0,
+    'Precision DPS': 0,
+    'Precision Damage': 0,
+    'Precision Multiplier': 0,
+    'Precision Per Mag': 0,
+    'Range (m)': 0,
+    'Rate of Fire': 0,
+    'Reload Time (s)': 0,
+    'Stagger Multiplier': 0,
+    'Total Damage': 0,
+    DPS: 0,
+    Damage: 0,
+    Firemode: '',
+    Name: '',
+    Pierces: false,
+    Type: ''
+};
 for (const item of _main) {
-    mainWeapons.push(processWeapon(item));
+    const processed: EnhancedWeapon = processWeapon(item);
+    for (const key of Object.keys(processed)) {
+        if (Number.isFinite(processed[key])) {
+            mainMaximums[key] = Math.max(<number>mainMaximums[key], <number>processed[key]);
+        }
+    }
+    mainWeapons.push(processed);
 }
 
 import _special from './special.json';
 export const specialWeapons: EnhancedWeapon[] = [];
+export const specialMaximums: EnhancedWeapon = {
+    'Back Headshot Damage': 0,
+    'Damage Per Mag': 0,
+    'Effective DPS': 0,
+    'Effective Precision DPS': 0,
+    'Headshot Damage': 0,
+    'Magazine Size': 0,
+    'Max Ammo': 0,
+    'Precision DPS': 0,
+    'Precision Damage': 0,
+    'Precision Multiplier': 0,
+    'Precision Per Mag': 0,
+    'Range (m)': 0,
+    'Rate of Fire': 0,
+    'Reload Time (s)': 0,
+    'Stagger Multiplier': 0,
+    'Total Damage': 0,
+    DPS: 0,
+    Damage: 0,
+    Firemode: '',
+    Name: '',
+    Pierces: false,
+    Type: ''
+};
 for (const item of _special) {
-    specialWeapons.push(processWeapon(item));
+    const processed: EnhancedWeapon = processWeapon(item);
+    for (const key of Object.keys(processed)) {
+        if (Number.isFinite(processed[key])) {
+            specialMaximums[key] = Math.max(<number>specialMaximums[key], <number>processed[key]);
+        }
+    }
+    specialWeapons.push(processed);
 }
+
+
 
 export default {
     mainWeapons,
