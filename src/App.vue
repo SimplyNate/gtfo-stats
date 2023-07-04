@@ -1,6 +1,12 @@
 <template>
     <div class="app" id="parallax">
         <div class="left-menu">
+            <div class="ms-3 mt-2">
+                <div class="form-check form-switch">
+                    <input type="checkbox" role="switch" class="form-check-input" v-model="enableParallax"/>
+                    <label class="form-check-label">Enable Parallax</label>
+                </div>
+            </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <button class="nav-link active" @click="setView('main')">Main Weapons</button>
@@ -48,6 +54,7 @@ import WeaponChart from './pages/WeaponChart.vue';
 import SpecialChart from './pages/SpecialChart.vue';
 
 const view = ref<string>('main');
+const enableParallax = ref(false);
 
 function setView(v: string) {
     view.value = v;
@@ -56,6 +63,10 @@ function setView(v: string) {
 let elem: HTMLElement;
 
 function parallax(e: MouseEvent) {
+    if (!enableParallax.value) {
+        elem.setAttribute('style', `transform: translate(0, 0)`);
+        return;
+    }
     let _w = window.innerWidth / 2;
     let _h = window.innerHeight / 2;
     let _mouseX = e.clientX;
