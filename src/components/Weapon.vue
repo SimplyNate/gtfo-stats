@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Weapon } from '../data/mainWeapons';
+import type { Weapon } from '../data/weapons';
 import enemies from '../data/enemies';
 import type { Enemy } from '../data/enemies';
 

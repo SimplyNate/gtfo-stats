@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import Weapon from '../components/Weapon.vue';
-import main from '../data/mainWeapons';
+import { mainWeapons } from '../data/weapons';
 
 </script>
 
 <template>
     <div>
-        <weapon v-for="item of main" :key="item.Name" :weapon-values="item"/>
+        <weapon v-for="item of mainWeapons" :key="item.Name" :weapon-values="item"/>
     </div>
 </template>
 

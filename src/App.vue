@@ -37,7 +37,7 @@
             <melee-weapons v-if="view === 'melee'"/>
             <tools v-if="view === 'tools'"/>
             <enemies v-if="view === 'enemies'"/>
-            <weapon-chart v-if="view === 'main-graph'"/>
+            <main-weapon-chart v-if="view === 'main-graph'"/>
             <special-chart v-if="view === 'special-graph'"/>
         </div>
     </div>
@@ -50,7 +50,7 @@ import SpecialWeapons from './pages/SpecialWeapons.vue';
 import MeleeWeapons from './pages/MeleeWeapons.vue';
 import Tools from './pages/Tools.vue';
 import Enemies from './pages/Enemies.vue';
-import WeaponChart from './pages/WeaponChart.vue';
+import MainWeaponChart from './pages/MainWeaponChart.vue';
 import SpecialChart from './pages/SpecialChart.vue';
 
 const view = ref<string>('main');

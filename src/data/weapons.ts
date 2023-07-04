@@ -67,8 +67,18 @@ export function processWeapon(weapon: Weapon) {
 }
 
 import _main from './main.json';
-const mainWeapons: EnhancedWeapon[] = [];
+export const mainWeapons: EnhancedWeapon[] = [];
 for (const item of _main) {
     mainWeapons.push(processWeapon(item));
 }
-export default mainWeapons;
+
+import _special from './special.json';
+export const specialWeapons: EnhancedWeapon[] = [];
+for (const item of _special) {
+    specialWeapons.push(processWeapon(item));
+}
+
+export default {
+    mainWeapons,
+    specialWeapons,
+};
