@@ -1,14 +1,18 @@
 <template>
     <div class="container-fluid border rounded text-center p-3">
         <div class="row">
-            <div class="col">
+            <div class="col-4">
                 <h3>{{ weapon.Type }}</h3>
                 <h4>{{ weapon.Name }}</h4>
             </div>
-            <div class="col">
+            <div class="col-8">
                 <div class="row">
                     <div class="col text-end">Damage</div>
-                    <div class="col text-start">{{ weapon.Damage }}</div>
+                    <div class="col text-start">
+                        <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" :style="`width: ${weapon.Damage / totalValues.Damage * 100}%`">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col text-end">Precision</div>
@@ -38,8 +42,6 @@
                     <div class="col text-end">Rate of Fire</div>
                     <div class="col text-start">{{ weapon['Rate of Fire'] }}</div>
                 </div>
-            </div>
-            <div class="col">
                 <div class="row">
                     <div class="col text-end">DPS</div>
                     <div class="col text-start">{{ Math.round(weapon.Damage * weapon['Rate of Fire'] / 60) }}</div>
@@ -57,53 +59,23 @@
                     <div class="col text-start">{{ Math.round(weapon.Damage * weapon['Max Ammo']) }}</div>
                 </div>
             </div>
-            <div class="col">
-                <div class="fw-bold">Max shots to kill:</div>
-                <div class="row">
-                    <div>Striker: {{ Math.ceil(striker.Health / weapon.Damage) }}</div>
-                </div>
-                <div class="row">
-                    <div>Shooter: {{ Math.ceil(shooter.Health / weapon.Damage) }}</div>
-                </div>
-                <div class="row">
-                    <div>Giant: {{ Math.ceil(gStriker.Health / weapon.Damage) }}</div>
-                </div>
-                <div class="row">
-                    <div>Giant Shooter: {{ Math.ceil(gShooter.Health / weapon.Damage) }}</div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="fw-bold">% Health per Shot</div>
-                <div class="row">
-                    <div>Scout: {{ (weapon.Damage * weapon["Precision Multiplier"] * scout["Weak Points"].Head.Multiplier / scout.Health).toFixed(2) }}</div>
-                    <div>Charger: {{ (weapon.Damage / charger.Health).toFixed(2) }}</div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import type { Weapon } from '../data/weapons';
-import enemies from '../data/enemies';
-import type { Enemy } from '../data/enemies';
+import type { EnhancedWeapon } from '../data/weapons';
 
-const props = defineProps({
-    weaponValues: Object,
-});
-const weapon: Weapon = <Weapon>props.weaponValues;
+const props = defineProps<{
+    weaponValues: EnhancedWeapon,
+    totalValues: EnhancedWeapon,
+}>();
+const weapon = props.weaponValues;
 
 const bulletsPerSecond = weapon['Rate of Fire'] / 60;
 const secondsPerMag = weapon['Magazine Size'] / bulletsPerSecond;
 const totalTime = secondsPerMag + weapon['Reload Time (s)'];
 const effectiveDPS = weapon['Damage Per Mag'] / totalTime;
-
-const striker = <Enemy>enemies.find(e => e.Name === 'Striker');
-const shooter = <Enemy>enemies.find(e => e.Name === 'Shooter');
-const gStriker = <Enemy>enemies.find(e => e.Name === 'Giant');
-const gShooter = <Enemy>enemies.find(e => e.Name === 'Giant Shooter');
-const scout = <Enemy>enemies.find(e => e.Name === 'Scout');
-const charger = <Enemy>enemies.find(e => e.Name === 'Charger');
 
 </script>
 
