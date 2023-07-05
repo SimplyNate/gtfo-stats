@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BarChart from './BarChart.vue';
 import { ref, computed } from 'vue';
-import { Weapon } from '../data/weapons.ts';
+import { Weapon } from '../data/weapons';
 
 const props = defineProps<{
     weapons: Weapon[]
