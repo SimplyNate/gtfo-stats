@@ -20,6 +20,7 @@ export interface Weapon {
 }
 
 export interface Enhancement {
+    'Stagger Damage': number;
     'Total Damage': number;
     DPS: number;
     'Effective DPS': number;
@@ -28,6 +29,10 @@ export interface Enhancement {
 }
 
 export type EnhancedWeapon = Weapon & Enhancement;
+
+export function calculateStaggerDamage(weapon: Weapon): number {
+    return weapon.Damage * weapon['Stagger Multiplier'];
+}
 
 export function calculateTotalDamage(weapon: Weapon): number {
     return weapon.Damage * weapon['Max Ammo'];
@@ -58,6 +63,7 @@ export function calculateEffectiveDPS(weapon: Weapon): number {
 export function processWeapon(weapon: Weapon): EnhancedWeapon {
     return {
         ...weapon,
+        'Stagger Damage': calculateStaggerDamage(weapon),
         'Total Damage': calculateTotalDamage(weapon),
         DPS: calculateDPS(weapon),
         'Effective DPS': calculateEffectiveDPS(weapon),
@@ -84,6 +90,7 @@ export const mainMaximums: EnhancedWeapon = {
     'Rate of Fire': 0,
     'Reload Time (s)': 0,
     'Stagger Multiplier': 0,
+    'Stagger Damage': 0,
     'Total Damage': 0,
     DPS: 0,
     Damage: 0,
@@ -120,6 +127,7 @@ export const specialMaximums: EnhancedWeapon = {
     'Rate of Fire': 0,
     'Reload Time (s)': 0,
     'Stagger Multiplier': 0,
+    'Stagger Damage': 0,
     'Total Damage': 0,
     DPS: 0,
     Damage: 0,
