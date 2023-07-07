@@ -99,11 +99,37 @@ export const mainMaximums: EnhancedWeapon = {
     Pierces: false,
     Type: ''
 };
+export const mainMinimums: EnhancedWeapon = {
+    'Back Headshot Damage': Infinity,
+    'Damage Per Mag': Infinity,
+    'Effective DPS': Infinity,
+    'Effective Precision DPS': Infinity,
+    'Headshot Damage': Infinity,
+    'Magazine Size': Infinity,
+    'Max Ammo': Infinity,
+    'Precision DPS': Infinity,
+    'Precision Damage': Infinity,
+    'Precision Multiplier': Infinity,
+    'Precision Per Mag': Infinity,
+    'Range (m)': Infinity,
+    'Rate of Fire': Infinity,
+    'Reload Time (s)': Infinity,
+    'Stagger Multiplier': Infinity,
+    'Stagger Damage': Infinity,
+    'Total Damage': Infinity,
+    DPS: Infinity,
+    Damage: Infinity,
+    Firemode: '',
+    Name: '',
+    Pierces: false,
+    Type: ''
+};
 for (const item of _main) {
     const processed: EnhancedWeapon = processWeapon(item);
     for (const key of Object.keys(processed)) {
         if (Number.isFinite(processed[key])) {
             mainMaximums[key] = Math.max(<number>mainMaximums[key], <number>processed[key]);
+            mainMinimums[key] = Math.min(<number>mainMinimums[key], <number>processed[key]);
         }
     }
     mainWeapons.push(processed);
@@ -136,11 +162,37 @@ export const specialMaximums: EnhancedWeapon = {
     Pierces: false,
     Type: ''
 };
+export const specialMinimums: EnhancedWeapon = {
+    'Back Headshot Damage': Infinity,
+    'Damage Per Mag': Infinity,
+    'Effective DPS': Infinity,
+    'Effective Precision DPS': Infinity,
+    'Headshot Damage': Infinity,
+    'Magazine Size': Infinity,
+    'Max Ammo': Infinity,
+    'Precision DPS': Infinity,
+    'Precision Damage': Infinity,
+    'Precision Multiplier': Infinity,
+    'Precision Per Mag': Infinity,
+    'Range (m)': Infinity,
+    'Rate of Fire': Infinity,
+    'Reload Time (s)': Infinity,
+    'Stagger Multiplier': Infinity,
+    'Stagger Damage': Infinity,
+    'Total Damage': Infinity,
+    DPS: Infinity,
+    Damage: Infinity,
+    Firemode: '',
+    Name: '',
+    Pierces: false,
+    Type: ''
+};
 for (const item of _special) {
     const processed: EnhancedWeapon = processWeapon(item);
     for (const key of Object.keys(processed)) {
         if (Number.isFinite(processed[key])) {
             specialMaximums[key] = Math.max(<number>specialMaximums[key], <number>processed[key]);
+            specialMinimums[key] = Math.min(<number>specialMinimums[key], <number>processed[key]);
         }
     }
     specialWeapons.push(processed);

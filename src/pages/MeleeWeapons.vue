@@ -8,6 +8,8 @@ const gStriker = <Enemy>enemies.find(e => e.Name === 'Giant');
 const gShooter = <Enemy>enemies.find(e => e.Name === 'Giant Shooter');
 const scout = <Enemy>enemies.find(e => e.Name === 'Scout');
 const charger = <Enemy>enemies.find(e => e.Name === 'Charger');
+const chargerScout = <Enemy>enemies.find(e => e.Name === 'Charger Scout');
+const hybrid = <Enemy>enemies.find(e => e.Name === 'Hybrid');
 </script>
 
 <template>
@@ -20,27 +22,69 @@ const charger = <Enemy>enemies.find(e => e.Name === 'Charger');
                 </div>
                 <div class="col">
                     <div class="row">
-                        <div>Uncharged Damage: {{ melee.Damage.Uncharged }}</div>
-                        <div>Charged Damage: {{ melee.Damage.Charged }}</div>
+                        <div class="col text-end">Uncharged Damage</div>
+                        <div class="col text-start">{{ melee.Damage.Uncharged }}</div>
                     </div>
                     <div class="row">
-                        <div>Uncharged Stagger: {{ melee["Stagger Damage"].Uncharged }}</div>
-                        <div>Charged Stagger: {{ melee["Stagger Damage"].Charged }}</div>
+                        <div class="col text-end">Charged Damage</div>
+                        <div class="col text-start">{{ melee.Damage.Charged }}</div>
                     </div>
                     <div class="row">
-                        <div>Charged DPS: {{ (melee.Damage.Charged * (60 / melee["Charge Time"]) / 60).toFixed(2) }}</div>
-                        <div>Stagger DPS: {{ (melee["Stagger Damage"].Charged * (60 / melee["Charge Time"]) / 60).toFixed(2) }}</div>
+                        <div class="col text-end">Charged Precision</div>
+                        <div class="col text-start">{{ melee["Precision Damage"].Charged }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">Uncharged Stagger</div>
+                        <div class="col text-start">{{ melee["Stagger Damage"].Uncharged }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">Charged Stagger</div>
+                        <div class="col text-start">{{ melee["Stagger Damage"].Charged }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">Charged DPS</div>
+                        <div class="col text-start">{{ (melee.Damage.Charged * (60 / melee["Charge Time"]) / 60).toFixed(2) }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">Stagger DPS</div>
+                        <div class="col text-start">{{ (melee["Stagger Damage"].Charged * (60 / melee["Charge Time"]) / 60).toFixed(2) }}</div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="row">
                         <div class="fw-bold">Stealth</div>
-                        <div>Striker: {{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * striker["Weak Points"].Occipital.Multiplier / striker.Health * 100).toFixed(2) }}%</div>
-                        <div>Shooter: {{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * shooter["Weak Points"].Occipital.Multiplier  / shooter.Health * 100).toFixed(2) }}%</div>
-                        <div>Giant: {{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * gStriker["Weak Points"].Occipital.Multiplier / gStriker.Health * 100).toFixed(2) }}%</div>
-                        <div>Giant Shooter: {{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * gShooter["Weak Points"].Occipital.Multiplier / gShooter.Health * 100).toFixed(2) }}%</div>
-                        <div>Scout: {{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * scout["Weak Points"].Occipital.Multiplier / scout.Health * 100).toFixed(2) }}%</div>
-                        <div>Charger: {{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * charger["Weak Points"].Back.Multiplier / charger.Health * 100).toFixed(2) }}%</div>
+                        <div class="row">
+                            <div class="col text-end">Striker</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * striker["Weak Points"].Occipital.Multiplier / striker.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Shooter</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * shooter["Weak Points"].Occipital.Multiplier  / shooter.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Giant</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * gStriker["Weak Points"].Occipital.Multiplier / gStriker.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Giant Shooter</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * gShooter["Weak Points"].Occipital.Multiplier / gShooter.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Hybrid</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * hybrid["Weak Points"].Occipital.Multiplier / hybrid.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Charger</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * charger["Weak Points"].Back.Multiplier / charger.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Scout</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * scout["Weak Points"].Occipital.Multiplier / scout.Health * 100).toFixed(2) }}%</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">Charger Scout</div>
+                            <div class="col text-start">{{ (melee.Damage.Charged * melee["Precision Multiplier"].Charged * melee["Stealth Multiplier"].Charged * chargerScout["Weak Points"].Back.Multiplier / chargerScout.Health * 100).toFixed(2) }}%</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
