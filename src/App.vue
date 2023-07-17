@@ -1,6 +1,5 @@
 <template>
     <div class="app" id="parallax">
-        <!--
         <div class="left-menu">
             <div class="ms-3 mt-2">
                 <div class="form-check form-switch">
@@ -30,6 +29,9 @@
                 <li class="nav-item">
                     <button class="nav-link" @click="setView('special-graph')">Special Chart</button>
                 </li>
+                <li class="nav-item">
+                    <button class="nav-link" @click="setView('builder')">Builder</button>
+                </li>
             </ul>
         </div>
         <div class="right-content aberration-red">
@@ -40,8 +42,8 @@
             <enemies v-if="view === 'enemies'"/>
             <main-weapon-chart v-if="view === 'main-graph'"/>
             <special-chart v-if="view === 'special-graph'"/>
-        </div>-->
-        <home/>
+            <home v-if="view === 'builder'"/>
+        </div>
     </div>
 </template>
 
@@ -54,7 +56,7 @@ import Tools from './pages/Tools.vue';
 import Enemies from './pages/Enemies.vue';
 import MainWeaponChart from './pages/MainWeaponChart.vue';
 import SpecialChart from './pages/SpecialChart.vue';
-import Home from "./pages/Home.vue";
+import Home from "./pages/Builder.vue";
 
 const view = ref<string>('main');
 const enableParallax = ref(false);
