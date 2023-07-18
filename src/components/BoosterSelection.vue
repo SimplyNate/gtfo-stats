@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+const props = defineProps<{
+    boosters: any;
+}>();
 </script>
 
 <template>
@@ -9,14 +11,14 @@
             <div class="img-container d-flex align-items-center justify-content-center">
                 <div class="plus fs-1">&plus;</div>
             </div>
-            <div class="weapon-name ms-1">Select a Weapon</div>
+            <div class="weapon-name ms-1">Select a Booster</div>
         </div>
     </div>
 </template>
 
 <style scoped>
 .image-box {
-    width: 241px;
+    width: 150px;
     height: 150px;
     border-top: 2px solid;
     border-right: 2px solid;

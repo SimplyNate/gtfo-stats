@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import WeaponSelection from '../components/WeaponSelection.vue';
 import WeaponSelector from '../components/WeaponSelector.vue';
+import BoosterSelection from '../components/BoosterSelection.vue';
 import { ref } from 'vue';
 import { Weapon, mainWeapons, specialWeapons } from '../data/weapons';
 import meleeWeapons, { MeleeWeapon } from '../data/melee';
@@ -15,26 +16,29 @@ function setSelection(selection: (Weapon | MeleeWeapon | SentryTool)[]) {
 
 <template>
     <div class="fullscreen">
-        <div class="container">
-            <div class="row fw-bold">
-                WEAPONS
+        <div class="fw-bold">
+            WEAPONS
+        </div>
+        <div class="d-flex">
+            <div class="ps-3 pe-3">
+                <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons)"/>
             </div>
-            <div class="row">
-                <div class="col">
-                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons)"/>
-                </div>
-                <div class="col">
-                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons)"/>
-                </div>
+            <div class="ps-3 pe-3">
+                <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons)"/>
             </div>
-            <div class="row mt-2">
-                <div class="col">
-                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools)"/>
-                </div>
-                <div class="col">
-                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons)"/>
-                </div>
+        </div>
+        <div class="d-flex mt-2">
+            <div class="ps-3 pe-3">
+                <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools)"/>
             </div>
+            <div class="ps-3 pe-3">
+                <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons)"/>
+            </div>
+        </div>
+        <div class="d-flex mt-2">
+            <div class="ps-3 pe-3"><booster-selection/></div>
+            <div class="ps-3 pe-3"><booster-selection/></div>
+            <div class="ps-3 pe-3"><booster-selection/></div>
         </div>
     </div>
     <teleport to="body">
