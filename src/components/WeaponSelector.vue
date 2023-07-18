@@ -9,7 +9,13 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div></div>
+    <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
+        <div class="row border" v-for="weapon of weapons" :key="weapon.Name">
+            <div class="col">
+                {{ weapon.Name }}
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>

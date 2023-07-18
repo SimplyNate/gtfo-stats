@@ -6,10 +6,10 @@ import { Weapon, mainWeapons, specialWeapons } from '../data/weapons';
 import meleeWeapons, { MeleeWeapon } from '../data/melee';
 import tools, { SentryTool } from '../data/tool';
 
-const selectedWeapons = ref<(Weapon | MeleeWeapon | SentryTool)[]>();
+const selectedWeapons = ref<(Weapon | MeleeWeapon | SentryTool)[]>(mainWeapons);
 
-function setSelection() {
-
+function setSelection(selection: (Weapon | MeleeWeapon | SentryTool)[]) {
+    selectedWeapons.value = selection;
 }
 </script>
 
@@ -21,18 +21,18 @@ function setSelection() {
             </div>
             <div class="row">
                 <div class="col">
-                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection()"/>
+                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons)"/>
                 </div>
                 <div class="col">
-                    <weapon-selection class="clickable"/>
+                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons)"/>
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col">
-                    <weapon-selection class="clickable"/>
+                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools)"/>
                 </div>
                 <div class="col">
-                    <weapon-selection class="clickable"/>
+                    <weapon-selection class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons)"/>
                 </div>
             </div>
         </div>
