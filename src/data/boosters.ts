@@ -66,8 +66,8 @@ const effects = [
             max: 0.30,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.80,
+            max: 1,
         },
     },
     {
@@ -77,12 +77,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.30,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.50,
         },
     },
     {
@@ -92,12 +92,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.30,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.50,
         },
     },
     {
@@ -107,12 +107,12 @@ const effects = [
             max: 0.25,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.60,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.80,
+            max: 1,
         },
     },
     {
@@ -122,12 +122,12 @@ const effects = [
             max: 0.20,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.25,
+            max: 0.35,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.53,
         },
     },
     {
@@ -137,12 +137,12 @@ const effects = [
             max: 0.20,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.25,
+            max: 0.35,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.53,
         },
     },
     {
@@ -152,12 +152,12 @@ const effects = [
             max: 0.20,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.25,
+            max: 0.35,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.53,
         },
     },
     {
@@ -167,12 +167,12 @@ const effects = [
             max: 0.25,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.60,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.80,
+            max: 1,
         },
     },
     {
@@ -182,12 +182,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.30,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.50,
+            max: 0.60,
         },
     },
     {
@@ -197,12 +197,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.15,
+            max: 0.20,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.25,
+            max: 0.30,
         },
     },
     {
@@ -212,12 +212,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.15,
+            max: 0.20,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.25,
+            max: 0.30,
         },
     },
     {
@@ -227,12 +227,12 @@ const effects = [
             max: 0.25,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.40,
+            max: 0.60,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.80,
+            max: 1,
         },
     },
     {
@@ -242,12 +242,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.25,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.30,
+            max: 0.40,
         },
     },
     {
@@ -257,12 +257,12 @@ const effects = [
             max: 0.10,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.15,
+            max: 0.20,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.25,
+            max: 0.30,
         },
     },
     {
@@ -272,12 +272,12 @@ const effects = [
             max: 0.15,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.30,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.35,
+            max: 0.40,
         },
     },
     {
@@ -287,12 +287,12 @@ const effects = [
             max: 0.30,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.45,
+            max: 0.55,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.70,
+            max: 1,
         },
     },
     {
@@ -302,12 +302,12 @@ const effects = [
             max: 0.30,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.30,
+            max: 0.40,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.35,
+            max: 0.40,
         },
     },
     {
@@ -317,12 +317,12 @@ const effects = [
             max: 0.30,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.30,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.35,
+            max: 0.40,
         },
     },
     {
@@ -332,12 +332,12 @@ const effects = [
             max: 0.10,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.12,
+            max: 0.18,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.30,
         },
     },
     {
@@ -347,12 +347,12 @@ const effects = [
             max: 0.40,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.60,
+            max: 1,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 1,
+            max: 1.20,
         },
     },
     {
@@ -362,12 +362,12 @@ const effects = [
             max: 0.18,
         },
         bold: {
-            min: 0,
-            max: 0,
+            min: 0.13,
+            max: 0.18,
         },
         aggressive: {
-            min: 0,
-            max: 0,
+            min: 0.20,
+            max: 0.25,
         },
     },
 ]
