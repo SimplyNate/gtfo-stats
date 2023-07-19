@@ -9,7 +9,19 @@ export interface Booster {
     condition: Effect[],
 }
 
-const effects = [
+export interface EffectRange {
+    min: number;
+    max: number;
+}
+
+export interface EffectData {
+    stat: string;
+    muted: EffectRange,
+    bold: EffectRange,
+    aggressive: EffectRange,
+}
+
+export const effectData: EffectData[] = [
     {
         stat: 'Regen Speed',
         muted: {
