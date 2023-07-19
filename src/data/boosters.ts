@@ -383,3 +383,27 @@ export const effectData: EffectData[] = [
         },
     },
 ]
+
+export const negativeData = [
+    {
+        stat: 'Regen Speed',
+        bold: {
+            min: -0.20,
+            max: -0.13,
+        },
+        aggressive: {
+            min: 0,
+            max: 0,
+        },
+    },
+    {
+        stat: 'Hacking Skill',
+        bold: {
+            min: -0.29,
+            max: -0.17,
+        },
+        aggressive: {
+
+        },
+    }
+];
