@@ -403,7 +403,36 @@ export const negativeData = [
             max: -0.17,
         },
         aggressive: {
-
+            min: -0.44,
+            max: -0.05,
+        },
+    },
+    {
+        stat: 'Bioscan Speed',
+        aggressive: {
+            min: -0.10,
+            max: -0.05,
+        },
+    },
+    {
+        stat: 'Melee Damage',
+        aggressive: {
+            min: -0.23,
+            max: -0.05,
+        },
+    },
+    {
+        stat: 'Projectile Resistance',
+        aggressive: {
+            min: -0.20,
+            max: -0.10,
+        },
+    },
+    {
+        stat: 'Infection Resistance',
+        aggressive: {
+            min: -0.38,
+            max: -0.10,
         },
     }
 ];
