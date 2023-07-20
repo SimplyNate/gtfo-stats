@@ -47,6 +47,11 @@ function setSelection(selection: (Weapon | MeleeWeapon | SentryTool)[]) {
                 <weapon-selector :weapons="selectedWeapons"></weapon-selector>
             </div>
         </div>
+        <div class="modal" id="boosterSelectorModal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <weapon-selector :weapons="selectedWeapons"></weapon-selector>
+            </div>
+        </div>
     </teleport>
 </template>
 
