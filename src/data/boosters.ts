@@ -440,18 +440,22 @@ export const negativeData = [
 export const conditions = [
     {
         name: 'Human Proximity',
-        condition: '',
+        description: 'Subject must be within 7 meters of another human',
     },
     {
         name: 'Health > 50%',
-        condition: 'Health > 50%',
+        description: 'Subject must have 50% health or more',
     },
     {
         name: 'Is Close To Enemy',
-        condition: '',
+        description: 'Subject must be within 5 meters of an enemy',
     },
     {
         name: 'Enemy Distance',
-        condition: '',
+        description: 'Subject must be at least 20 meters away from an enemy',
+    },
+    {
+        name: 'In Bioscan',
+        description: 'Subject must be in Bioscan for booster to be active',
     }
 ];
