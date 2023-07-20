@@ -436,3 +436,22 @@ export const negativeData = [
         },
     }
 ];
+
+export const conditions = [
+    {
+        name: 'Human Proximity',
+        condition: '',
+    },
+    {
+        name: 'Health > 50%',
+        condition: 'Health > 50%',
+    },
+    {
+        name: 'Is Close To Enemy',
+        condition: '',
+    },
+    {
+        name: 'Enemy Distance',
+        condition: '',
+    }
+];
