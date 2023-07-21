@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
+const props = defineProps<{
+    mainWeapon: any;
+    specialWeapon: any;
+    tool: any;
+    meleeWeapon: any;
+    mutedBooster: any;
+    boldBooster: any;
+    aggressiveBooster: any;
+}>();
+
 interface Player {
+    [index: string]: number;
     Health: number;
     'Regen Cap': number;
     'Regen Speed': number;
@@ -29,34 +42,51 @@ interface Player {
 const player: Player =  {
     Health: 100,
     'Regen Cap': 20,
-    'Regen Speed': 1,
-    'Melee Resistance': 1,
-    'Projectile Resistance': 1,
-    'Infection Resistance': 1,
-    'Revive Speed': 1,
-    'Med Efficiency': 1,
-    'Supply Efficiency': 1,
-    'Main Ammo': 1,
-    'Special Ammo': 1,
-    'Tool Ammo': 1,
-    'Melee Damage': 1,
-    'Main Damage': 1,
-    'Special Damage': 1,
-    'C-Foam Portion': 1,
-    'Sentry CPU Speed': 1,
-    'Sentry Damage': 1,
-    'SR Sentry Damage': 1,
-    'Trip Mine Damage': 1,
-    'Glow Stick Power': 1,
-    'Fog Repeller Power': 1,
-    'Tracker CPU Speed': 1,
-    'Hacking Speed': 1,
-    'Bioscan Speed': 1,
+    'Regen Speed': 0,
+    'Melee Resistance': 0,
+    'Projectile Resistance': 0,
+    'Infection Resistance': 0,
+    'Revive Speed': 0,
+    'Med Efficiency': 0,
+    'Supply Efficiency': 0,
+    'Main Ammo': 0,
+    'Special Ammo': 0,
+    'Tool Ammo': 0,
+    'Melee Damage': 0,
+    'Main Damage': 0,
+    'Special Damage': 0,
+    'C-Foam Portion': 0,
+    'Sentry CPU Speed': 0,
+    'Sentry Damage': 0,
+    'SR Sentry Damage': 0,
+    'Trip Mine Damage': 0,
+    'Glow Stick Power': 0,
+    'Fog Repeller Power': 0,
+    'Tracker CPU Speed': 0,
+    'Hacking Speed': 0,
+    'Bioscan Speed': 0,
+};
+
+const computedPlayer = computed(() => {
+
+});
+
+const keys = Object.keys(player);
+
+function calculateWidth(key: string) {
+    return player[key] * 100;
 }
 </script>
 
 <template>
-
+    <div>
+        <template v-for="key of keys" :key="key">
+            <div>{{ key }}</div>
+            <div class="progress" role="progressbar" style="height: 5px;">
+                <div class="progress-bar" :style="`width: ${calculateWidth(key)}%`"></div>
+            </div>
+        </template>
+    </div>
 </template>
 
 <style scoped>
