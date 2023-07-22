@@ -68,6 +68,18 @@ export const meleeMaximums = {
 
 for (const meleeWeapon of melee) {
     meleeMaximums.Damage.Uncharged = Math.max(meleeMaximums.Damage.Uncharged, meleeWeapon.Damage.Uncharged);
+    meleeMaximums.Damage.Charged = Math.max(meleeMaximums.Damage.Charged, meleeWeapon.Damage.Charged);
+    meleeMaximums['Precision Damage'].Uncharged = Math.max(meleeMaximums['Precision Damage'].Uncharged, meleeWeapon['Precision Damage'].Uncharged);
+    meleeMaximums['Precision Damage'].Charged = Math.max(meleeMaximums['Precision Damage'].Charged, meleeWeapon['Precision Damage'].Charged);
+    meleeMaximums['Stagger Damage'].Uncharged = Math.max(meleeMaximums['Stagger Damage'].Uncharged, meleeWeapon['Stagger Damage'].Uncharged);
+    meleeMaximums['Stagger Damage'].Charged = Math.max(meleeMaximums['Stagger Damage'].Charged, meleeWeapon['Stagger Damage'].Charged);
+    meleeMaximums['Environmental Damage'].Uncharged = Math.max(meleeMaximums['Environmental Damage'].Uncharged, meleeWeapon['Environmental Damage'].Uncharged);
+    meleeMaximums['Environmental Damage'].Charged = Math.max(meleeMaximums['Environmental Damage'].Charged, meleeWeapon['Environmental Damage'].Charged);
+    meleeMaximums['Stealth Damage'].Uncharged = Math.max(meleeMaximums['Stealth Damage'].Uncharged, meleeWeapon['Stealth Damage'].Uncharged);
+    meleeMaximums['Stealth Damage'].Charged = Math.max(meleeMaximums['Stealth Damage'].Charged, meleeWeapon['Stealth Damage'].Charged);
+    meleeMaximums.Range = Math.max(meleeMaximums.Range, meleeWeapon.Range);
+    meleeMaximums['Charge Time'] = Math.max(meleeMaximums['Charge Time'], meleeWeapon['Charge Time']);
+    meleeMaximums['Charge Hold Duration'] = Math.max(meleeMaximums['Charge Hold Duration'], meleeWeapon['Charge Hold Duration']);
 }
 
 export default melee;
