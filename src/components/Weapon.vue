@@ -104,7 +104,7 @@
                 </div>
                 <template v-if="showMore">
                     <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
-                        <p class="fw-bold">{{ enemy.Name }}</p>
+                        <div class="fw-bold">{{ enemy.Name }}</div>
                         <div class="row">
                             <div class="col-2 text-end">Body %</div>
                             <div class="col-6 text-start">
