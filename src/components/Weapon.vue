@@ -113,17 +113,17 @@
                                 </div>
                             </div>
                             <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weapon.Damage) }}</div>
-                            <div class="col-2">Waste: {{ ((Math.ceil(enemy.Health / weapon.Damage) * weapon.Damage) - enemy.Health).toFixed(2) }}</div>
+                            <div class="col-2">Waste: {{ (((Math.ceil(enemy.Health / weapon.Damage) * weapon.Damage) - enemy.Health) / weapon.Damage * 100).toFixed(2) }}%</div>
                         </div>
                         <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
                             <div class="col-2 text-end">{{ weakPoint }} %</div>
                             <div class="col-6 text-start">
                                 <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg" :style="`width: ${weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier / enemy.Health * 100}%`">{{ (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier / enemy.Health * 100).toFixed(2) }}%</div>
+                                    <div class="progress-bar chart-bg" :style="`width: ${weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
                                 </div>
                             </div>
-                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier)) }}</div>
-                            <div class="col-2">Waste: {{ ((Math.ceil(enemy.Health / (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier)) * (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier)) - enemy.Health).toFixed(2) }}</div>
+                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointDamage(weapon, enemy, weakPoint)) }}</div>
+                            <div class="col-2">Waste: {{ (((Math.ceil(enemy.Health / weakPointDamage(weapon, enemy, weakPoint)) * weakPointDamage(weapon, enemy, weakPoint)) - enemy.Health) / weakPointDamage(weapon, enemy, weakPoint) * 100).toFixed(2) }}%</div>
                         </div>
                     </div>
                 </template>
@@ -134,7 +134,7 @@
 
 <script setup lang="ts">
 import type { EnhancedWeapon } from '../data/weapons';
-import enemies from '../data/enemies';
+import enemies, { Enemy } from '../data/enemies';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -147,6 +147,10 @@ const showMore = ref<boolean>(false);
 
 function toggleMore() {
     showMore.value = !showMore.value;
+}
+
+function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: string) {
+    return weapon['Precision Damage'] * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
 </script>
