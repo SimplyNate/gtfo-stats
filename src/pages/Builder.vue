@@ -5,7 +5,6 @@ import { ref } from 'vue';
 import { Weapon, mainWeapons, specialWeapons } from '../data/weapons';
 import meleeWeapons, { MeleeWeapon } from '../data/melee';
 import tools, { SentryTool } from '../data/tool';
-import BoosterSelector from '../components/BoosterSelector.vue';
 
 const selectedWeapons = ref<(Weapon | MeleeWeapon | SentryTool)[]>(mainWeapons);
 
@@ -55,7 +54,6 @@ function setSelection(selection: (Weapon | MeleeWeapon | SentryTool)[]) {
         </div>
         <div class="modal" id="boosterSelectorModal">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <booster-selector :weapons="selectedWeapons"></booster-selector>
             </div>
         </div>
     </teleport>

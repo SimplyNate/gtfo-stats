@@ -1,11 +1,11 @@
 <template>
-    <div class="container-fluid border rounded text-center p-3">
+    <div class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
         <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <h3>{{ weapon.Type }}</h3>
                 <h4>{{ weapon.Name }}</h4>
             </div>
-            <div class="col-8">
+            <div class="col-9">
                 <div class="row">
                     <div class="col-2 text-end">Damage</div>
                     <div class="col-10 text-start">
@@ -102,6 +102,31 @@
                         </div>
                     </div>
                 </div>
+                <template v-if="showMore">
+                    <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
+                        <p class="fw-bold">{{ enemy.Name }}</p>
+                        <div class="row">
+                            <div class="col-2 text-end">Body %</div>
+                            <div class="col-6 text-start">
+                                <div class="progress bg-dark mt-2" role="progressbar">
+                                    <div class="progress-bar chart-bg" :style="`width: ${weapon.Damage / enemy.Health * 100}%`">{{ (weapon.Damage / enemy.Health * 100).toFixed(2) }}%</div>
+                                </div>
+                            </div>
+                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weapon.Damage) }}</div>
+                            <div class="col-2">Waste: {{ ((Math.ceil(enemy.Health / weapon.Damage) * weapon.Damage) - enemy.Health).toFixed(2) }}</div>
+                        </div>
+                        <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
+                            <div class="col-2 text-end">{{ weakPoint }} %</div>
+                            <div class="col-6 text-start">
+                                <div class="progress bg-dark mt-2" role="progressbar">
+                                    <div class="progress-bar chart-bg" :style="`width: ${weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier / enemy.Health * 100}%`">{{ (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier / enemy.Health * 100).toFixed(2) }}%</div>
+                                </div>
+                            </div>
+                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier)) }}</div>
+                            <div class="col-2">Waste: {{ ((Math.ceil(enemy.Health / (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier)) * (weapon['Precision Damage'] * enemy['Weak Points'][weakPoint].Multiplier)) - enemy.Health).toFixed(2) }}</div>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -109,12 +134,20 @@
 
 <script setup lang="ts">
 import type { EnhancedWeapon } from '../data/weapons';
+import enemies from '../data/enemies';
+import { ref } from 'vue';
 
 const props = defineProps<{
     weaponValues: EnhancedWeapon,
     totalValues: EnhancedWeapon,
 }>();
 const weapon = props.weaponValues;
+
+const showMore = ref<boolean>(false);
+
+function toggleMore() {
+    showMore.value = !showMore.value;
+}
 
 </script>
 
@@ -124,5 +157,8 @@ const weapon = props.weaponValues;
 }
 .chart-bg-danger {
     background-color: #7C2D3E;
+}
+.clickable:hover {
+    cursor: pointer;
 }
 </style>
