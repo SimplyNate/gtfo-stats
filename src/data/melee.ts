@@ -24,4 +24,50 @@ export interface MeleeWeapon {
 import _melee from './melee.json';
 const melee: MeleeWeapon[] = _melee;
 
+export const meleeMaximums = {
+    Damage: {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Precision Multiplier': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Precision Damage': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Stagger Multiplier': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Stagger Damage': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Environmental Multiplier': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Environmental Damage': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Stealth Multiplier': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    'Stealth Damage': {
+        Uncharged: -Infinity,
+        Charged: -Infinity,
+    },
+    Range: -Infinity,
+    'Charge Time': -Infinity,
+    'Charge Hold Duration': -Infinity,
+};
+
+for (const meleeWeapon of melee) {
+    meleeMaximums.Damage.Uncharged = Math.max(meleeMaximums.Damage.Uncharged, meleeWeapon.Damage.Uncharged);
+}
+
 export default melee;
