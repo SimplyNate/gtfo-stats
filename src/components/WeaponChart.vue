@@ -25,7 +25,8 @@ const barData = computed(() => {
     sortedWeapons.sort((a, b) => <number>b[key.value] - <number>a[key.value]);
     for (const mainWeapon of sortedWeapons) {
         labels.push(mainWeapon.Type);
-        mainDataset.data.push(<number>mainWeapon[key.value]);
+        // @ts-ignore
+        mainDataset.data.push(Number(mainWeapon[key.value].toFixed(2)));
     }
     return {dataset: [mainDataset], labels};
 });
