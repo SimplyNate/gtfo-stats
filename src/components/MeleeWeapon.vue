@@ -17,6 +17,10 @@ function weakPointDamage(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: stri
     return weapon['Precision Damage'].Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
+function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
+    return weapon['Precision Damage'].Charged * weapon['Stealth Multiplier'].Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
+}
+
 </script>
 
 <template>
@@ -101,24 +105,47 @@ function weakPointDamage(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: stri
                 </div>
                 <template v-if="showMore">
                     <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
-                        <p class="fw-bold">{{ enemy.Name }}</p>
-                        <div class="row">
-                            <div class="col-2 text-end">Body %</div>
-                            <div class="col-8 text-start">
-                                <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                        <div class="row" v-if="melee.Type === 'Knife'">
+                            <div class="fw-bold">{{ enemy.Name }} - Stealth</div>
+                            <div class="row">
+                                <div class="col-2 text-end">Body %</div>
+                                <div class="col-8 text-start">
+                                    <div class="progress bg-dark mt-2" role="progressbar">
+                                        <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                                    </div>
                                 </div>
+                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / (melee.Damage.Charged * melee['Stealth Multiplier'].Charged)) }}</div>
                             </div>
-                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / melee.Damage.Charged) }}</div>
+                            <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
+                                <div class="col-2 text-end">{{ weakPoint }} %</div>
+                                <div class="col-8 text-start">
+                                    <div class="progress bg-dark mt-2" role="progressbar">
+                                        <div class="progress-bar chart-bg" :style="`width: ${weakPointStealth(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointStealth(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
+                                    </div>
+                                </div>
+                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointStealth(melee, enemy, weakPoint)) }}</div>
+                            </div>
                         </div>
-                        <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
-                            <div class="col-2 text-end">{{ weakPoint }} %</div>
-                            <div class="col-8 text-start">
-                                <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg" :style="`width: ${weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
+                        <div class="row">
+                            <div class="fw-bold">{{ enemy.Name }}<span v-if="melee.Type === 'Knife'"> - Loud</span></div>
+                            <div class="row">
+                                <div class="col-2 text-end">Body %</div>
+                                <div class="col-8 text-start">
+                                    <div class="progress bg-dark mt-2" role="progressbar">
+                                        <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                                    </div>
                                 </div>
+                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / melee.Damage.Charged) }}</div>
                             </div>
-                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointDamage(melee, enemy, weakPoint)) }}</div>
+                            <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
+                                <div class="col-2 text-end">{{ weakPoint }} %</div>
+                                <div class="col-8 text-start">
+                                    <div class="progress bg-dark mt-2" role="progressbar">
+                                        <div class="progress-bar chart-bg" :style="`width: ${weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
+                                    </div>
+                                </div>
+                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointDamage(melee, enemy, weakPoint)) }}</div>
+                            </div>
                         </div>
                     </div>
                 </template>
