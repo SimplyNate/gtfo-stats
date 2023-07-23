@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { meleeMaximums, MeleeWeapon } from '../data/melee';
+import { meleeMaximums, MeleeWeapon, EnhancedMeleeWeapon } from '../data/melee';
 import enemies, { Enemy } from '../data/enemies';
 import { ref, onMounted } from 'vue';
 
 const props = defineProps<{
-    meleeWeapon: MeleeWeapon;
+    meleeWeapon: EnhancedMeleeWeapon;
 }>();
 
 const melee = props.meleeWeapon;
@@ -110,7 +110,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charged DPS</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" :style="`width: ${(melee.Damage.Charged * (60 / melee['Charge Time']) / 60) / (meleeMaximums.Damage.Charged * (60 / meleeMaximums['Charge Time']) / 60) * 100}%`">{{ (melee.Damage.Charged * (60 / melee['Charge Time']) / 60).toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" :style="`width: ${melee.DPS / meleeMaximums.DPS * 100}%`">{{ (melee.DPS).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Stagger DPS</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" :style="`width: ${(melee['Stagger Damage'].Charged * (60 / melee['Charge Time']) / 60) / (meleeMaximums['Stagger Damage'].Charged * (60 / meleeMaximums['Charge Time']) / 60) * 100}%`">{{ (melee['Stagger Damage'].Charged * (60 / melee['Charge Time']) / 60).toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" :style="`width: ${melee['Stagger DPS'] / meleeMaximums['Stagger DPS'] * 100}%`">{{ (melee['Stagger DPS']).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>

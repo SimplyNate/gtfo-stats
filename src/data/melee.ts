@@ -21,8 +21,20 @@ export interface MeleeWeapon {
     'Noise Level': string;
 }
 
+export interface MeleeEnhancement {
+    DPS: number;
+    'Stagger DPS': number;
+}
+
+export type EnhancedMeleeWeapon = MeleeWeapon & MeleeEnhancement;
+
 import _melee from './melee.json';
-const melee: MeleeWeapon[] = _melee;
+// @ts-ignore
+const melee: EnhancedMeleeWeapon[] = _melee;
+for (const m of melee) {
+    m.DPS = m.Damage.Charged * (60 / m['Charge Time']) / 60;
+    m['Stagger DPS'] = m['Stagger Damage'].Charged * (60 / m['Charge Time']) / 60;
+}
 
 export const meleeMaximums = {
     Damage: {
@@ -64,6 +76,8 @@ export const meleeMaximums = {
     Range: -Infinity,
     'Charge Time': -Infinity,
     'Charge Hold Duration': -Infinity,
+    DPS: -Infinity,
+   'Stagger DPS': -Infinity,
 };
 
 for (const meleeWeapon of melee) {
@@ -80,6 +94,8 @@ for (const meleeWeapon of melee) {
     meleeMaximums.Range = Math.max(meleeMaximums.Range, meleeWeapon.Range);
     meleeMaximums['Charge Time'] = Math.max(meleeMaximums['Charge Time'], meleeWeapon['Charge Time']);
     meleeMaximums['Charge Hold Duration'] = Math.max(meleeMaximums['Charge Hold Duration'], meleeWeapon['Charge Hold Duration']);
+    meleeMaximums.DPS = Math.max(meleeMaximums.DPS, meleeWeapon.DPS);
+    meleeMaximums['Stagger DPS'] = Math.max(meleeMaximums['Stagger DPS'], meleeWeapon['Stagger DPS']);
 }
 
 export default melee;
