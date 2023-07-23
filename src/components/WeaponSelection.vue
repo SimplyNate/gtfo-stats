@@ -1,15 +1,34 @@
 <script setup lang="ts">
+import {computed} from "vue";
+
+const props = defineProps<{
+    weapon: any;
+}>();
+
+const header = computed(() => {
+    if (props.weapon) {
+        return props.weapon.Type;
+    }
+    return 'Blank';
+});
+
+const name = computed(() => {
+    if (props.weapon) {
+        return props.weapon.Name;
+    }
+    return 'Select a Weapon';
+});
 
 </script>
 
 <template>
     <div>
-        <div class="weapon-type">Blank</div>
+        <div class="weapon-type">{{ header }}</div>
         <div class="image-box">
             <div class="img-container d-flex align-items-center justify-content-center">
-                <div class="plus fs-1">&plus;</div>
+                <div class="plus fs-1" v-if="!props.weapon">&plus;</div>
             </div>
-            <div class="weapon-name ms-1">Select a Weapon</div>
+            <div class="weapon-name ms-1">{{ name }}</div>
         </div>
     </div>
 </template>
