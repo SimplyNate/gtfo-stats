@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { meleeMaximums, MeleeWeapon } from '../data/melee';
 import enemies, { Enemy } from '../data/enemies';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const props = defineProps<{
     meleeWeapon: MeleeWeapon;
@@ -13,6 +13,14 @@ const showMore = ref<boolean>(false);
 
 function toggleMore() {
     showMore.value = !showMore.value;
+    setTimeout(() => {
+        const progressBars = document.querySelectorAll('.enemy-bar');
+        for (const elem of progressBars) {
+            if (Number((<HTMLElement>elem).style.width.replace('%', '')) >= 100) {
+                elem.setAttribute('class', 'progress-bar chart-bg-best');
+            }
+        }
+    }, 1);
 }
 
 function weakPointDamage(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
@@ -22,6 +30,15 @@ function weakPointDamage(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: stri
 function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
     return weapon['Precision Damage'].Charged * weapon['Stealth Multiplier'].Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
+
+onMounted(() => {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    for (const elem of progressBars) {
+        if (Number((<HTMLElement>elem).style.width.replace('%', '')) >= 100) {
+            elem.setAttribute('class', 'progress-bar chart-bg-best');
+        }
+    }
+});
 
 </script>
 
@@ -113,7 +130,7 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
                                 <div class="col-2 text-end">Body %</div>
                                 <div class="col-8 text-start">
                                     <div class="progress bg-dark mt-2" role="progressbar">
-                                        <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100).toFixed(2) }}%</div>
                                     </div>
                                 </div>
                                 <div class="col-2">To kill: {{ Math.ceil(enemy.Health / (melee.Damage.Charged * melee['Stealth Multiplier'].Charged)) }}</div>
@@ -122,7 +139,7 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
                                 <div class="col-2 text-end">{{ weakPoint }} %</div>
                                 <div class="col-8 text-start">
                                     <div class="progress bg-dark mt-2" role="progressbar">
-                                        <div class="progress-bar chart-bg" :style="`width: ${weakPointStealth(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointStealth(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
+                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weakPointStealth(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointStealth(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
                                     </div>
                                 </div>
                                 <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointStealth(melee, enemy, weakPoint)) }}</div>
@@ -134,7 +151,7 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
                                 <div class="col-2 text-end">Body %</div>
                                 <div class="col-8 text-start">
                                     <div class="progress bg-dark mt-2" role="progressbar">
-                                        <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${melee.Damage.Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged / enemy.Health * 100).toFixed(2) }}%</div>
                                     </div>
                                 </div>
                                 <div class="col-2">To kill: {{ Math.ceil(enemy.Health / melee.Damage.Charged) }}</div>
@@ -143,7 +160,7 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
                                 <div class="col-2 text-end">{{ weakPoint }} %</div>
                                 <div class="col-8 text-start">
                                     <div class="progress bg-dark mt-2" role="progressbar">
-                                        <div class="progress-bar chart-bg" :style="`width: ${weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
+                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(melee, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
                                     </div>
                                 </div>
                                 <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointDamage(melee, enemy, weakPoint)) }}</div>
@@ -157,6 +174,10 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
 </template>
 
 <style scoped>
+.chart-bg-best {
+    background-color: #257a1b;
+}
+
 .chart-bg {
     background-color: #1b537a;
 }
