@@ -109,7 +109,7 @@
                             <div class="col-2 text-end">Body %</div>
                             <div class="col-6 text-start">
                                 <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg" :style="`width: ${weapon.Damage / enemy.Health * 100}%`">{{ (weapon.Damage / enemy.Health * 100).toFixed(2) }}%</div>
+                                    <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weapon.Damage / enemy.Health * 100}%`">{{ (weapon.Damage / enemy.Health * 100).toFixed(2) }}%</div>
                                 </div>
                             </div>
                             <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weapon.Damage) }}</div>
@@ -119,7 +119,7 @@
                             <div class="col-2 text-end">{{ weakPoint }} %</div>
                             <div class="col-6 text-start">
                                 <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg" :style="`width: ${weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
+                                    <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
                                 </div>
                             </div>
                             <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointDamage(weapon, enemy, weakPoint)) }}</div>
@@ -135,7 +135,7 @@
 <script setup lang="ts">
 import type { EnhancedWeapon } from '../data/weapons';
 import enemies, { Enemy } from '../data/enemies';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
     weaponValues: EnhancedWeapon,
@@ -147,15 +147,35 @@ const showMore = ref<boolean>(false);
 
 function toggleMore() {
     showMore.value = !showMore.value;
+    setTimeout(() => {
+        const progressBars = document.querySelectorAll('.enemy-bar');
+        for (const elem of progressBars) {
+            if (Number((<HTMLElement>elem).style.width.replace('%', '')) >= 100) {
+                elem.setAttribute('class', 'progress-bar chart-bg-best');
+            }
+        }
+    }, 1);
 }
 
 function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: string) {
     return weapon['Precision Damage'] * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
+onMounted(() => {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    for (const elem of progressBars) {
+        if (Number((<HTMLElement>elem).style.width.replace('%', '')) >= 100) {
+            elem.setAttribute('class', 'progress-bar chart-bg-best');
+        }
+    }
+});
+
 </script>
 
 <style scoped>
+.chart-bg-best {
+    background-color: #257a1b;
+}
 .chart-bg {
     background-color: #1b537a;
 }

@@ -3,6 +3,7 @@ import { meleeMaximums, MeleeWeapon } from '../data/melee';
 import enemies, { Enemy } from '../data/enemies';
 import { ref } from 'vue';
 
+// @ts-ignore
 const props = defineProps<{
     melee: MeleeWeapon;
 }>();
@@ -32,72 +33,72 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
             </div>
             <div class="col-9">
                 <div class="row">
-                    <div class="col-3 text-end">Uncharged Damage</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Uncharged Damage</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Uncharged / meleeMaximums.Damage.Uncharged * 100}%`">{{ melee.Damage.Uncharged }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Charged Damage</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Charged Damage</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee.Damage.Charged / meleeMaximums.Damage.Charged * 100}%`">{{ melee.Damage.Charged }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Charged Precision</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Charged Precision</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee['Precision Damage'].Charged / meleeMaximums['Precision Damage'].Charged * 100}%`">{{ melee['Precision Damage'].Charged }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Charged Stagger</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Charged Stagger</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee['Stagger Damage'].Charged / meleeMaximums['Stagger Damage'].Charged * 100}%`">{{ melee['Stagger Damage'].Charged }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Range</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Range</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee.Range / meleeMaximums.Range * 100}%`">{{ melee.Range }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Charge Time</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Charge Time</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee['Charge Time'] / meleeMaximums['Charge Time'] * 100}%`">{{ melee['Charge Time'] }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Charge Hold</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Charge Hold</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${melee['Charge Hold Duration'] / meleeMaximums['Charge Hold Duration'] * 100}%`">{{ melee['Charge Hold Duration'] }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Charged DPS</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Charged DPS</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${(melee.Damage.Charged * (60 / melee['Charge Time']) / 60) / (meleeMaximums.Damage.Charged * (60 / meleeMaximums['Charge Time']) / 60) * 100}%`">{{ (melee.Damage.Charged * (60 / melee['Charge Time']) / 60).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 text-end">Stagger DPS</div>
-                    <div class="col-9 text-start">
+                    <div class="col-2 text-end">Stagger DPS</div>
+                    <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
                             <div class="progress-bar chart-bg" :style="`width: ${(melee['Stagger Damage'].Charged * (60 / melee['Charge Time']) / 60) / (meleeMaximums['Stagger Damage'].Charged * (60 / meleeMaximums['Charge Time']) / 60) * 100}%`">{{ (melee['Stagger Damage'].Charged * (60 / melee['Charge Time']) / 60).toFixed(2) }}</div>
                         </div>
