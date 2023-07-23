@@ -155,6 +155,10 @@ function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: str
 </template>
 
 <style scoped>
+.chart-bg {
+    background-color: #1b537a;
+}
+
 .clickable:hover {
     cursor: pointer;
 }
