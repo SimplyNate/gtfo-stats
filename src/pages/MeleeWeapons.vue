@@ -6,7 +6,7 @@ import meleeWeapons from '../data/melee';
 
 <template>
     <div>
-        <melee-weapon v-for="melee of meleeWeapons" :key="melee.Name" :melee="melee"/>
+        <melee-weapon v-for="melee of meleeWeapons" :key="melee.Name" :melee-weapon="melee"/>
     </div>
 </template>
 

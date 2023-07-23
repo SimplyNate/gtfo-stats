@@ -3,10 +3,11 @@ import { meleeMaximums, MeleeWeapon } from '../data/melee';
 import enemies, { Enemy } from '../data/enemies';
 import { ref } from 'vue';
 
-// @ts-ignore
 const props = defineProps<{
-    melee: MeleeWeapon;
+    meleeWeapon: MeleeWeapon;
 }>();
+
+const melee = props.meleeWeapon;
 
 const showMore = ref<boolean>(false);
 
