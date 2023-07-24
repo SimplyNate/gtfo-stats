@@ -168,10 +168,20 @@ onMounted(() => {
         const name = <string>elem.getAttribute('name');
         const currentValue = Number((<HTMLElement>elem).innerHTML);
         if (Number((<HTMLElement>elem).style.width.replace('%', '')) >= 100) {
-            elem.setAttribute('class', 'progress-bar chart-bg-best');
+            if (name === 'Reload Time (s)') {
+                elem.setAttribute('class', 'progress-bar chart-bg-danger');
+            }
+            else {
+                elem.setAttribute('class', 'progress-bar chart-bg-best');
+            }
         }
         else if (currentValue.toFixed(2) === (<number>props.minimumValues[name]).toFixed(2)) {
-            elem.setAttribute('class', 'progress-bar chart-bg-danger');
+            if (name === 'Reload Time (s)') {
+                elem.setAttribute('class', 'progress-bar chart-bg-best');
+            }
+            else {
+                elem.setAttribute('class', 'progress-bar chart-bg-danger');
+            }
         }
     }
 });
