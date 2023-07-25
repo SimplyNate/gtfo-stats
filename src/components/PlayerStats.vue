@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { Booster } from '../data/boosters';
+import { EnhancedWeapon } from '../data/weapons';
+import { EnhancedMeleeWeapon } from '../data/melee';
+import { SentryTool } from '../data/tool';
 
 const props = defineProps<{
-    mainWeapon: any;
-    specialWeapon: any;
-    tool: any;
-    meleeWeapon: any;
-    mutedBooster: any;
-    boldBooster: any;
-    aggressiveBooster: any;
+    mainWeapon: EnhancedWeapon;
+    specialWeapon: EnhancedWeapon;
+    tool: SentryTool;
+    meleeWeapon: EnhancedMeleeWeapon;
+    mutedBooster: Booster;
+    boldBooster: Booster;
+    aggressiveBooster: Booster;
 }>();
 
 interface Player {
@@ -39,7 +43,8 @@ interface Player {
     'Hacking Speed': number;
     'Bioscan Speed': number;
 }
-const player: Player =  {
+
+const defaults: Player = {
     Health: 100,
     'Regen Cap': 20,
     'Regen Speed': 0,
@@ -68,27 +73,88 @@ const player: Player =  {
 };
 
 const computedPlayer = computed(() => {
-
+    const player: Player =  {
+        Health: 0.50,
+        'Regen Cap': 0.75,
+        'Regen Speed': 0.80,
+        'Melee Resistance': 0.25,
+        'Projectile Resistance': 0.30,
+        'Infection Resistance': 0.40,
+        'Revive Speed': 0.10,
+        'Med Efficiency': 0.01,
+        'Supply Efficiency': 0.05,
+        'Main Ammo': -0.2,
+        'Special Ammo': -0.5,
+        'Tool Ammo': 0,
+        'Melee Damage': 0,
+        'Main Damage': 0,
+        'Special Damage': 0,
+        'C-Foam Portion': 0,
+        'Sentry CPU Speed': 0,
+        'Sentry Damage': 0,
+        'SR Sentry Damage': 0,
+        'Trip Mine Damage': 0,
+        'Glow Stick Power': 0,
+        'Fog Repeller Power': 0,
+        'Tracker CPU Speed': 0,
+        'Hacking Speed': 0,
+        'Bioscan Speed': 0,
+    };
+    if (props.mutedBooster) {
+        for (const effect of props.mutedBooster.positive) {
+            player[effect.stat] += effect.value;
+        }
+    }
+    if (props.boldBooster) {
+        for (const effect of props.boldBooster.positive) {
+            player[effect.stat] += effect.value;
+        }
+        for (const effect of props.boldBooster.negative) {
+            player[effect.stat] += effect.value;
+        }
+    }
+    if (props.aggressiveBooster) {
+        for (const effect of props.aggressiveBooster.positive) {
+            player[effect.stat] += effect.value;
+        }
+        for (const effect of props.aggressiveBooster.negative) {
+            player[effect.stat] += effect.value;
+        }
+    }
+    return player;
 });
 
-const keys = Object.keys(player);
+const keys = Object.keys(computedPlayer.value);
 
 function calculateWidth(key: string) {
-    return player[key] * 100;
+    return computedPlayer.value[key] * 100;
 }
 </script>
 
 <template>
     <div>
         <template v-for="key of keys" :key="key">
-            <div>{{ key }}</div>
-            <div class="progress" role="progressbar" style="height: 5px;">
-                <div class="progress-bar" :style="`width: ${calculateWidth(key)}%`"></div>
-            </div>
+            <template v-if="calculateWidth(key) !== 0">
+                <div>
+                    {{ key }}<span v-if="defaults[key] > 0">&nbsp;-&nbsp;{{ defaults[key] + (defaults[key] * computedPlayer[key]) }}</span><span v-if="calculateWidth(key) !== 0">&nbsp;(<span v-if="calculateWidth(key) > 0">&plus;</span>{{ (computedPlayer[key] * 100).toFixed(2) }}%)</span>
+                </div>
+                <div class="progress bg-dark" role="progressbar" style="height: 5px;">
+                    <div v-if="calculateWidth(key) >= 0" class="progress-bar chart-bg" :style="`width: ${calculateWidth(key)}%`"></div>
+                    <div v-else class="progress-bar chart-bg-danger" :style="`width: ${Math.abs(calculateWidth(key))}%`"></div>
+                </div>
+            </template>
         </template>
     </div>
 </template>
 
 <style scoped>
-
+.chart-bg-best {
+    background-color: #257a1b;
+}
+.chart-bg {
+    background-color: #1b537a;
+}
+.chart-bg-danger {
+    background-color: #7C2D3E;
+}
 </style>
