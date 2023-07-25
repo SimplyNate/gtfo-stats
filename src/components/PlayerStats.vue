@@ -6,13 +6,13 @@ import { EnhancedMeleeWeapon } from '../data/melee';
 import { SentryTool } from '../data/tool';
 
 const props = defineProps<{
-    mainWeapon: EnhancedWeapon;
-    specialWeapon: EnhancedWeapon;
-    tool: SentryTool;
-    meleeWeapon: EnhancedMeleeWeapon;
-    mutedBooster: Booster;
-    boldBooster: Booster;
-    aggressiveBooster: Booster;
+    mainWeapon?: EnhancedWeapon;
+    specialWeapon?: EnhancedWeapon;
+    tool?: SentryTool;
+    meleeWeapon?: EnhancedMeleeWeapon;
+    mutedBooster?: Booster;
+    boldBooster?: Booster;
+    aggressiveBooster?: Booster;
 }>();
 
 interface Player {
@@ -148,9 +148,6 @@ function calculateWidth(key: string) {
 </template>
 
 <style scoped>
-.chart-bg-best {
-    background-color: #257a1b;
-}
 .chart-bg {
     background-color: #1b537a;
 }

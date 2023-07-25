@@ -3,14 +3,15 @@ import WeaponSelection from '../components/WeaponSelection.vue';
 import BoosterSelection from '../components/BoosterSelection.vue';
 import { ref } from 'vue';
 import { Weapon, EnhancedWeapon, mainWeapons, specialWeapons } from '../data/weapons';
-import meleeWeapons, { MeleeWeapon } from '../data/melee';
+import meleeWeapons, { EnhancedMeleeWeapon } from '../data/melee';
 import tools, { SentryTool } from '../data/tool';
-import PlayerStats from "../components/PlayerStats.vue";
+import PlayerStats from '../components/PlayerStats.vue';
+import { Booster } from '../data/boosters';
 
-const selectedWeapons = ref<(Weapon | MeleeWeapon | SentryTool)[]>(mainWeapons);
+const selectedWeapons = ref<(Weapon | EnhancedMeleeWeapon | SentryTool)[]>(mainWeapons);
 const selectionCategory = ref<string>();
 
-function setSelection(selection: (Weapon | MeleeWeapon | SentryTool)[], category: string) {
+function setSelection(selection: (Weapon | EnhancedMeleeWeapon | SentryTool)[], category: string) {
     selectedWeapons.value = selection;
     selectionCategory.value = category;
 }
@@ -18,9 +19,13 @@ function setSelection(selection: (Weapon | MeleeWeapon | SentryTool)[], category
 const selectedMainWeapon = ref<EnhancedWeapon>();
 const selectedSpecialWeapon = ref<EnhancedWeapon>();
 const selectedTool = ref<SentryTool>();
-const selectedMeleeWeapon = ref<MeleeWeapon>();
+const selectedMeleeWeapon = ref<EnhancedMeleeWeapon>();
 
-function setChoice(choice: Weapon | MeleeWeapon | SentryTool) {
+const selectedMutedBooster = ref<Booster>();
+const selectedBoldBooster = ref<Booster>();
+const selectedAggressiveBooster = ref<Booster>();
+
+function setChoice(choice: Weapon | EnhancedMeleeWeapon | SentryTool) {
     if (selectionCategory.value === 'main') {
         selectedMainWeapon.value = <EnhancedWeapon>choice;
     }
@@ -31,7 +36,7 @@ function setChoice(choice: Weapon | MeleeWeapon | SentryTool) {
         selectedTool.value = <SentryTool>choice;
     }
     else if (selectionCategory.value === 'melee') {
-        selectedMeleeWeapon.value = <MeleeWeapon>choice;
+        selectedMeleeWeapon.value = <EnhancedMeleeWeapon>choice;
     }
 }
 
@@ -66,7 +71,14 @@ function setChoice(choice: Weapon | MeleeWeapon | SentryTool) {
             </div>
         </div>
         <div class="w-50 me-1">
-            <player-stats aggressive-booster="" melee-weapon="" muted-booster="" special-weapon="" main-weapon="" bold-booster="" tool=""/>
+            <player-stats
+                :aggressive-booster="selectedAggressiveBooster"
+                :melee-weapon="selectedMeleeWeapon"
+                :muted-booster="selectedMutedBooster"
+                :special-weapon="selectedSpecialWeapon"
+                :main-weapon="selectedMainWeapon"
+                :bold-booster="selectedBoldBooster"
+                :tool="selectedTool"/>
         </div>
     </div>
     <teleport to="body">
