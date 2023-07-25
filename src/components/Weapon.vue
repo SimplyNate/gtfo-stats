@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
+    <div :id="`${weapon.Name}`" class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
         <div class="row">
             <div class="col-3">
                 <h3>{{ weapon.Type }}</h3>
@@ -163,7 +163,8 @@ function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: s
 }
 
 onMounted(() => {
-    const progressBars = document.querySelectorAll('.progress-bar');
+    const parent: HTMLElement = document.getElementById(props.weaponValues.Name)!;
+    const progressBars = parent.querySelectorAll('.progress-bar');
     for (const elem of progressBars) {
         const name = <string>elem.getAttribute('name');
         const currentValue = Number((<HTMLElement>elem).innerHTML);
