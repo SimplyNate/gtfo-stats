@@ -141,6 +141,7 @@ const props = defineProps<{
     weaponValues: EnhancedWeapon,
     totalValues: EnhancedWeapon,
     minimumValues: EnhancedWeapon,
+    mini?: boolean,
 }>();
 const weapon = props.weaponValues;
 

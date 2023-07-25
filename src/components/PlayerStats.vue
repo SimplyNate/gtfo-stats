@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { Booster } from '../data/boosters';
-import { EnhancedWeapon } from '../data/weapons';
+import {EnhancedWeapon, mainMaximums, mainMinimums, specialMaximums, specialMinimums} from '../data/weapons';
 import { EnhancedMeleeWeapon } from '../data/melee';
+import Weapon from "./Weapon.vue";
+import MeleeWeapon from "./MeleeWeapon.vue";
 import { SentryTool } from '../data/tool';
 
 const props = defineProps<{
@@ -86,9 +88,9 @@ const computedPlayer = computed(() => {
         'Main Ammo': -0.2,
         'Special Ammo': -0.5,
         'Tool Ammo': 0,
-        'Melee Damage': 0,
-        'Main Damage': 0,
-        'Special Damage': 0,
+        'Melee Damage': 0.90,
+        'Main Damage': 0.25,
+        'Special Damage': 0.35,
         'C-Foam Portion': 0,
         'Sentry CPU Speed': 0,
         'Sentry Damage': 0,
@@ -133,6 +135,7 @@ function calculateWidth(key: string) {
 
 <template>
     <div>
+        <h5>Player Stats</h5>
         <template v-for="key of keys" :key="key">
             <template v-if="calculateWidth(key) !== 0">
                 <div>
@@ -144,6 +147,20 @@ function calculateWidth(key: string) {
                 </div>
             </template>
         </template>
+        <h5 class="mt-3">Main Weapon</h5>
+        <weapon v-if="mainWeapon"
+                :weapon-values="mainWeapon"
+                :minimum-values="mainMinimums"
+                :total-values="mainMaximums"
+                :mini="true"/>
+        <h5 class="mt-3">Special Weapon</h5>
+        <weapon v-if="specialWeapon"
+                :weapon-values="specialWeapon"
+                :minimum-values="specialMinimums"
+                :total-values="specialMaximums"
+                :mini="true"/>
+        <h5 class="mt-3">Melee Weapon</h5>
+        <melee-weapon v-if="meleeWeapon" :melee-weapon="meleeWeapon"/>
     </div>
 </template>
 

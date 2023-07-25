@@ -44,7 +44,7 @@ function setChoice(choice: Weapon | EnhancedMeleeWeapon | SentryTool) {
 
 <template>
     <div class="fullscreen d-flex">
-        <div class="w-50">
+        <div>
             <div class="fw-bold">
                 WEAPONS
             </div>
@@ -70,7 +70,7 @@ function setChoice(choice: Weapon | EnhancedMeleeWeapon | SentryTool) {
                 <div class="ps-3 pe-3"><booster-selection/></div>
             </div>
         </div>
-        <div class="w-50 me-1">
+        <div class="flex-fill me-1">
             <player-stats
                 :aggressive-booster="selectedAggressiveBooster"
                 :melee-weapon="selectedMeleeWeapon"
