@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import BarChart from './BarChart.vue';
 import { ref, computed } from 'vue';
-import { Weapon } from '../data/weapons';
+import { EnhancedWeapon } from '../data/weapons';
 
 const props = defineProps<{
-    weapons: Weapon[]
+    weapons: EnhancedWeapon[]
 }>();
 
 const validKeys: string[] = [];
-for (const key of Object.keys(props.weapons[0])) {
-    if (Number.isFinite(props.weapons[0][key])) {
+for (const key of Object.keys(props.weapons[0].weapon)) {
+    if (Number.isFinite(props.weapons[0].weapon[key])) {
         validKeys.push(key);
     }
 }
@@ -22,11 +22,11 @@ const barData = computed(() => {
         data: [],
     };
     const sortedWeapons = [ ...props.weapons ];
-    sortedWeapons.sort((a, b) => <number>b[key.value] - <number>a[key.value]);
+    sortedWeapons.sort((a, b) => <number>b.weapon[key.value] - <number>a.weapon[key.value]);
     for (const mainWeapon of sortedWeapons) {
         labels.push(mainWeapon.Type);
         // @ts-ignore
-        mainDataset.data.push(Number(mainWeapon[key.value].toFixed(2)));
+        mainDataset.data.push(Number(mainWeapon.weapon[key.value].toFixed(2)));
     }
     return {dataset: [mainDataset], labels};
 });

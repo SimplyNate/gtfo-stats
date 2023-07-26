@@ -2,16 +2,16 @@
 import WeaponSelection from '../components/WeaponSelection.vue';
 import BoosterSelection from '../components/BoosterSelection.vue';
 import { ref } from 'vue';
-import { Weapon, EnhancedWeapon, mainWeapons, specialWeapons } from '../data/weapons';
+import { EnhancedWeapon, mainWeapons, specialWeapons } from '../data/weapons';
 import meleeWeapons, { EnhancedMeleeWeapon } from '../data/melee';
 import tools, { SentryTool } from '../data/tool';
 import PlayerStats from '../components/PlayerStats.vue';
 import { Booster } from '../data/boosters';
 
-const selectedWeapons = ref<(Weapon | EnhancedMeleeWeapon | SentryTool)[]>(mainWeapons);
+const selectedWeapons = ref<(EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[]>(mainWeapons);
 const selectionCategory = ref<string>();
 
-function setSelection(selection: (Weapon | EnhancedMeleeWeapon | SentryTool)[], category: string) {
+function setSelection(selection: (EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[], category: string) {
     selectedWeapons.value = selection;
     selectionCategory.value = category;
 }
@@ -25,7 +25,7 @@ const selectedMutedBooster = ref<Booster>();
 const selectedBoldBooster = ref<Booster>();
 const selectedAggressiveBooster = ref<Booster>();
 
-function setChoice(choice: Weapon | EnhancedMeleeWeapon | SentryTool) {
+function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
     if (selectionCategory.value === 'main') {
         selectedMainWeapon.value = <EnhancedWeapon>choice;
     }
@@ -86,7 +86,7 @@ function setChoice(choice: Weapon | EnhancedMeleeWeapon | SentryTool) {
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
-                        <div class="row border" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(weapon)">
+                        <div class="row border" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | SentryTool | EnhancedMeleeWeapon>weapon)">
                             <div class="col">
                                 {{ weapon.Type }}
                             </div>

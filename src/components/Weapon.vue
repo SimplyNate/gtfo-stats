@@ -1,16 +1,16 @@
 <template>
-    <div :id="`${weapon.Name}`" class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
+    <div :id="`${weapon.weapon.Name}`" class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
         <div class="row">
             <div class="col-3">
-                <h3>{{ weapon.Type }}</h3>
-                <h4>{{ weapon.Name }}</h4>
+                <h3>{{ weapon.weapon.Type }}</h3>
+                <h4>{{ weapon.weapon.Name }}</h4>
             </div>
             <div class="col-9">
                 <div class="row">
                     <div class="col-2 text-end">Damage</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${weapon.Damage / totalValues.Damage * 100}%`">{{ weapon.Damage }}</div>
+                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${weapon.weapon.Damage / totalValues.Damage * 100}%`">{{ weapon.weapon.Damage }}</div>
                         </div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div class="col-2 text-end">DPS</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="DPS" :style="`width: ${weapon['DPS'] /  totalValues['DPS'] * 100}%`">{{ weapon['DPS'].toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="DPS" :style="`width: ${weapon.dps / totalValues.DPS * 100}%`">{{ weapon.dps.toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="col-2 text-end">Effective DPS</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Effective DPS" :style="`width: ${weapon['Effective DPS'] /  totalValues['Effective DPS'] * 100}%`">{{ weapon['Effective DPS'].toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="Effective DPS" :style="`width: ${weapon.effectiveDPS / totalValues['Effective DPS'] * 100}%`">{{ weapon.effectiveDPS.toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="col-2 text-end">Dmg/Mag</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Damage Per Mag" :style="`width: ${weapon['Damage Per Mag'] /  totalValues['Damage Per Mag'] * 100}%`">{{ weapon['Damage Per Mag'].toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="Damage Per Mag" :style="`width: ${weapon.damagePerMag / totalValues['Damage Per Mag'] * 100}%`">{{ weapon.damagePerMag.toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="col-2 text-end">Total Damage</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Total Damage" :style="`width: ${weapon['Total Damage'] /  totalValues['Total Damage'] * 100}%`">{{ weapon['Total Damage'].toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="Total Damage" :style="`width: ${weapon.totalDamage / totalValues['Total Damage'] * 100}%`">{{ weapon.totalDamage.toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     <div class="col-2 text-end">Precision</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Precision Damage" :style="`width: ${weapon['Precision Damage'] / totalValues['Precision Damage'] * 100}%`">{{ weapon['Precision Damage'].toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="Precision Damage" :style="`width: ${weapon.precision / totalValues['Precision Damage'] * 100}%`">{{ weapon.precision.toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="col-2 text-end">Stagger</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Stagger Damage" :style="`width: ${weapon['Stagger Damage'] /  totalValues['Stagger Damage'] * 100}%`">{{ weapon['Stagger Damage'].toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="Stagger Damage" :style="`width: ${weapon.stagger / totalValues['Stagger Damage'] * 100}%`">{{ weapon.stagger.toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="col-2 text-end">Reload Time</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Reload Time (s)" :style="`width: ${weapon['Reload Time (s)'] /  totalValues['Reload Time (s)'] * 100}%`">{{ weapon['Reload Time (s)'] }}</div>
+                            <div class="progress-bar chart-bg" name="Reload Time (s)" :style="`width: ${weapon.weapon['Reload Time (s)'] / totalValues['Reload Time (s)'] * 100}%`">{{ weapon.weapon['Reload Time (s)'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="col-2 text-end">Range</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Range (m)" :style="`width: ${weapon['Range (m)'] /  totalValues['Range (m)'] * 100}%`">{{ weapon['Range (m)'] }}</div>
+                            <div class="progress-bar chart-bg" name="Range (m)" :style="`width: ${weapon.weapon['Range (m)'] /  totalValues['Range (m)'] * 100}%`">{{ weapon.weapon['Range (m)'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <div class="col-2 text-end">Mag Size</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Magazine Size" :style="`width: ${weapon['Magazine Size'] /  totalValues['Magazine Size'] * 100}%`">{{ weapon['Magazine Size'] }}</div>
+                            <div class="progress-bar chart-bg" name="Magazine Size" :style="`width: ${weapon.weapon['Magazine Size'] /  totalValues['Magazine Size'] * 100}%`">{{ weapon.weapon['Magazine Size'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                     <div class="col-2 text-end">Total Ammo</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Max Ammo" :style="`width: ${weapon['Max Ammo'] /  totalValues['Max Ammo'] * 100}%`">{{ weapon['Max Ammo'] }}</div>
+                            <div class="progress-bar chart-bg" name="Max Ammo" :style="`width: ${weapon.weapon['Max Ammo'] /  totalValues['Max Ammo'] * 100}%`">{{ weapon.weapon['Max Ammo'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     <div class="col-2 text-end">Rate of Fire</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Rate of Fire" :style="`width: ${weapon['Rate of Fire'] /  totalValues['Rate of Fire'] * 100}%`">{{ weapon['Rate of Fire'] }}</div>
+                            <div class="progress-bar chart-bg" name="Rate of Fire" :style="`width: ${weapon.weapon['Rate of Fire'] /  totalValues['Rate of Fire'] * 100}%`">{{ weapon.weapon['Rate of Fire'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -109,11 +109,11 @@
                             <div class="col-2 text-end">Body %</div>
                             <div class="col-6 text-start">
                                 <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weapon.Damage / enemy.Health * 100}%`">{{ (weapon.Damage / enemy.Health * 100).toFixed(2) }}%</div>
+                                    <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weapon.weapon.Damage / enemy.Health * 100}%`">{{ (weapon.weapon.Damage / enemy.Health * 100).toFixed(2) }}%</div>
                                 </div>
                             </div>
-                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weapon.Damage) }}</div>
-                            <div class="col-2">Waste: {{ (((Math.ceil(enemy.Health / weapon.Damage) * weapon.Damage) - enemy.Health) / weapon.Damage * 100).toFixed(2) }}%</div>
+                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weapon.weapon.Damage) }}</div>
+                            <div class="col-2">Waste: {{ (((Math.ceil(enemy.Health / weapon.weapon.Damage) * weapon.weapon.Damage) - enemy.Health) / weapon.weapon.Damage * 100).toFixed(2) }}%</div>
                         </div>
                         <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
                             <div class="col-2 text-end">{{ weakPoint }} %</div>
@@ -133,14 +133,14 @@
 </template>
 
 <script setup lang="ts">
-import type { EnhancedWeapon } from '../data/weapons';
+import { EnhancedWeapon, MinMax } from '../data/weapons';
 import enemies, { Enemy } from '../data/enemies';
 import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
     weaponValues: EnhancedWeapon,
-    totalValues: EnhancedWeapon,
-    minimumValues: EnhancedWeapon,
+    totalValues: MinMax,
+    minimumValues: MinMax,
     mini?: boolean,
 }>();
 const weapon = props.weaponValues;
@@ -160,11 +160,11 @@ function toggleMore() {
 }
 
 function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon['Precision Damage'] * enemy['Weak Points'][enemyWeakPoint].Multiplier;
+    return weapon.weapon['Precision Damage'] * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
 onMounted(() => {
-    const parent: HTMLElement = document.getElementById(props.weaponValues.Name)!;
+    const parent: HTMLElement = document.getElementById(props.weaponValues.weapon.Name)!;
     const progressBars = parent.querySelectorAll('.progress-bar');
     for (const elem of progressBars) {
         const name = <string>elem.getAttribute('name');
