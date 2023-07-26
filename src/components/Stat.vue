@@ -23,7 +23,9 @@ const computedOriginalValue = computed(() => {
 
 <template>
     <div>
-        <div>{{ title }}</div>
+        <div>
+            {{ title }} - {{ newValue ? newValue : computedOriginalValue }}<span v-if="delta !== 0">&nbsp;(<span v-if="delta > 0">&plus;</span>{{ (delta * 100).toFixed(2) }}%)</span>
+        </div>
         <div class="progress bg-dark" role="progressbar" style="height: 5px;">
             <div class="progress-bar chart-bg" :style="`width: ${computedOriginalValue}%`"></div>
             <template v-if="newValue">
