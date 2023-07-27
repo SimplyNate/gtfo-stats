@@ -155,7 +155,7 @@ export const mainMinimums: MinMax = {
     Damage: Infinity,
 };
 for (const item of _main) {
-    const processed: EnhancedWeapon = processWeapon(item);
+    const processed: EnhancedWeapon = processWeapon(<Weapon>item);
     for (const key of Object.keys(processed.weapon)) {
         if (Number.isFinite(processed.weapon[key])) {
             mainMaximums[key] = Math.max(mainMaximums[key], <number>processed.weapon[key]);
@@ -226,7 +226,7 @@ export const specialMinimums: MinMax = {
     Damage: Infinity,
 };
 for (const item of _special) {
-    const processed: EnhancedWeapon = processWeapon(item);
+    const processed: EnhancedWeapon = processWeapon(<Weapon>item);
     for (const key of Object.keys(processed.weapon)) {
         if (Number.isFinite(processed.weapon[key])) {
             specialMaximums[key] = Math.max(specialMaximums[key], <number>processed.weapon[key])
