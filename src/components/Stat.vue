@@ -22,7 +22,7 @@ const computedOriginalValue = computed(() => {
 <template>
     <div>
         <div>
-            {{ title }} - {{ newValue ? newValue.toFixed(2) : originalValue.toFixed(2) }}<span v-if="delta !== 0">&nbsp;(<span v-if="delta > 0">&plus;</span>{{ (delta / originalValue * 100).toFixed(2) }}%)</span>
+            {{ title }} - {{ newValue ? newValue.toFixed(2) : originalValue.toFixed(2) }}<span v-if="delta !== 0">&nbsp;(<span v-if="delta > 0">&plus;</span>{{ (delta).toFixed(2) }})</span>
         </div>
         <div class="progress bg-dark" role="progressbar" style="height: 5px;">
             <div class="progress-bar chart-bg" :style="`width: ${computedOriginalValue / maxValue * 100}%`"></div>
