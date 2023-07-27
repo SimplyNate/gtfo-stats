@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { meleeMaximums, MeleeWeapon, EnhancedMeleeWeapon } from '../data/melee';
+import { meleeMaximums, EnhancedMeleeWeapon } from '../data/melee';
 import enemies, { Enemy } from '../data/enemies';
 import { ref, onMounted } from 'vue';
 
@@ -23,12 +23,12 @@ function toggleMore() {
     }, 1);
 }
 
-function weakPointDamage(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon['Precision Damage'].Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
+function weakPointDamage(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
+    return weapon.precision.Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
-function weakPointStealth(weapon: MeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon['Precision Damage'].Charged * weapon['Stealth Multiplier'].Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
+function weakPointStealth(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
+    return weapon.stealthPrecision.Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
 onMounted(() => {
@@ -61,7 +61,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Uncharged Damage</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${melee.Damage.Uncharged / meleeMaximums.Damage.Uncharged * 100}%`">{{ melee.Damage.Uncharged }}</div>
+                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${melee.damage.Uncharged / meleeMaximums.Damage.Uncharged * 100}%`">{{ melee.damage.Uncharged }}</div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charged Damage</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${melee.Damage.Charged / meleeMaximums.Damage.Charged * 100}%`">{{ melee.Damage.Charged }}</div>
+                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${melee.damage.Charged / meleeMaximums.Damage.Charged * 100}%`">{{ melee.damage.Charged }}</div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charged Precision</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Precision Damage" :style="`width: ${melee['Precision Damage'].Charged / meleeMaximums['Precision Damage'].Charged * 100}%`">{{ melee['Precision Damage'].Charged }}</div>
+                            <div class="progress-bar chart-bg" name="Precision Damage" :style="`width: ${melee.precision.Charged / meleeMaximums['Precision Damage'].Charged * 100}%`">{{ (melee.precision.Charged).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charged Stagger</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Stagger Damage" :style="`width: ${melee['Stagger Damage'].Charged / meleeMaximums['Stagger Damage'].Charged * 100}%`">{{ melee['Stagger Damage'].Charged }}</div>
+                            <div class="progress-bar chart-bg" name="Stagger Damage" :style="`width: ${melee.stagger.Charged / meleeMaximums['Stagger Damage'].Charged * 100}%`">{{ (melee.stagger.Charged).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Range</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Range" :style="`width: ${melee.Range / meleeMaximums.Range * 100}%`">{{ melee.Range }}</div>
+                            <div class="progress-bar chart-bg" name="Range" :style="`width: ${melee.weapon.Range / meleeMaximums.Range * 100}%`">{{ melee.weapon.Range }}</div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charge Time</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Charge Time" :style="`width: ${melee['Charge Time'] / meleeMaximums['Charge Time'] * 100}%`">{{ melee['Charge Time'] }}</div>
+                            <div class="progress-bar chart-bg" name="Charge Time" :style="`width: ${melee.weapon['Charge Time'] / meleeMaximums['Charge Time'] * 100}%`">{{ melee.weapon['Charge Time'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charge Hold</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Charge Hold Duration" :style="`width: ${melee['Charge Hold Duration'] / meleeMaximums['Charge Hold Duration'] * 100}%`">{{ melee['Charge Hold Duration'] }}</div>
+                            <div class="progress-bar chart-bg" name="Charge Hold Duration" :style="`width: ${melee.weapon['Charge Hold Duration'] / meleeMaximums['Charge Hold Duration'] * 100}%`">{{ melee.weapon['Charge Hold Duration'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Charged DPS</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="DPS" :style="`width: ${melee.DPS / meleeMaximums.DPS * 100}%`">{{ (melee.DPS).toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="DPS" :style="`width: ${melee.dps.Charged / meleeMaximums.DPS * 100}%`">{{ (melee.dps.Charged).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@ onMounted(() => {
                     <div class="col-2 text-end">Stagger DPS</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Stagger DPS" :style="`width: ${melee['Stagger DPS'] / meleeMaximums['Stagger DPS'] * 100}%`">{{ (melee['Stagger DPS']).toFixed(2) }}</div>
+                            <div class="progress-bar chart-bg" name="Stagger DPS" :style="`width: ${melee.staggerDPS.Charged / meleeMaximums['Stagger DPS'] * 100}%`">{{ (melee.staggerDPS.Charged).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
@@ -137,10 +137,10 @@ onMounted(() => {
                                 <div class="col-2 text-end">Body %</div>
                                 <div class="col-8 text-start">
                                     <div class="progress bg-dark mt-2" role="progressbar">
-                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged * melee['Stealth Multiplier'].Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${melee.stealthNormal.Charged / enemy.Health * 100}%`">{{ (melee.stealthNormal.Charged / enemy.Health * 100).toFixed(2) }}%</div>
                                     </div>
                                 </div>
-                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / (melee.Damage.Charged * melee['Stealth Multiplier'].Charged)) }}</div>
+                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / (melee.stealthNormal.Charged)) }}</div>
                             </div>
                             <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
                                 <div class="col-2 text-end">{{ weakPoint }} %</div>
@@ -158,10 +158,10 @@ onMounted(() => {
                                 <div class="col-2 text-end">Body %</div>
                                 <div class="col-8 text-start">
                                     <div class="progress bg-dark mt-2" role="progressbar">
-                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${melee.Damage.Charged / enemy.Health * 100}%`">{{ (melee.Damage.Charged / enemy.Health * 100).toFixed(2) }}%</div>
+                                        <div class="progress-bar chart-bg enemy-bar" :style="`width: ${melee.damage.Charged / enemy.Health * 100}%`">{{ (melee.damage.Charged / enemy.Health * 100).toFixed(2) }}%</div>
                                     </div>
                                 </div>
-                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / melee.Damage.Charged) }}</div>
+                                <div class="col-2">To kill: {{ Math.ceil(enemy.Health / melee.damage.Charged) }}</div>
                             </div>
                             <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
                                 <div class="col-2 text-end">{{ weakPoint }} %</div>
