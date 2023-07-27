@@ -2,13 +2,23 @@
 import type { EnhancedWeapon } from '../data/weapons';
 import enemies, { Enemy } from '../data/enemies';
 import { onMounted, ref } from 'vue';
+import Stat from "./Stat.vue";
 
 const props = defineProps<{
-    weaponValues: EnhancedWeapon,
-    totalValues: EnhancedWeapon,
-    minimumValues: EnhancedWeapon,
+    weapon: EnhancedWeapon;
 }>();
-const weapon = props.weaponValues;
+
+const displayKeys = {
+    damage: 'Damage',
+    precision: 'Precision Damage',
+    stagger: 'Stagger Damage',
+    damagePerMag: 'DamagePerMag',
+    totalDamage: 'Total Damage',
+    dps: 'DPS',
+    effectiveDPS: 'Effective DPS',
+    precisionDPS: 'Precision DPS',
+    effectivePrecisionDPS: 'Effective Precision DPS'
+};
 
 const showMore = ref<boolean>(false);
 
@@ -17,10 +27,9 @@ const showMore = ref<boolean>(false);
 
 <template>
     <div>
-        <div>Damage</div>
-        <div class="progress bg-dark" role="progressbar" style="height: 5px;">
-
-        </div>
+        <stat v-for="key of Object.keys(displayKeys)" :key="key"
+              :title="displayKeys[key]"
+              :original-value="weapon[key]"/>
     </div>
 </template>
 
