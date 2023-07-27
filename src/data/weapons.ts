@@ -24,11 +24,14 @@ export interface Weapon {
 }
 
 export class EnhancedWeapon {
+    [index: string]: any;
     public weapon: Weapon;
     private damageModifier: number;
+    private ammoModifier: number;
     constructor(weapon: Weapon) {
         this.weapon = weapon;
         this.damageModifier = 1;
+        this.ammoModifier = 1;
     }
     get Name(): string {
         return this.weapon.Name;
@@ -41,6 +44,12 @@ export class EnhancedWeapon {
     }
     set modifier(value: number) {
         this.damageModifier = 1 + value;
+    }
+    get startingAmmo(): number {
+        return this.weapon['Starting Ammo'] * this.ammoModifier;
+    }
+    set ammoMod(value: number) {
+        this.ammoModifier = 1 + value;
     }
     get precision(): number {
         return this.damage * this.weapon['Precision Multiplier'];

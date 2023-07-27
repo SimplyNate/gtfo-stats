@@ -74,7 +74,7 @@
                     <div class="col-2 text-end">Range</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Range (m)" :style="`width: ${weapon.weapon['Range (m)'] /  totalValues['Range (m)'] * 100}%`">{{ weapon.weapon['Range (m)'] }}</div>
+                            <div class="progress-bar chart-bg" name="Range (m)" :style="`width: ${weapon.weapon['Range (m)'] / totalValues['Range (m)'] * 100}%`">{{ weapon.weapon['Range (m)'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <div class="col-2 text-end">Mag Size</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Magazine Size" :style="`width: ${weapon.weapon['Magazine Size'] /  totalValues['Magazine Size'] * 100}%`">{{ weapon.weapon['Magazine Size'] }}</div>
+                            <div class="progress-bar chart-bg" name="Magazine Size" :style="`width: ${weapon.weapon['Magazine Size'] / totalValues['Magazine Size'] * 100}%`">{{ weapon.weapon['Magazine Size'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,15 @@
                     <div class="col-2 text-end">Total Ammo</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Max Ammo" :style="`width: ${weapon.weapon['Max Ammo'] /  totalValues['Max Ammo'] * 100}%`">{{ weapon.weapon['Max Ammo'] }}</div>
+                            <div class="progress-bar chart-bg" name="Max Ammo" :style="`width: ${weapon.weapon['Max Ammo'] / totalValues['Max Ammo'] * 100}%`">{{ weapon.weapon['Max Ammo'] }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-end">Starting Ammo</div>
+                    <div class="col-10 text-start">
+                        <div class="progress bg-dark mt-2" role="progressbar">
+                            <div class="progress-bar chart-bg" name="Max Ammo" :style="`width: ${weapon.weapon['Starting Ammo'] / totalValues['Starting Ammo'] * 100}%`">{{ weapon.weapon['Starting Ammo'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +106,7 @@
                     <div class="col-2 text-end">Rate of Fire</div>
                     <div class="col-10 text-start">
                         <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Rate of Fire" :style="`width: ${weapon.weapon['Rate of Fire'] /  totalValues['Rate of Fire'] * 100}%`">{{ weapon.weapon['Rate of Fire'] }}</div>
+                            <div class="progress-bar chart-bg" name="Rate of Fire" :style="`width: ${weapon.weapon['Rate of Fire'] / totalValues['Rate of Fire'] * 100}%`">{{ weapon.weapon['Rate of Fire'] }}</div>
                         </div>
                     </div>
                 </div>
