@@ -44,7 +44,7 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
 interface EffectChoice {
     [index: string]: {
         toggle: boolean;
-        value: number;
+        value: string;
     }
 }
 
@@ -70,13 +70,13 @@ function resetBoosterState() {
     for (const effect of effectData) {
         positiveEffectChoices.value[effect.stat] = {
             toggle: false,
-            value: 0,
+            value: '0',
         };
     }
     for (const effect of negativeData) {
         negativeEffectChoices.value[effect.stat] = {
             toggle: false,
-            value: 0,
+            value: '0',
         }
     }
     for (const condition of conditions) {
@@ -109,13 +109,13 @@ function setBoosterState() {
             const name = effect.stat;
             const value = effect.value;
             positiveEffectChoices.value[name].toggle = true;
-            positiveEffectChoices.value[name].value = value;
+            positiveEffectChoices.value[name].value = value.toString();
         }
         for (const effect of boosterRef.value.negative) {
             const name = effect.stat;
             const value = effect.value;
             negativeEffectChoices.value[name].toggle = true;
-            negativeEffectChoices.value[name].value = value;
+            negativeEffectChoices.value[name].value = value.toString();
         }
         for (const condition of boosterRef.value.condition) {
             const name = condition.name;
@@ -138,7 +138,7 @@ function saveBooster() {
         if (effect.toggle) {
             boosterRef.value.positive.push({
                 stat: key,
-                value: effect.value,
+                value: Number.parseFloat(effect.value),
             });
         }
     }
@@ -147,7 +147,7 @@ function saveBooster() {
         if (effect.toggle) {
             boosterRef.value.negative.push({
                 stat: key,
-                value: effect.value,
+                value: Number.parseFloat(effect.value),
             });
         }
     }
@@ -192,7 +192,7 @@ function saveBooster() {
                 <div class="ps-3 pe-3"><booster-selection tier="Aggressive" :booster="selectedAggressiveBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('aggressive')"/></div>
             </div>
         </div>
-        <div class="flex-fill me-1">
+        <div class="flex-fill me-3">
             <player-stats
                 :aggressive-booster="selectedAggressiveBooster"
                 :melee-weapon="selectedMeleeWeapon"
@@ -240,7 +240,7 @@ function saveBooster() {
                                         </div>
                                     </div>
                                     <template v-if="positiveEffectChoices[effect.stat].toggle">
-                                        <label>Value: {{ Math.round(positiveEffectChoices[effect.stat].value * 100) }}%</label>
+                                        <label>Value: {{ Math.round(Number.parseFloat(positiveEffectChoices[effect.stat].value) * 100) }}%</label>
                                         <input type="range" class="form-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="positiveEffectChoices[effect.stat].value">
                                     </template>
                                 </div>
@@ -257,7 +257,7 @@ function saveBooster() {
                                             </div>
                                         </div>
                                         <template v-if="negativeEffectChoices[effect.stat].toggle">
-                                            <label>Value: {{ Math.round(negativeEffectChoices[effect.stat].value * 100) }}%</label>
+                                            <label>Value: {{ Math.round(Number.parseFloat(negativeEffectChoices[effect.stat].value) * 100) }}%</label>
                                             <input type="range" class="form-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="negativeEffectChoices[effect.stat].value">
                                         </template>
                                     </div>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Booster } from "../data/boosters.ts";
 
-// @ts-ignore
 const props = defineProps<{
     booster?: Booster;
     tier: string;
