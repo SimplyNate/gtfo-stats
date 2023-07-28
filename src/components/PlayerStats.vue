@@ -42,7 +42,7 @@ interface Player {
     'Glow Stick Power': number;
     'Fog Repeller Power': number;
     'Tracker CPU Speed': number;
-    'Hacking Speed': number;
+    'Hacking Skill': number;
     'Bioscan Speed': number;
 }
 
@@ -70,7 +70,7 @@ const defaults: Player = {
     'Glow Stick Power': 0,
     'Fog Repeller Power': 0,
     'Tracker CPU Speed': 0,
-    'Hacking Speed': 0,
+    'Hacking Skill': 0,
     'Bioscan Speed': 0,
 };
 
@@ -99,7 +99,7 @@ const computedPlayer = computed(() => {
         'Glow Stick Power': 0,
         'Fog Repeller Power': 0,
         'Tracker CPU Speed': 0,
-        'Hacking Speed': 0,
+        'Hacking Skill': 0,
         'Bioscan Speed': 0,
     };
     if (props.mutedBooster) {
