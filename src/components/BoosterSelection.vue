@@ -1,14 +1,29 @@
 <script setup lang="ts">
+import { Booster } from "../data/boosters.ts";
+
+// @ts-ignore
+const props = defineProps<{
+    booster?: Booster;
+    tier: string;
+}>();
 </script>
 
 <template>
     <div>
-        <div class="weapon-type">Blank</div>
+        <div class="weapon-type">{{ tier }} Booster</div>
         <div class="image-box">
-            <div class="img-container d-flex align-items-center justify-content-center">
+            <div v-if="!booster" class="img-container d-flex align-items-center justify-content-center">
                 <div class="plus fs-1">&plus;</div>
             </div>
-            <div class="weapon-name ms-1">Select a Booster</div>
+            <div v-else class="img-container ps-1">
+                <div style="font-size: 12px;" v-for="positive of booster.positive" :key="positive.stat">
+                    {{ positive.stat }}
+                </div>
+                <div v-for="negative of booster.negative" :key="negative.stat" style="font-size: 12px; color: red">
+                    {{ negative.stat }}
+                </div>
+            </div>
+            <div v-if="!booster" class="weapon-name ms-1">Select a Booster</div>
         </div>
     </div>
 </template>

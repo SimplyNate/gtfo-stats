@@ -6,7 +6,7 @@ export interface Effect {
 export interface Booster {
     positive: Effect[],
     negative: Effect[],
-    condition: Effect[],
+    condition: Condition[],
 }
 
 export interface EffectRange {
@@ -15,6 +15,7 @@ export interface EffectRange {
 }
 
 export interface EffectData {
+    [index: string]: string | EffectRange;
     stat: string;
     muted: EffectRange,
     bold: EffectRange,
@@ -384,16 +385,20 @@ export const effectData: EffectData[] = [
     },
 ]
 
-export const negativeData = [
+export interface NegativeEffect {
+    [index: string]: string | EffectRange | undefined;
+    stat: string;
+    muted?: EffectRange,
+    bold?: EffectRange,
+    aggressive?: EffectRange,
+}
+
+export const negativeData: NegativeEffect[] = [
     {
         stat: 'Regen Speed',
         bold: {
             min: -0.20,
             max: -0.13,
-        },
-        aggressive: {
-            min: 0,
-            max: 0,
         },
     },
     {
@@ -436,6 +441,11 @@ export const negativeData = [
         },
     }
 ];
+
+export interface Condition {
+    name: string;
+    description: string;
+}
 
 export const conditions = [
     {

@@ -6,10 +6,11 @@ import { EnhancedWeapon, mainWeapons, specialWeapons } from '../data/weapons';
 import meleeWeapons, { EnhancedMeleeWeapon } from '../data/melee';
 import tools, { SentryTool } from '../data/tool';
 import PlayerStats from '../components/PlayerStats.vue';
-import { Booster } from '../data/boosters';
+import {Booster, effectData, negativeData, conditions, EffectRange} from '../data/boosters';
 
 const selectedWeapons = ref<(EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[]>(mainWeapons);
 const selectionCategory = ref<string>();
+const boosterSelectionCategory = ref<string>('muted');
 
 function setSelection(selection: (EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[], category: string) {
     selectedWeapons.value = selection;
@@ -40,6 +41,98 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
     }
 }
 
+interface EffectChoice {
+    [index: string]: {
+        toggle: boolean;
+        value: number;
+    }
+}
+
+interface ConditionChoice {
+    [index: string]: {
+        toggle: boolean;
+        name: string;
+        description: string;
+    };
+}
+
+const positiveEffectChoices = ref<EffectChoice>({});
+const negativeEffectChoices = ref<EffectChoice>({});
+const conditionChoices = ref<ConditionChoice>({});
+
+function setBoosterChoice(choice: string) {
+    boosterSelectionCategory.value = choice;
+}
+
+function resetBoosterState() {
+    for (const effect of effectData) {
+        positiveEffectChoices.value[effect.stat] = {
+            toggle: false,
+            value: 0,
+        };
+    }
+    for (const effect of negativeData) {
+        negativeEffectChoices.value[effect.stat] = {
+            toggle: false,
+            value: 0,
+        }
+    }
+    for (const condition of conditions) {
+        conditionChoices.value[condition.name] = {
+            toggle: false,
+            name: condition.name,
+            description: condition.description,
+        };
+    }
+}
+
+resetBoosterState();
+
+function saveBooster() {
+    let boosterRef;
+    if (boosterSelectionCategory.value === 'muted') {
+        boosterRef = selectedMutedBooster;
+    }
+    else if (boosterSelectionCategory.value === 'bold') {
+        boosterRef = selectedBoldBooster;
+    }
+    else {
+        boosterRef = selectedAggressiveBooster;
+    }
+    boosterRef.value = {
+        positive: [],
+        negative: [],
+        condition: [],
+    };
+    for (const key of Object.keys(positiveEffectChoices.value)) {
+        const effect = positiveEffectChoices.value[key];
+        if (effect.toggle) {
+            boosterRef.value.positive.push({
+                stat: key,
+                value: effect.value,
+            });
+        }
+    }
+    for (const key of Object.keys(negativeEffectChoices.value)) {
+        const effect = negativeEffectChoices.value[key];
+        if (effect.toggle) {
+            boosterRef.value.negative.push({
+                stat: key,
+                value: effect.value,
+            });
+        }
+    }
+    for (const key of Object.keys(conditionChoices.value)) {
+        const condition = conditionChoices.value[key];
+        if (condition.toggle) {
+            boosterRef.value.condition.push({
+                name: condition.name,
+                description: condition.description,
+            });
+        }
+    }
+}
+
 </script>
 
 <template>
@@ -65,9 +158,9 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
                 </div>
             </div>
             <div class="d-flex mt-2">
-                <div class="ps-3 pe-3"><booster-selection/></div>
-                <div class="ps-3 pe-3"><booster-selection/></div>
-                <div class="ps-3 pe-3"><booster-selection/></div>
+                <div class="ps-3 pe-3"><booster-selection tier="Muted" :booster="selectedMutedBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('muted')"/></div>
+                <div class="ps-3 pe-3"><booster-selection tier="Bold" :booster="selectedBoldBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('bold')"/></div>
+                <div class="ps-3 pe-3"><booster-selection tier="Aggressive" :booster="selectedAggressiveBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('aggressive')"/></div>
             </div>
         </div>
         <div class="flex-fill me-1">
@@ -86,8 +179,8 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
-                        <div class="row border" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | SentryTool | EnhancedMeleeWeapon>weapon)">
-                            <div class="col">
+                        <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | SentryTool | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal">
+                            <div class="col pt-1 pb-1">
                                 {{ weapon.Type }}
                             </div>
                         </div>
@@ -95,8 +188,64 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
                 </div>
             </div>
         </div>
-        <div class="modal" id="boosterSelectorModal">
+        <div class="modal modal-xl" id="boosterSelectorModal">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="container-fluid" style="background-color: #010508; color: #d3f7ff; overflow-y: auto">
+                        <div class="d-flex justify-content-between">
+                            <h4>Create new {{ boosterSelectionCategory }} Booster</h4>
+                            <button class="btn btn-outline-success" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
+                        </div>
+                        <!-- Positive Effects -->
+                        <div class="row">
+                            <div class="list-group col">
+                                <h5>Positive Effects</h5>
+                                <div class="list-group-item" style="background-color: #010508; color: #d3f7ff;" v-for="effect of effectData" :key="effect.stat">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ effect.stat }}</h5>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" v-model="positiveEffectChoices[effect.stat].toggle">
+                                        </div>
+                                    </div>
+                                    <template v-if="positiveEffectChoices[effect.stat].toggle">
+                                        <label>Value: {{ Math.round(positiveEffectChoices[effect.stat].value * 100) }}%</label>
+                                        <input type="range" class="form-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="positiveEffectChoices[effect.stat].value">
+                                    </template>
+                                </div>
+                            </div>
+                            <!-- Negative Effects -->
+                            <div v-if="boosterSelectionCategory !== 'muted'" class="list-group col">
+                                <h5>Negative Effects</h5>
+                                <template v-for="effect of negativeData" :key="effect.stat">
+                                    <div class="list-group-item" style="background-color: #010508; color: #d3f7ff;" v-if="effect[boosterSelectionCategory]">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">{{ effect.stat }}</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" v-model="negativeEffectChoices[effect.stat].toggle">
+                                            </div>
+                                        </div>
+                                        <template v-if="negativeEffectChoices[effect.stat].toggle">
+                                            <label>Value: {{ Math.round(negativeEffectChoices[effect.stat].value * 100) }}%</label>
+                                            <input type="range" class="form-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="negativeEffectChoices[effect.stat].value">
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                            <div class="list-group col">
+                                <h5>Conditions</h5>
+                                <div class="list-group-item" style="background-color: #010508; color: #d3f7ff;" v-for="condition of conditions">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ condition.name }}</h5>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" v-model="conditionChoices[condition.name].toggle">
+                                        </div>
+                                    </div>
+                                    <small>{{ condition.description }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </teleport>
