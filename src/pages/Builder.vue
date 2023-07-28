@@ -219,14 +219,17 @@ function saveBooster() {
         </div>
         <div class="modal modal-xl" id="boosterSelectorModal">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="container-fluid" style="background-color: #010508; color: #d3f7ff; overflow-y: auto">
-                        <div class="d-flex justify-content-between">
+                <div class="modal-content border">
+                    <div class="container-fluid" style="background-color: #010508; color: #d3f7ff; overflow-y: auto; overflow-x: hidden;">
+                        <div class="d-flex justify-content-between mt-2">
                             <h4>Create new {{ boosterSelectionCategory }} Booster</h4>
-                            <button class="btn btn-outline-success" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
+                            <div>
+                                <button class="btn btn-outline-danger me-3" @click="resetBoosterState">Reset Booster</button>
+                                <button class="btn btn-outline-success" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
+                            </div>
                         </div>
                         <!-- Positive Effects -->
-                        <div class="row">
+                        <div class="row ms-1 mb-2">
                             <div class="list-group col">
                                 <h5>Positive Effects</h5>
                                 <div class="list-group-item" style="background-color: #010508; color: #d3f7ff;" v-for="effect of effectData" :key="effect.stat">
