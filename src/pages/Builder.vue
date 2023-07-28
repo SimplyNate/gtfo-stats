@@ -62,6 +62,8 @@ const conditionChoices = ref<ConditionChoice>({});
 
 function setBoosterChoice(choice: string) {
     boosterSelectionCategory.value = choice;
+    resetBoosterState();
+    setBoosterState();
 }
 
 function resetBoosterState() {
@@ -86,9 +88,7 @@ function resetBoosterState() {
     }
 }
 
-resetBoosterState();
-
-function saveBooster() {
+function getBoosterRef() {
     let boosterRef;
     if (boosterSelectionCategory.value === 'muted') {
         boosterRef = selectedMutedBooster;
@@ -99,6 +99,35 @@ function saveBooster() {
     else {
         boosterRef = selectedAggressiveBooster;
     }
+    return boosterRef;
+}
+
+function setBoosterState() {
+    const boosterRef = getBoosterRef();
+    if (boosterRef.value) {
+        for (const effect of boosterRef.value.positive) {
+            const name = effect.stat;
+            const value = effect.value;
+            positiveEffectChoices.value[name].toggle = true;
+            positiveEffectChoices.value[name].value = value;
+        }
+        for (const effect of boosterRef.value.negative) {
+            const name = effect.stat;
+            const value = effect.value;
+            negativeEffectChoices.value[name].toggle = true;
+            negativeEffectChoices.value[name].value = value;
+        }
+        for (const condition of boosterRef.value.condition) {
+            const name = condition.name;
+            conditionChoices.value[name].toggle = true;
+        }
+    }
+}
+
+resetBoosterState();
+
+function saveBooster() {
+    const boosterRef = getBoosterRef();
     boosterRef.value = {
         positive: [],
         negative: [],
