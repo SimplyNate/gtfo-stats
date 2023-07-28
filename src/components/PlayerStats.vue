@@ -2,8 +2,8 @@
 import { computed } from 'vue';
 import { Booster } from '../data/boosters';
 import { EnhancedWeapon, mainMaximums, specialMaximums } from '../data/weapons';
-import { EnhancedMeleeWeapon } from '../data/melee';
-import MeleeWeapon from "./MeleeWeapon.vue";
+import {EnhancedMeleeWeapon, meleeMaximums} from '../data/melee';
+import MeleeStats from './MeleeStats.vue';
 import { SentryTool } from '../data/tool';
 import WeaponStats from "./WeaponStats.vue";
 
@@ -88,7 +88,7 @@ const computedPlayer = computed(() => {
         'Main Ammo': -0.2,
         'Special Ammo': -0.5,
         'Tool Ammo': 0,
-        'Melee Damage': 0.90,
+        'Melee Damage': 0.33,
         'Main Damage': 0.25,
         'Special Damage': 0.35,
         'C-Foam Portion': 0,
@@ -160,7 +160,10 @@ function calculateWidth(key: string) {
                       :ammo-boost="computedPlayer['Special Ammo']"
                       :maximums="specialMaximums"/>
         <h5 class="mt-3">Melee Weapon</h5>
-        <melee-weapon v-if="meleeWeapon" :melee-weapon="meleeWeapon"/>
+        <melee-stats v-if="meleeWeapon"
+                     :weapon="meleeWeapon"
+                     :damage-boost="computedPlayer['Melee Damage']"
+                     :maximums="meleeMaximums"/>
     </div>
 </template>
 

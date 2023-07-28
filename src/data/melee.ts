@@ -22,6 +22,7 @@ export interface MeleeWeapon {
 }
 
 export class EnhancedMeleeWeapon {
+    [index: string]: any;
     weapon: MeleeWeapon;
     private damageModifier: number;
     constructor(meleeWeapon: MeleeWeapon) {
