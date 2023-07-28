@@ -134,7 +134,7 @@ function calculateWidth(key: string) {
 </script>
 
 <template>
-    <div>
+    <div class="mb-5">
         <h5>Player Stats</h5>
         <template v-for="key of keys" :key="key">
             <template v-if="calculateWidth(key) !== 0">
@@ -147,19 +147,19 @@ function calculateWidth(key: string) {
                 </div>
             </template>
         </template>
-        <h5 class="mt-3">Main Weapon</h5>
+        <h5 class="mt-3">{{ mainWeapon ? mainWeapon.Type : 'Main Weapon' }}</h5>
         <weapon-stats v-if="mainWeapon"
                 :weapon="mainWeapon"
                 :damage-boost="computedPlayer['Main Damage']"
                 :ammo-boost="computedPlayer['Main Ammo']"
                 :maximums="mainMaximums"/>
-        <h5 class="mt-3">Special Weapon</h5>
+        <h5 class="mt-3">{{ specialWeapon ? specialWeapon.Type : 'Special Weapon' }}</h5>
         <weapon-stats v-if="specialWeapon"
                       :weapon="specialWeapon"
                       :damage-boost="computedPlayer['Special Damage']"
                       :ammo-boost="computedPlayer['Special Ammo']"
                       :maximums="specialMaximums"/>
-        <h5 class="mt-3">Melee Weapon</h5>
+        <h5 class="mt-3">{{ meleeWeapon ? meleeWeapon.Type : 'Melee Weapon' }}</h5>
         <melee-stats v-if="meleeWeapon"
                      :weapon="meleeWeapon"
                      :damage-boost="computedPlayer['Melee Damage']"
