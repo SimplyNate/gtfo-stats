@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Booster } from "../data/boosters.ts";
 
-const props = defineProps<{
+defineProps<{
     booster?: Booster;
     tier: string;
 }>();
@@ -25,7 +25,7 @@ const props = defineProps<{
                     {{ condition.name }}
                 </div>
             </div>
-            <div v-if="!booster" class="weapon-name ms-1">Select a Booster</div>
+            <div v-if="!booster" class="weapon-name ms-1">Select Booster</div>
         </div>
     </div>
 </template>

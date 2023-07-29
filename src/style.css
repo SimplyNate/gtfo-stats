@@ -28,5 +28,19 @@
 }
 .clickable:hover {
   cursor: pointer;
-  box-shadow: inset #9eeaf9 0 0 15px;
+  background-color: #191f24;
+}
+.menu-item {
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-left: 16px solid;
+  margin-bottom: 2em;
+}
+
+.menu-item-text {
+  transform: translateX(-1px);
 }

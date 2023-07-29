@@ -1,38 +1,38 @@
 <template>
     <div class="app" id="parallax">
-        <div class="left-menu">
+        <div class="left-menu ps-3 pe-3">
+            <ul class="nav flex-column">
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('main')">MAIN WEAPONS</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('special')">SPECIAL WEAPONS</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('melee')">MELEE WEAPONS</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('tools')">TOOLS</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('enemies')">ENEMIES</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('main-graph')">MAIN CHART</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('special-graph')">SPECIAL CHART</h3>
+                </li>
+                <li class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('builder')">BUILDER</h3>
+                </li>
+            </ul>
             <div class="ms-3 mt-2">
                 <div class="form-check form-switch">
                     <input type="checkbox" role="switch" class="form-check-input" v-model="enableParallax"/>
                     <label class="form-check-label">Enable Parallax</label>
                 </div>
             </div>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <button class="nav-link active" @click="setView('main')">Main Weapons</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('special')">Special Weapons</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('melee')">Melee Weapons</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('tools')">Sentry Tools</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('enemies')">Enemies</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('main-graph')">Main Chart</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('special-graph')">Special Chart</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" @click="setView('builder')">Builder</button>
-                </li>
-            </ul>
         </div>
         <div class="right-content aberration-red">
             <main-weapons v-if="view === 'main'" />
@@ -102,6 +102,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .app {
+    font-family: monospace;
     width: 100vw;
     height: 100vh;
     background-color: #010508;
