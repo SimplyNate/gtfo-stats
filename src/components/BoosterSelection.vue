@@ -43,7 +43,4 @@ const props = defineProps<{
     width: 100%;
     height: 80%;
 }
-.font-yellow {
-    color: #c7ad24;
-}
 </style>

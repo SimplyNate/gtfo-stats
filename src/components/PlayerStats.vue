@@ -192,13 +192,4 @@ const computedConditions = computed(() => {
 </template>
 
 <style scoped>
-.chart-bg {
-    background-color: #257a1b;
-}
-.chart-bg-danger {
-    background-color: #af1218;
-}
-.font-yellow {
-    color: #c7ad24;
-}
 </style>

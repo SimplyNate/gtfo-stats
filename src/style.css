@@ -13,3 +13,19 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.chart-bg {
+  background-color: #1b537a;
+}
+.chart-bg-danger {
+  background-color: #7C2D3E;
+}
+.chart-bg-best {
+  background-color: #257a1b;
+}
+.font-yellow {
+  color: #c7ad24;
+}
+.clickable:hover {
+  cursor: pointer;
+}

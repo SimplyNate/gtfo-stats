@@ -33,13 +33,4 @@ const computedOriginalValue = computed(() => {
 </template>
 
 <style scoped>
-.chart-bg {
-    background-color: #1b537a;
-}
-.chart-bg-danger {
-    background-color: #7C2D3E;
-}
-.chart-bg-best {
-    background-color: #257a1b;
-}
 </style>

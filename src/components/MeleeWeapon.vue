@@ -181,15 +181,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.chart-bg-best {
-    background-color: #257a1b;
-}
-
-.chart-bg {
-    background-color: #1b537a;
-}
-
-.clickable:hover {
-    cursor: pointer;
-}
 </style>

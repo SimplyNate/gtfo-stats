@@ -198,17 +198,3 @@ onMounted(() => {
 
 </script>
 
-<style scoped>
-.chart-bg-best {
-    background-color: #257a1b;
-}
-.chart-bg {
-    background-color: #1b537a;
-}
-.chart-bg-danger {
-    background-color: #7C2D3E;
-}
-.clickable:hover {
-    cursor: pointer;
-}
-</style>

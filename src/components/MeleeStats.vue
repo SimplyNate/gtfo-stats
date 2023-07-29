@@ -108,13 +108,4 @@ function weakPointStealth(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPo
 </template>
 
 <style scoped>
-.clickable:hover {
-    cursor: pointer;
-}
-.chart-bg-best {
-    background-color: #257a1b;
-}
-.chart-bg {
-    background-color: #1b537a;
-}
 </style>

@@ -284,7 +284,4 @@ function saveBooster() {
 </template>
 
 <style scoped>
-.clickable {
-    cursor: pointer;
-}
 </style>
