@@ -172,10 +172,8 @@ function saveBooster() {
 
 <template>
     <div class="fullscreen d-flex">
-        <div>
-            <div class="fw-bold">
-                WEAPONS
-            </div>
+        <div class="pt-2">
+            <h5 class="fw-bold">WEAPONS</h5>
             <div class="d-flex">
                 <div class="p-2 clickable rounded">
                     <weapon-selection :weapon="selectedMainWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons, 'main')"/>
