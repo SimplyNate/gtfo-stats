@@ -193,7 +193,7 @@ const computedConditions = computed(() => {
 
 <style scoped>
 .chart-bg {
-    background-color: #589581;
+    background-color: #257a1b;
 }
 .chart-bg-danger {
     background-color: #af1218;
