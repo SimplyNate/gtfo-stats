@@ -171,28 +171,28 @@ function saveBooster() {
                 WEAPONS
             </div>
             <div class="d-flex">
-                <div class="ps-3 pe-3">
-                    <weapon-selection :weapon="selectedMainWeapon" class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons, 'main')"/>
+                <div class="p-2 clickable rounded">
+                    <weapon-selection :weapon="selectedMainWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons, 'main')"/>
                 </div>
-                <div class="ps-3 pe-3">
-                    <weapon-selection :weapon="selectedSpecialWeapon" class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons, 'special')"/>
-                </div>
-            </div>
-            <div class="d-flex mt-2">
-                <div class="ps-3 pe-3">
-                    <weapon-selection :weapon="selectedTool" class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools, 'tool')"/>
-                </div>
-                <div class="ps-3 pe-3">
-                    <weapon-selection :weapon="selectedMeleeWeapon" class="clickable" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons, 'melee')"/>
+                <div class="p-2 clickable rounded">
+                    <weapon-selection :weapon="selectedSpecialWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons, 'special')"/>
                 </div>
             </div>
             <div class="d-flex mt-2">
-                <div class="ps-3 pe-3"><booster-selection tier="Muted" :booster="selectedMutedBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('muted')"/></div>
-                <div class="ps-3 pe-3"><booster-selection tier="Bold" :booster="selectedBoldBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('bold')"/></div>
-                <div class="ps-3 pe-3"><booster-selection tier="Aggressive" :booster="selectedAggressiveBooster" class="clickable" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('aggressive')"/></div>
+                <div class="p-2 clickable rounded">
+                    <weapon-selection :weapon="selectedTool" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools, 'tool')"/>
+                </div>
+                <div class="p-2 clickable rounded">
+                    <weapon-selection :weapon="selectedMeleeWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons, 'melee')"/>
+                </div>
+            </div>
+            <div class="d-flex mt-2">
+                <div class="p-2 clickable rounded"><booster-selection tier="Muted" :booster="selectedMutedBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('muted')"/></div>
+                <div class="p-2 clickable rounded"><booster-selection tier="Bold" :booster="selectedBoldBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('bold')"/></div>
+                <div class="p-2 clickable rounded"><booster-selection tier="Aggressive" :booster="selectedAggressiveBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('aggressive')"/></div>
             </div>
         </div>
-        <div class="flex-fill me-3">
+        <div class="flex-fill me-3 ms-3">
             <player-stats
                 :aggressive-booster="selectedAggressiveBooster"
                 :melee-weapon="selectedMeleeWeapon"

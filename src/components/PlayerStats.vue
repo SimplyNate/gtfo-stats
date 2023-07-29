@@ -155,25 +155,27 @@ const computedConditions = computed(() => {
 
 <template>
     <div class="mb-5">
-        <h5 class="fw-bold">Player Stats</h5>
-        <template v-for="key of keys" :key="key">
-            <template v-if="calculateWidth(key) !== 0">
-                <div>
-                    {{ key }}<span v-if="defaults[key] > 0">&nbsp;-&nbsp;{{ defaults[key] + (defaults[key] * computedPlayer[key]) }}</span><span v-if="calculateWidth(key) !== 0">&nbsp;(<span v-if="calculateWidth(key) > 0">&plus;</span>{{ (computedPlayer[key] * 100).toFixed(2) }}%)</span>
-                </div>
-                <div class="progress bg-dark" role="progressbar" style="height: 5px;">
-                    <div v-if="calculateWidth(key) >= 0" class="progress-bar chart-bg" :style="`width: ${calculateWidth(key)}%`"></div>
-                    <div v-else class="progress-bar chart-bg-danger" :style="`width: ${Math.abs(calculateWidth(key))}%`"></div>
+        <div class="p-2">
+            <h5 class="fw-bold">Player Stats</h5>
+            <template v-for="key of keys" :key="key">
+                <template v-if="calculateWidth(key) !== 0">
+                    <div>
+                        {{ key }}<span v-if="defaults[key] > 0">&nbsp;-&nbsp;{{ defaults[key] + (defaults[key] * computedPlayer[key]) }}</span><span v-if="calculateWidth(key) !== 0">&nbsp;(<span v-if="calculateWidth(key) > 0">&plus;</span>{{ (computedPlayer[key] * 100).toFixed(2) }}%)</span>
+                    </div>
+                    <div class="progress bg-dark" role="progressbar" style="height: 5px;">
+                        <div v-if="calculateWidth(key) >= 0" class="progress-bar chart-bg" :style="`width: ${calculateWidth(key)}%`"></div>
+                        <div v-else class="progress-bar chart-bg-danger" :style="`width: ${Math.abs(calculateWidth(key))}%`"></div>
+                    </div>
+                </template>
+            </template>
+            <template v-if="Object.keys(computedConditions).length > 0">
+                <h5 class="mt-3 fw-bold font-yellow">Conditions Applied</h5>
+                <div v-for="key of Object.keys(computedConditions)" :key="key">
+                    <div class="fw-bold font-yellow">{{ key }}</div>
+                    <div class="font-yellow">{{ computedConditions[key] }}</div>
                 </div>
             </template>
-        </template>
-        <template v-if="Object.keys(computedConditions).length > 0">
-            <h5 class="mt-3 fw-bold font-yellow">Conditions Applied</h5>
-            <div v-for="key of Object.keys(computedConditions)" :key="key">
-                <div class="fw-bold font-yellow">{{ key }}</div>
-                <div class="font-yellow">{{ computedConditions[key] }}</div>
-            </div>
-        </template>
+        </div>
         <weapon-stats v-if="mainWeapon"
                 :weapon="mainWeapon"
                 :damage-boost="computedPlayer['Main Damage']"

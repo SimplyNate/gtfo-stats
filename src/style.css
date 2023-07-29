@@ -28,4 +28,5 @@
 }
 .clickable:hover {
   cursor: pointer;
+  box-shadow: inset #9eeaf9 0 0 15px;
 }

@@ -51,8 +51,8 @@ function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: s
 </script>
 
 <template>
-    <div class="clickable" @click="toggleMore">
-        <h5 class="mt-3 fw-bold">{{ weapon.Type }}</h5>
+    <div class="p-2 clickable rounded" @click="toggleMore">
+        <h5 class="fw-bold">{{ weapon.Type }}</h5>
         <stat v-for="key of Object.keys(displayKeys)" :key="key"
               :title="displayKeys[key]"
               :original-value="weapon[key]"
