@@ -9,12 +9,14 @@ const props = defineProps<{
     maximums: any;
     damageBoost: number;
     ammoBoost: number;
+    refillBoost: number;
 }>();
 
 const effectedWeapon = computed(() => {
     const newWeapon = new EnhancedWeapon(props.weapon.weapon);
     newWeapon.modifier = props.damageBoost;
     newWeapon.ammoMod = props.ammoBoost;
+    newWeapon.refillMod = props.refillBoost;
     return newWeapon;
 });
 
@@ -29,6 +31,7 @@ const displayKeys: {[index: string]: string} = {
     precisionDPS: 'Precision DPS',
     effectivePrecisionDPS: 'Effective Precision DPS',
     startingAmmo: 'Starting Ammo',
+    ammoPerRefill: 'Ammo Per Refill',
 };
 
 const showMore = ref<boolean>(false);
@@ -48,6 +51,13 @@ function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: s
     return weapon.precision * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
+function calculateAmmoPercentage(key: string) {
+    if (key === 'ammoPerRefill') {
+        return effectedWeapon.value.ammoPerRefill / (effectedWeapon.value.weapon['Max Ammo'] - effectedWeapon.value.weapon['Magazine Size']);
+    }
+    return undefined;
+}
+
 </script>
 
 <template>
@@ -57,7 +67,8 @@ function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: s
               :title="displayKeys[key]"
               :original-value="weapon[key]"
               :new-value="effectedWeapon[key]"
-              :max-value="maximums[displayKeys[key]]"/>
+              :max-value="maximums[displayKeys[key]]"
+              :percentage="calculateAmmoPercentage(key)"/>
         <template v-if="showMore">
             <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
                 <div class="fw-bold">{{ enemy.Name }}</div>

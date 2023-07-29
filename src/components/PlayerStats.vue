@@ -180,11 +180,13 @@ const computedConditions = computed(() => {
                 :weapon="mainWeapon"
                 :damage-boost="computedPlayer['Main Damage']"
                 :ammo-boost="computedPlayer['Main Ammo']"
+                :refill-boost="computedPlayer['Supply Efficiency']"
                 :maximums="mainMaximums"/>
         <weapon-stats v-if="specialWeapon"
                       :weapon="specialWeapon"
                       :damage-boost="computedPlayer['Special Damage']"
                       :ammo-boost="computedPlayer['Special Ammo']"
+                      :refill-boost="computedPlayer['Supply Efficiency']"
                       :maximums="specialMaximums"/>
         <melee-stats v-if="meleeWeapon"
                      :weapon="meleeWeapon"

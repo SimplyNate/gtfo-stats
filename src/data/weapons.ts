@@ -28,10 +28,12 @@ export class EnhancedWeapon {
     public weapon: Weapon;
     private damageModifier: number;
     private ammoModifier: number;
+    private refillModifier: number;
     constructor(weapon: Weapon) {
         this.weapon = weapon;
         this.damageModifier = 1;
         this.ammoModifier = 1;
+        this.refillModifier = 1;
     }
     get Name(): string {
         return this.weapon.Name;
@@ -50,6 +52,12 @@ export class EnhancedWeapon {
     }
     set ammoMod(value: number) {
         this.ammoModifier = 1 + value;
+    }
+    get ammoPerRefill(): number {
+        return this.weapon['Ammo Per Refill'] * this.refillModifier;
+    }
+    set refillMod(value: number) {
+        this.refillModifier = 1 + value;
     }
     get precision(): number {
         return this.damage * this.weapon['Precision Multiplier'];
