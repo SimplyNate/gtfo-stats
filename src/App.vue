@@ -27,7 +27,7 @@
                     <h3 class="menu-item-text" @click="setView('builder')">BUILDER</h3>
                 </li>
             </ul>
-            <div class="ms-3 mt-2">
+            <div class="ms-3 mt-2 opacity-25">
                 <div class="form-check form-switch">
                     <input type="checkbox" role="switch" class="form-check-input" v-model="enableParallax"/>
                     <label class="form-check-label">Enable Parallax</label>
