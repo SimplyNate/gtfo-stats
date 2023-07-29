@@ -47,6 +47,7 @@ function weakPointStealth(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPo
 
 <template>
     <div class="clickable" @click="toggleMore">
+        <h5 class="mt-3 fw-bold">{{ weapon.Type }}</h5>
         <stat v-for="key of Object.keys(displayKeys)" :key="key"
               :title="`${displayKeys[key]} - Uncharged`"
               :original-value="weapon[key].Uncharged"
