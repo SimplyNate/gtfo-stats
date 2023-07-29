@@ -131,6 +131,26 @@ const keys = Object.keys(computedPlayer.value);
 function calculateWidth(key: string) {
     return computedPlayer.value[key] * 100;
 }
+
+const computedConditions = computed(() => {
+    const conditions: {[index: string]: string} = {};
+    if (props.mutedBooster) {
+        for (const effect of props.mutedBooster.condition) {
+            conditions[effect.name] = effect.description;
+        }
+    }
+    if (props.boldBooster) {
+        for (const effect of props.boldBooster.condition) {
+            conditions[effect.name] = effect.description;
+        }
+    }
+    if (props.aggressiveBooster) {
+        for (const effect of props.aggressiveBooster.condition) {
+            conditions[effect.name] = effect.description;
+        }
+    }
+    return conditions;
+});
 </script>
 
 <template>
@@ -146,6 +166,13 @@ function calculateWidth(key: string) {
                     <div v-else class="progress-bar chart-bg-danger" :style="`width: ${Math.abs(calculateWidth(key))}%`"></div>
                 </div>
             </template>
+        </template>
+        <template v-if="Object.keys(computedConditions).length > 0">
+            <h5 class="mt-3 fw-bold font-yellow">Conditions Applied</h5>
+            <div v-for="key of Object.keys(computedConditions)" :key="key">
+                <div class="fw-bold font-yellow">{{ key }}</div>
+                <div class="font-yellow">{{ computedConditions[key] }}</div>
+            </div>
         </template>
         <h5 class="mt-3">{{ mainWeapon ? mainWeapon.Type : 'Main Weapon' }}</h5>
         <weapon-stats v-if="mainWeapon"
@@ -169,9 +196,12 @@ function calculateWidth(key: string) {
 
 <style scoped>
 .chart-bg {
-    background-color: #1b537a;
+    background-color: #589581;
 }
 .chart-bg-danger {
-    background-color: #7C2D3E;
+    background-color: #af1218;
+}
+.font-yellow {
+    color: #c7ad24;
 }
 </style>

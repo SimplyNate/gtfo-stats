@@ -21,6 +21,9 @@ const props = defineProps<{
                 <div v-for="negative of booster.negative" :key="negative.stat" style="font-size: 12px; color: red">
                     {{ negative.stat }}
                 </div>
+                <div v-for="condition of booster.condition" :key="condition.name" class="font-yellow" style="font-size: 12px;">
+                    {{ condition.name }}
+                </div>
             </div>
             <div v-if="!booster" class="weapon-name ms-1">Select a Booster</div>
         </div>
@@ -39,5 +42,8 @@ const props = defineProps<{
 .img-container {
     width: 100%;
     height: 80%;
+}
+.font-yellow {
+    color: #c7ad24;
 }
 </style>
