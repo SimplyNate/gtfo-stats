@@ -88,6 +88,12 @@ function resetBoosterState() {
     }
 }
 
+function deleteBooster() {
+    resetBoosterState();
+    const boosterRef = getBoosterRef();
+    boosterRef.value = undefined;
+}
+
 function getBoosterRef() {
     let boosterRef;
     if (boosterSelectionCategory.value === 'muted') {
@@ -224,7 +230,9 @@ function saveBooster() {
                         <div class="d-flex justify-content-between mt-2">
                             <h4>Create new {{ boosterSelectionCategory }} Booster</h4>
                             <div>
-                                <button class="btn btn-outline-danger me-3" @click="resetBoosterState">Reset Booster</button>
+                                <button class="btn btn-outline-secondary me-3" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-outline-danger me-3" @click="deleteBooster" v-if="getBoosterRef().value">Delete Booster</button>
+                                <button class="btn btn-outline-warning me-3" @click="resetBoosterState">Reset Booster Changes</button>
                                 <button class="btn btn-outline-success" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
                             </div>
                         </div>
@@ -241,7 +249,7 @@ function saveBooster() {
                                     </div>
                                     <template v-if="positiveEffectChoices[effect.stat].toggle">
                                         <label>Value: {{ Math.round(Number.parseFloat(positiveEffectChoices[effect.stat].value) * 100) }}%</label>
-                                        <input type="range" class="form-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="positiveEffectChoices[effect.stat].value">
+                                        <input type="range" class="custom-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="positiveEffectChoices[effect.stat].value">
                                     </template>
                                 </div>
                             </div>
@@ -258,7 +266,7 @@ function saveBooster() {
                                         </div>
                                         <template v-if="negativeEffectChoices[effect.stat].toggle">
                                             <label>Value: {{ Math.round(Number.parseFloat(negativeEffectChoices[effect.stat].value) * 100) }}%</label>
-                                            <input type="range" class="form-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="negativeEffectChoices[effect.stat].value">
+                                            <input type="range" class="custom-range" :min="`${(<EffectRange>effect[boosterSelectionCategory]).min}`" :max="`${(<EffectRange>effect[boosterSelectionCategory]).max}`" step="0.01" v-model="negativeEffectChoices[effect.stat].value">
                                         </template>
                                     </div>
                                 </template>
@@ -284,4 +292,10 @@ function saveBooster() {
 </template>
 
 <style scoped>
+.custom-range {
+    height: 4px;
+    background: #8bacbe;
+    width: 100%;
+    outline: none;
+}
 </style>
