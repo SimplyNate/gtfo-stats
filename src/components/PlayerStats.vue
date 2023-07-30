@@ -163,7 +163,7 @@ const computedConditions = computed(() => {
                         {{ key }}<span v-if="defaults[key] > 0">&nbsp;-&nbsp;{{ defaults[key] + (defaults[key] * computedPlayer[key]) }}</span><span v-if="calculateWidth(key) !== 0">&nbsp;(<span v-if="calculateWidth(key) > 0">&plus;</span>{{ (computedPlayer[key] * 100).toFixed(2) }}%)</span>
                     </div>
                     <div class="progress bg-dark" role="progressbar" style="height: 5px;">
-                        <div v-if="calculateWidth(key) >= 0" class="progress-bar chart-bg" :style="`width: ${calculateWidth(key)}%`"></div>
+                        <div v-if="calculateWidth(key) >= 0" class="progress-bar chart-bg-best" :style="`width: ${calculateWidth(key)}%`"></div>
                         <div v-else class="progress-bar chart-bg-danger" :style="`width: ${Math.abs(calculateWidth(key))}%`"></div>
                     </div>
                 </template>
