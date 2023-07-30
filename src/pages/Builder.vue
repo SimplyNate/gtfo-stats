@@ -7,6 +7,9 @@ import meleeWeapons, { EnhancedMeleeWeapon } from '../data/melee';
 import tools, { SentryTool } from '../data/tool';
 import PlayerStats from '../components/PlayerStats.vue';
 import {Booster, effectData, negativeData, conditions, EffectRange} from '../data/boosters';
+import { useBuilderStore } from '../store';
+
+const store = useBuilderStore();
 
 const selectedWeapons = ref<(EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[]>(mainWeapons);
 const selectionCategory = ref<string>();
@@ -17,27 +20,18 @@ function setSelection(selection: (EnhancedWeapon | EnhancedMeleeWeapon | SentryT
     selectionCategory.value = category;
 }
 
-const selectedMainWeapon = ref<EnhancedWeapon>();
-const selectedSpecialWeapon = ref<EnhancedWeapon>();
-const selectedTool = ref<SentryTool>();
-const selectedMeleeWeapon = ref<EnhancedMeleeWeapon>();
-
-const selectedMutedBooster = ref<Booster>();
-const selectedBoldBooster = ref<Booster>();
-const selectedAggressiveBooster = ref<Booster>();
-
 function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
     if (selectionCategory.value === 'main') {
-        selectedMainWeapon.value = <EnhancedWeapon>choice;
+        store.setMainWeapon(<EnhancedWeapon>choice);
     }
     else if (selectionCategory.value === 'special') {
-        selectedSpecialWeapon.value = <EnhancedWeapon>choice;
+        store.setSpecialWeapon(<EnhancedWeapon>choice);
     }
     else if (selectionCategory.value === 'tool') {
-        selectedTool.value = <SentryTool>choice;
+        store.setTool(<SentryTool>choice);
     }
     else if (selectionCategory.value === 'melee') {
-        selectedMeleeWeapon.value = <EnhancedMeleeWeapon>choice;
+        store.setMeleeWeapon(<EnhancedMeleeWeapon>choice);
     }
 }
 
@@ -90,26 +84,11 @@ function resetBoosterState() {
 
 function deleteBooster() {
     resetBoosterState();
-    const boosterRef = getBoosterRef();
-    boosterRef.value = undefined;
-}
-
-function getBoosterRef() {
-    let boosterRef;
-    if (boosterSelectionCategory.value === 'muted') {
-        boosterRef = selectedMutedBooster;
-    }
-    else if (boosterSelectionCategory.value === 'bold') {
-        boosterRef = selectedBoldBooster;
-    }
-    else {
-        boosterRef = selectedAggressiveBooster;
-    }
-    return boosterRef;
+    store.setBooster(boosterSelectionCategory.value, undefined);
 }
 
 function setBoosterState() {
-    const boosterRef = getBoosterRef();
+    const boosterRef = store.getBoosterRef(boosterSelectionCategory.value);
     if (boosterRef.value) {
         for (const effect of boosterRef.value.positive) {
             const name = effect.stat;
@@ -133,8 +112,7 @@ function setBoosterState() {
 resetBoosterState();
 
 function saveBooster() {
-    const boosterRef = getBoosterRef();
-    boosterRef.value = {
+    const booster: Booster =  {
         positive: [],
         negative: [],
         condition: [],
@@ -142,7 +120,7 @@ function saveBooster() {
     for (const key of Object.keys(positiveEffectChoices.value)) {
         const effect = positiveEffectChoices.value[key];
         if (effect.toggle) {
-            boosterRef.value.positive.push({
+            booster.positive.push({
                 stat: key,
                 value: Number.parseFloat(effect.value),
             });
@@ -151,7 +129,7 @@ function saveBooster() {
     for (const key of Object.keys(negativeEffectChoices.value)) {
         const effect = negativeEffectChoices.value[key];
         if (effect.toggle) {
-            boosterRef.value.negative.push({
+            booster.negative.push({
                 stat: key,
                 value: Number.parseFloat(effect.value),
             });
@@ -160,12 +138,13 @@ function saveBooster() {
     for (const key of Object.keys(conditionChoices.value)) {
         const condition = conditionChoices.value[key];
         if (condition.toggle) {
-            boosterRef.value.condition.push({
+            booster.condition.push({
                 name: condition.name,
                 description: condition.description,
             });
         }
     }
+    store.setBooster(boosterSelectionCategory.value, booster);
 }
 
 </script>
@@ -176,35 +155,35 @@ function saveBooster() {
             <h5 class="fw-bold">WEAPONS</h5>
             <div class="d-flex">
                 <div class="p-2 clickable rounded">
-                    <weapon-selection :weapon="selectedMainWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons, 'main')"/>
+                    <weapon-selection :weapon="store.selectedMainWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(mainWeapons, 'main')"/>
                 </div>
                 <div class="p-2 clickable rounded">
-                    <weapon-selection :weapon="selectedSpecialWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons, 'special')"/>
+                    <weapon-selection :weapon="store.selectedSpecialWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(specialWeapons, 'special')"/>
                 </div>
             </div>
             <div class="d-flex mt-2">
                 <div class="p-2 clickable rounded">
-                    <weapon-selection :weapon="selectedTool" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools, 'tool')"/>
+                    <weapon-selection :weapon="store.selectedTool" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools, 'tool')"/>
                 </div>
                 <div class="p-2 clickable rounded">
-                    <weapon-selection :weapon="selectedMeleeWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons, 'melee')"/>
+                    <weapon-selection :weapon="store.selectedMeleeWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons, 'melee')"/>
                 </div>
             </div>
             <div class="d-flex mt-2">
-                <div class="p-2 clickable rounded"><booster-selection tier="Muted" :booster="selectedMutedBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('muted')"/></div>
-                <div class="p-2 clickable rounded"><booster-selection tier="Bold" :booster="selectedBoldBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('bold')"/></div>
-                <div class="p-2 clickable rounded"><booster-selection tier="Aggressive" :booster="selectedAggressiveBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('aggressive')"/></div>
+                <div class="p-2 clickable rounded"><booster-selection tier="Muted" :booster="store.selectedMutedBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('muted')"/></div>
+                <div class="p-2 clickable rounded"><booster-selection tier="Bold" :booster="store.selectedBoldBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('bold')"/></div>
+                <div class="p-2 clickable rounded"><booster-selection tier="Aggressive" :booster="store.selectedAggressiveBooster" data-bs-toggle="modal" data-bs-target="#boosterSelectorModal" @click="setBoosterChoice('aggressive')"/></div>
             </div>
         </div>
         <div class="flex-fill me-3 ms-3">
             <player-stats
-                :aggressive-booster="selectedAggressiveBooster"
-                :melee-weapon="selectedMeleeWeapon"
-                :muted-booster="selectedMutedBooster"
-                :special-weapon="selectedSpecialWeapon"
-                :main-weapon="selectedMainWeapon"
-                :bold-booster="selectedBoldBooster"
-                :tool="selectedTool"/>
+                :aggressive-booster="store.selectedAggressiveBooster"
+                :melee-weapon="<EnhancedMeleeWeapon>store.selectedMeleeWeapon"
+                :muted-booster="store.selectedMutedBooster"
+                :special-weapon="<EnhancedWeapon>store.selectedSpecialWeapon"
+                :main-weapon="<EnhancedWeapon>store.selectedMainWeapon"
+                :bold-booster="store.selectedBoldBooster"
+                :tool="store.selectedTool"/>
         </div>
     </div>
     <teleport to="body">
@@ -229,7 +208,7 @@ function saveBooster() {
                             <h4>Create new {{ boosterSelectionCategory }} Booster</h4>
                             <div>
                                 <button class="btn btn-outline-secondary me-3" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-outline-danger me-3" @click="deleteBooster" v-if="getBoosterRef().value">Delete Booster</button>
+                                <button class="btn btn-outline-danger me-3" @click="deleteBooster" v-if="store.getBoosterRef(boosterSelectionCategory).value">Delete Booster</button>
                                 <button class="btn btn-outline-warning me-3" @click="resetBoosterState">Reset Booster Changes</button>
                                 <button class="btn btn-outline-success" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
                             </div>
