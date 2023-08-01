@@ -16,20 +16,20 @@
         "Biotracked Ammo Usage Multiplier": 1
     },
     {
-        "Name": "Mechatronic B5 LFR",
-        "Type": "Shotgun Sentry",
-        "Firemode": "Semi-Automatic",
-        "Max Ammo": 58,
-        "Damage": 15.05,
-        "Precision Multiplier": 1,
-        "Stagger Multiplier": 1,
-        "Total Damage": 872.9,
-        "Rate of Fire": 80,
-        "Range": 4,
-        "Detection Range": 10,
-        "Detection Speed": 0.5,
-        "Biotracked Speed": 0.125,
-        "Biotracked Ammo Usage Multiplier": 0.5
+        "Name": "Rad Labs Meduza",
+        "Type": "Auto Sentry",
+        "Firemode": "Automatic",
+        "Max Ammo": 875,
+        "Damage": 0.71,
+        "Precision Multiplier": 0.834,
+        "Stagger Multiplier": 8,
+        "Total Damage": 621.25,
+        "Rate of Fire": 750,
+        "Range": 10,
+        "Detection Range": 25,
+        "Detection Speed": 1,
+        "Biotracked Speed": 1,
+        "Biotracked Ammo Usage Multiplier": 1
     },
     {
         "Name": "AutoTek 51 RSG",
@@ -48,19 +48,19 @@
         "Biotracked Ammo Usage Multiplier": 0.7
     },
     {
-        "Name": "Rad Labs Meduza",
-        "Type": "Auto Sentry",
-        "Firemode": "Automatic",
-        "Max Ammo": 875,
-        "Damage": 0.71,
-        "Precision Multiplier": 0.834,
-        "Stagger Multiplier": 8,
-        "Total Damage": 621.25,
-        "Rate of Fire": 750,
-        "Range": 10,
-        "Detection Range": 25,
-        "Detection Speed": 1,
-        "Biotracked Speed": 1,
-        "Biotracked Ammo Usage Multiplier": 1
+        "Name": "Mechatronic B5 LFR",
+        "Type": "Shotgun Sentry",
+        "Firemode": "Semi-Automatic",
+        "Max Ammo": 58,
+        "Damage": 15.05,
+        "Precision Multiplier": 1,
+        "Stagger Multiplier": 1,
+        "Total Damage": 872.9,
+        "Rate of Fire": 80,
+        "Range": 4,
+        "Detection Range": 10,
+        "Detection Speed": 0.5,
+        "Biotracked Speed": 0.125,
+        "Biotracked Ammo Usage Multiplier": 0.5
     }
 ]
