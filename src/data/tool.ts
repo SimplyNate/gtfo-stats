@@ -70,6 +70,6 @@ export class Tool {
 }
 
 import _tools from './tool.json';
-const tools: SentryTool[] = _tools;
+const tools: SentryTool[] = _tools.sentry;
 
 export default tools;
