@@ -1,4 +1,5 @@
-[
+{
+    "sentry": [
     {
         "Name": "Mechatronic SGB3",
         "Type": "Burst Sentry",
@@ -71,4 +72,25 @@
         "Biotracked Speed": 0.125,
         "Biotracked Ammo Usage Multiplier": 0.5
     }
-]
+],
+    "tracker": {
+        "Name": "D-Tek Optron IV",
+        "Type": "Bio Tracker",
+        "Cooldown": 8.5
+    },
+    "c-foam": {
+        "Name": "Stalwart G2",
+        "Type": "C-Foam Launcher",
+        "Max Ammo": 60,
+        "Starting Ammo": 40,
+        "Ammo Per Refill": 12
+    },
+    "mine-deployer": {
+        "Name": "Krieger 04",
+        "Type": "Mine Deployer",
+        "Max Ammo": 8,
+        "Starting Ammo": 5.5,
+        "Ammo Per Refill": 1.5,
+        "Damage": 50
+    }
+}
