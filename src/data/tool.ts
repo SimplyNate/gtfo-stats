@@ -4,6 +4,8 @@ export interface SentryTool {
     Type: string;
     Firemode: string;
     'Max Ammo': number;
+    'Starting Ammo': number;
+    'Ammo Per Refill': number;
     Damage: number;
     'Precision Multiplier': number;
     'Stagger Multiplier': number;
@@ -40,8 +42,8 @@ export class EnhancedSentryTool {
     set ammoModifier(value: number) {
         this.sentryAmmoModifier = 1 + value;
     }
-    set speedModifier(value: number) {
-        this.sentryCPUModifier = 1 + value;
+    set cpuModifier(value: number) {
+        this.sentryCPUModifier = value;
     }
     get damage() {
         return this.tool.Damage * this.sentryDamageModifier;
@@ -51,6 +53,15 @@ export class EnhancedSentryTool {
     }
     get stagger() {
         return this.tool.Damage * this.tool["Stagger Multiplier"] * this.sentryDamageModifier;
+    }
+    get startingAmmo() {
+        return this.tool["Starting Ammo"] * this.sentryAmmoModifier;
+    }
+    get cpuSpeed() {
+        return this.tool['Detection Speed'] - (this.tool['Detection Speed'] * this.sentryCPUModifier);
+    }
+    get biotrackSpeed() {
+        return this.tool['Biotracked Speed'] - (this.tool['Biotracked Speed'] * this.sentryCPUModifier);
     }
 }
 
