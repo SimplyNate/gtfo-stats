@@ -1,11 +1,17 @@
-export interface SentryTool {
+export interface Tool {
     [index: string]: string | number;
     Name: string;
     Type: string;
-    Firemode: string;
+}
+
+export interface AmmoTool extends Tool {
     'Max Ammo': number;
     'Starting Ammo': number;
     'Ammo Per Refill': number;
+}
+
+export interface SentryTool extends AmmoTool {
+    Firemode: string;
     Damage: number;
     'Precision Multiplier': number;
     'Stagger Multiplier': number;
@@ -18,31 +24,59 @@ export interface SentryTool {
     'Biotracked Ammo Usage Multiplier': number;
 }
 
-export interface BioTracker {
-    [index: string]: string | number;
-    Name: string;
-    Type: string;
+export interface BioTracker extends Tool {
     Cooldown: number;
 }
 
-export interface CFoamLauncher {
-    [index: string]: string | number;
-    Name: string;
-    Type: string;
-    'Max Ammo': number;
-    'Starting Ammo': number;
-    'Ammo Per Refill': number;
-}
+export interface CFoamLauncher extends AmmoTool {}
 
-export interface MineDeployer {
-    [index: string]: string | number;
-    Name: string;
-    Type: string;
-    'Max Ammo': number;
-    'Starting Ammo': number;
-    'Ammo Per Refill': number;
+export interface MineDeployer extends AmmoTool {
     'Damage': number;
 }
+
+abstract class EnhancedTool {
+    [index: string]: any;
+    public tool: Tool;
+
+    protected constructor(tool: Tool) {
+        this.tool = tool;
+    }
+    get name(): string {
+        return this.tool.Name;
+    }
+    get type(): string {
+        return this.tool.Type;
+    }
+}
+
+abstract class EnhancedAmmoTool extends EnhancedTool {
+    [index: string]: any;
+    public tool: AmmoTool;
+    protected toolAmmoModifier: number;
+    protected toolRefillModifier: number;
+
+    protected constructor(tool: AmmoTool) {
+        super(tool);
+        // Make VLS happy
+        this.tool = tool;
+        this.toolAmmoModifier = 1;
+        this.toolRefillModifier = 1;
+    }
+
+    set ammoModifier(value: number) {
+        this.toolAmmoModifier = 1 + value;
+    }
+    set refillModifier(value: number) {
+        this.toolRefillModifier = 1 + value;
+    }
+    get startingAmmo() {
+        return this.tool['Starting Ammo'] * this.toolAmmoModifier;
+    }
+    get ammoPerRefill() {
+        return this.tool['Ammo Per Refill'] * this.toolRefillModifier;
+    }
+}
+
 
 export class EnhancedSentryTool {
     [index: string]: any;
@@ -187,14 +221,6 @@ export class EnhancedMineDeployer {
     }
     get damage() {
         return this.tool.Damage * this.mineDamageModifier;
-    }
-}
-
-export class EnhancedTool {
-    EnhancedTool: EnhancedSentryTool | EnhancedTracker | EnhancedCFoamLauncher | EnhancedMineDeployer;
-
-    constructor(tool: EnhancedSentryTool | EnhancedTracker | EnhancedCFoamLauncher | EnhancedMineDeployer) {
-        this.EnhancedTool = tool;
     }
 }
 
