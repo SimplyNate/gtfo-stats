@@ -14,7 +14,7 @@ import enemies from '../data/enemies';
             </div>
             <div class="col">
                 <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])">
-                    {{ weakPoint }}: Multiplier: {{ enemy['Weak Points'][weakPoint].Multiplier }}
+                    {{ weakPoint }}: {{ enemy['Weak Points'][weakPoint].Multiplier }}x
                 </div>
             </div>
         </div>
