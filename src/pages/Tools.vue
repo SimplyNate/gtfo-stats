@@ -1,22 +1,29 @@
 <script setup lang="ts">
 import tools from '../data/tool';
 
-const headers = Object.keys(tools.sentries[0]);
+const combinedTools = [
+    ...tools.sentries,
+    tools.bioTracker,
+    tools.cFoamLauncher,
+    tools.mineDeployer,
+];
 </script>
 
 <template>
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th v-for="header of headers" :key="header">{{ header }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="tool of tools.sentries" :key="tool.name">
-            <td v-for="header of headers" :key="header">{{ tool[header] }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="container-fluid border rounded text-center p-3 clickable" v-for="tool of combinedTools" :key="tool.name">
+        <div class="row">
+            <div class="col-3">
+                <h3>{{ tool.type }}</h3>
+                <h4>{{ tool.name }}</h4>
+            </div>
+            <div class="col-9">
+                <div class="row" v-for="key of Object.keys(tool.tool)" :key="key">
+                    <div class="col-6 text-end">{{ key }}</div>
+                    <div class="col-6 text-start">{{ tool.tool[key] }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
