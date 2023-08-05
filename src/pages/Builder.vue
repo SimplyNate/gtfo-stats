@@ -214,10 +214,10 @@ function saveBooster() {
                         <div class="d-flex justify-content-between mt-2">
                             <h4>Create new {{ boosterSelectionCategory }} Booster</h4>
                             <div>
-                                <button class="btn btn-outline-secondary me-3" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-outline-danger me-3" @click="deleteBooster" v-if="store.getBoosterRef(boosterSelectionCategory).value">Delete Booster</button>
-                                <button class="btn btn-outline-warning me-3" @click="resetBoosterState">Reset Booster Changes</button>
-                                <button class="btn btn-outline-success" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
+                                <button class="btn btn-outline-secondary rounded-0 me-3 menu-button" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-outline-danger rounded-0 me-3 menu-button" @click="deleteBooster" v-if="store.getBoosterRef(boosterSelectionCategory).value">Delete Booster</button>
+                                <button class="btn btn-outline-warning rounded-0 me-3 menu-button" @click="resetBoosterState">Reset Booster Changes</button>
+                                <button class="btn btn-outline-success rounded-0 menu-button" @click="saveBooster" data-bs-dismiss="modal">Save Booster</button>
                             </div>
                         </div>
                         <!-- Positive Effects -->
