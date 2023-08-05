@@ -4,23 +4,30 @@ import BoosterSelection from '../components/BoosterSelection.vue';
 import { ref } from 'vue';
 import { EnhancedWeapon, mainWeapons, specialWeapons } from '../data/weapons';
 import meleeWeapons, { EnhancedMeleeWeapon } from '../data/melee';
-import tools, { SentryTool } from '../data/tool';
+import tools, { EnhancedTool } from '../data/tool';
 import PlayerStats from '../components/PlayerStats.vue';
 import {Booster, effectData, negativeData, conditions, EffectRange} from '../data/boosters';
 import { useBuilderStore } from '../store';
 
+const allTools = [
+    ...tools.sentries,
+    tools.bioTracker,
+    tools.cFoamLauncher,
+    tools.mineDeployer,
+];
+
 const store = useBuilderStore();
 
-const selectedWeapons = ref<(EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[]>(mainWeapons);
+const selectedWeapons = ref<(EnhancedWeapon | EnhancedMeleeWeapon | EnhancedTool)[]>(mainWeapons);
 const selectionCategory = ref<string>();
 const boosterSelectionCategory = ref<string>('muted');
 
-function setSelection(selection: (EnhancedWeapon | EnhancedMeleeWeapon | SentryTool)[], category: string) {
+function setSelection(selection: (EnhancedWeapon | EnhancedMeleeWeapon | EnhancedTool)[], category: string) {
     selectedWeapons.value = selection;
     selectionCategory.value = category;
 }
 
-function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
+function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | EnhancedTool) {
     if (selectionCategory.value === 'main') {
         store.setMainWeapon(<EnhancedWeapon>choice);
     }
@@ -28,7 +35,7 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | SentryTool) {
         store.setSpecialWeapon(<EnhancedWeapon>choice);
     }
     else if (selectionCategory.value === 'tool') {
-        store.setTool(<SentryTool>choice);
+        store.setTool(<EnhancedTool>choice);
     }
     else if (selectionCategory.value === 'melee') {
         store.setMeleeWeapon(<EnhancedMeleeWeapon>choice);
@@ -163,7 +170,7 @@ function saveBooster() {
             </div>
             <div class="d-flex mt-2">
                 <div class="p-2 clickable rounded">
-                    <weapon-selection :weapon="store.selectedTool" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(tools, 'tool')"/>
+                    <weapon-selection :weapon="store.selectedTool" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(allTools, 'tool')"/>
                 </div>
                 <div class="p-2 clickable rounded">
                     <weapon-selection :weapon="store.selectedMeleeWeapon" data-bs-toggle="modal" data-bs-target="#selectorModal" @click="setSelection(meleeWeapons, 'melee')"/>
@@ -191,7 +198,7 @@ function saveBooster() {
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
-                        <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | SentryTool | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal">
+                        <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedTool | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal">
                             <div class="col pt-1 pb-1">
                                 {{ weapon.Type }}
                             </div>

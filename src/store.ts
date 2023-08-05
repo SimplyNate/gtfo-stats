@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { EnhancedWeapon } from './data/weapons';
-import { SentryTool } from './data/tool';
+import { EnhancedTool } from './data/tool';
 import { EnhancedMeleeWeapon } from './data/melee';
 import { Booster } from './data/boosters';
 
 export const useBuilderStore = defineStore('builder', () => {
     const selectedMainWeapon = ref<EnhancedWeapon>();
     const selectedSpecialWeapon = ref<EnhancedWeapon>();
-    const selectedTool = ref<SentryTool>();
+    const selectedTool = ref<EnhancedTool>();
     const selectedMeleeWeapon = ref<EnhancedMeleeWeapon>();
 
     const selectedMutedBooster = ref<Booster>();
@@ -21,7 +21,7 @@ export const useBuilderStore = defineStore('builder', () => {
     function setSpecialWeapon(weapon: EnhancedWeapon) {
         selectedSpecialWeapon.value = weapon;
     }
-    function setTool(tool: SentryTool) {
+    function setTool(tool: EnhancedTool) {
         selectedTool.value = tool;
     }
     function setMeleeWeapon(weapon: EnhancedMeleeWeapon) {

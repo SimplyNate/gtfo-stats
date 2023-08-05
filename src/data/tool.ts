@@ -132,17 +132,17 @@ export interface CFoamLauncher extends AmmoTool {}
 
 export interface MineDeployer extends DamageTool {}
 
-abstract class EnhancedTool {
+export abstract class EnhancedTool {
     [index: string]: any;
     public tool: Tool;
 
     protected constructor(tool: Tool) {
         this.tool = tool;
     }
-    get name(): string {
+    get Name(): string {
         return this.tool.Name;
     }
-    get type(): string {
+    get Type(): string {
         return this.tool.Type;
     }
 }

@@ -4,13 +4,13 @@ import { Booster } from '../data/boosters';
 import { EnhancedWeapon, mainMaximums, specialMaximums } from '../data/weapons';
 import {EnhancedMeleeWeapon, meleeMaximums} from '../data/melee';
 import MeleeStats from './MeleeStats.vue';
-import { SentryTool } from '../data/tool';
+import { EnhancedTool } from '../data/tool';
 import WeaponStats from "./WeaponStats.vue";
 
 const props = defineProps<{
     mainWeapon?: EnhancedWeapon;
     specialWeapon?: EnhancedWeapon;
-    tool?: SentryTool;
+    tool?: EnhancedTool;
     meleeWeapon?: EnhancedMeleeWeapon;
     mutedBooster?: Booster;
     boldBooster?: Booster;

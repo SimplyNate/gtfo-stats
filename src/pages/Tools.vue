@@ -13,8 +13,8 @@ const combinedTools = [
     <div class="container-fluid border rounded text-center p-3 clickable" v-for="tool of combinedTools" :key="tool.name">
         <div class="row">
             <div class="col-3">
-                <h3>{{ tool.type }}</h3>
-                <h4>{{ tool.name }}</h4>
+                <h3>{{ tool.Type }}</h3>
+                <h4>{{ tool.Name }}</h4>
             </div>
             <div class="col-9">
                 <div class="row" v-for="key of Object.keys(tool.tool)" :key="key">
