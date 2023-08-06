@@ -6,6 +6,7 @@ import {EnhancedMeleeWeapon, meleeMaximums} from '../data/melee';
 import MeleeStats from './MeleeStats.vue';
 import { EnhancedTool } from '../data/tool';
 import WeaponStats from "./WeaponStats.vue";
+import ToolStats from "./ToolStats.vue";
 
 const props = defineProps<{
     mainWeapon?: EnhancedWeapon;
@@ -192,6 +193,8 @@ const computedConditions = computed(() => {
                      :weapon="meleeWeapon"
                      :damage-boost="computedPlayer['Melee Damage']"
                      :maximums="meleeMaximums"/>
+        <tool-stats v-if="tool"
+                    :tool="tool"/>
     </div>
 </template>
 

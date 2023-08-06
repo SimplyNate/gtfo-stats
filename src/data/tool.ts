@@ -194,10 +194,12 @@ abstract class EnhancedDamageTool extends EnhancedAmmoTool {
 export class EnhancedSentryTool extends EnhancedDamageTool {
     public tool: SentryTool;
     private sentryCPUModifier: number;
+    private shortRangeDamageModifier: number;
     constructor(tool: SentryTool) {
         super(tool);
         this.tool = tool;
         this.sentryCPUModifier = 1;
+        this.shortRangeDamageModifier = 1;
     }
     set cpuModifier(value: number) {
         this.sentryCPUModifier = value;
@@ -213,6 +215,12 @@ export class EnhancedSentryTool extends EnhancedDamageTool {
     }
     get biotrackSpeed() {
         return this.tool['Biotracked Speed'] - (this.tool['Biotracked Speed'] * this.sentryCPUModifier);
+    }
+    get shortRangeDamage() {
+        return this.tool.Damage * this.shortRangeDamageModifier;
+    }
+    set srDamageModifier(value: number) {
+        this.shortRangeDamageModifier = 1 + value;
     }
 }
 
