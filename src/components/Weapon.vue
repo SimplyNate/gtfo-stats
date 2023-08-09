@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { EnhancedWeapon, MinMax } from '../data/weapons';
-import enemies, { Enemy } from '../data/enemies';
+import enemies from '../data/enemies';
 import Stat from './Stat.vue';
 import EnemyTargetStat from './EnemyTargetStat.vue';
 import { onMounted, ref } from 'vue';
@@ -58,10 +58,6 @@ function toggleMore() {
     }, 1);
 }
 
-function weakPointDamage(weapon: EnhancedWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon.weapon['Precision Damage'] * enemy['Weak Points'][enemyWeakPoint].Multiplier;
-}
-
 onMounted(() => {
     const parent: HTMLElement = document.getElementById(props.weaponValues.weapon.Name)!;
     const progressBars = parent.querySelectorAll('.progress-bar');
@@ -76,12 +72,14 @@ onMounted(() => {
                 elem.setAttribute('class', 'progress-bar chart-bg-best');
             }
         }
-        else if (currentValue.toFixed(2) === (<number>props.minimumValues[name]).toFixed(2)) {
-            if (name === 'Reload Time (s)') {
-                elem.setAttribute('class', 'progress-bar chart-bg-best');
-            }
-            else {
-                elem.setAttribute('class', 'progress-bar chart-bg-danger');
+        else if (props.minimumValues[name]) {
+            if (currentValue.toFixed(2) === (<number>props.minimumValues[name]).toFixed(2)) {
+                if (name === 'Reload Time (s)') {
+                    elem.setAttribute('class', 'progress-bar chart-bg-best');
+                }
+                else {
+                    elem.setAttribute('class', 'progress-bar chart-bg-danger');
+                }
             }
         }
     }
