@@ -21,27 +21,7 @@
                 <stat title="Rate of Fire" :original-value="weapon.weapon['Rate of Fire']" :new-value="weapon.weapon['Rate of Fire']" :max-value="totalValues['Rate of Fire']"/>
                 <template v-if="showMore">
                     <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
-                        <div class="fw-bold">{{ enemy.Name }}</div>
-                        <div class="row">
-                            <div class="col-2 text-end">Body %</div>
-                            <div class="col-6 text-start">
-                                <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weapon.weapon.Damage / enemy.Health * 100}%`">{{ (weapon.weapon.Damage / enemy.Health * 100).toFixed(2) }}%</div>
-                                </div>
-                            </div>
-                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weapon.weapon.Damage) }}</div>
-                            <div class="col-2">Waste: {{ (((Math.ceil(enemy.Health / weapon.weapon.Damage) * weapon.weapon.Damage) - enemy.Health) / weapon.weapon.Damage * 100).toFixed(2) }}%</div>
-                        </div>
-                        <div class="row" v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
-                            <div class="col-2 text-end">{{ weakPoint }} %</div>
-                            <div class="col-6 text-start">
-                                <div class="progress bg-dark mt-2" role="progressbar">
-                                    <div class="progress-bar chart-bg enemy-bar" :style="`width: ${weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100}%`">{{ (weakPointDamage(weapon, enemy, weakPoint) / enemy.Health * 100).toFixed(2) }}%</div>
-                                </div>
-                            </div>
-                            <div class="col-2">To kill: {{ Math.ceil(enemy.Health / weakPointDamage(weapon, enemy, weakPoint)) }}</div>
-                            <div class="col-2">Waste: {{ (((Math.ceil(enemy.Health / weakPointDamage(weapon, enemy, weakPoint)) * weakPointDamage(weapon, enemy, weakPoint)) - enemy.Health) / weakPointDamage(weapon, enemy, weakPoint) * 100).toFixed(2) }}%</div>
-                        </div>
+                        <enemy-target-stat :weapon="weapon" :enemy="enemy"/>
                     </div>
                 </template>
             </div>
@@ -53,6 +33,7 @@
 import { EnhancedWeapon, MinMax } from '../data/weapons';
 import enemies, { Enemy } from '../data/enemies';
 import Stat from './Stat.vue';
+import EnemyTargetStat from './EnemyTargetStat.vue';
 import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
