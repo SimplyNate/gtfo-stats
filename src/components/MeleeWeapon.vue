@@ -2,6 +2,7 @@
 import { meleeMaximums, EnhancedMeleeWeapon } from '../data/melee';
 import enemies, { Enemy } from '../data/enemies';
 import { ref, onMounted } from 'vue';
+import Stat from './Stat.vue';
 
 const props = defineProps<{
     meleeWeapon: EnhancedMeleeWeapon;
@@ -56,79 +57,16 @@ onMounted(() => {
                 <h3>{{ melee.Type }}</h3>
                 <h4>{{ melee.Name }}</h4>
             </div>
-            <div class="col-9">
-                <div class="row">
-                    <div class="col-2 text-end">Uncharged Damage</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${melee.damage.Uncharged / meleeMaximums.Damage.Uncharged * 100}%`">{{ melee.damage.Uncharged }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Charged Damage</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Damage" :style="`width: ${melee.damage.Charged / meleeMaximums.Damage.Charged * 100}%`">{{ melee.damage.Charged }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Charged Precision</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Precision Damage" :style="`width: ${melee.precision.Charged / meleeMaximums['Precision Damage'].Charged * 100}%`">{{ (melee.precision.Charged).toFixed(2) }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Charged Stagger</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Stagger Damage" :style="`width: ${melee.stagger.Charged / meleeMaximums['Stagger Damage'].Charged * 100}%`">{{ (melee.stagger.Charged).toFixed(2) }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Range</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Range" :style="`width: ${melee.weapon.Range / meleeMaximums.Range * 100}%`">{{ melee.weapon.Range }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Charge Time</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Charge Time" :style="`width: ${melee.weapon['Charge Time'] / meleeMaximums['Charge Time'] * 100}%`">{{ melee.weapon['Charge Time'] }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Charge Hold</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Charge Hold Duration" :style="`width: ${melee.weapon['Charge Hold Duration'] / meleeMaximums['Charge Hold Duration'] * 100}%`">{{ melee.weapon['Charge Hold Duration'] }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Charged DPS</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="DPS" :style="`width: ${melee.dps.Charged / meleeMaximums.DPS * 100}%`">{{ (melee.dps.Charged).toFixed(2) }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 text-end">Stagger DPS</div>
-                    <div class="col-10 text-start">
-                        <div class="progress bg-dark mt-2" role="progressbar">
-                            <div class="progress-bar chart-bg" name="Stagger DPS" :style="`width: ${melee.staggerDPS.Charged / meleeMaximums['Stagger DPS'] * 100}%`">{{ (melee.staggerDPS.Charged).toFixed(2) }}</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-9 text-start">
+                <stat title="Uncharged Damage" :new-value="melee.damage.Uncharged" :max-value="meleeMaximums.Damage.Uncharged" :original-value="melee.damage.Uncharged"/>
+                <stat title="Charged Damage" :new-value="melee.damage.Charged" :max-value="meleeMaximums.Damage.Charged" :original-value="melee.damage.Charged"/>
+                <stat title="Charged Precision" :new-value="melee.precision.Charged" :max-value="meleeMaximums['Precision Damage'].Charged" :original-value="melee.precision.Charged"/>
+                <stat title="Charged Stagger" :new-value="melee.stagger.Charged" :max-value="meleeMaximums['Stagger Damage'].Charged" :original-value="melee.stagger.Charged"/>
+                <stat title="Range" :new-value="melee.weapon.Range" :max-value="meleeMaximums.Range" :original-value="melee.weapon.Range"/>
+                <stat title="Charge Time" :new-value="melee.weapon['Charge Time']" :max-value="meleeMaximums['Charge Time']" :original-value="melee.weapon['Charge Time']"/>
+                <stat title="Charge Hold Duration" :new-value="melee.weapon['Charge Hold Duration']" :max-value="meleeMaximums['Charge Hold Duration']" :original-value="melee.weapon['Charge Hold Duration']"/>
+                <stat title="Charged DPS" :new-value="melee.dps.Charged" :max-value="meleeMaximums.DPS" :original-value="melee.dps.Charged"/>
+                <stat title="Stagger DPS" :new-value="melee.staggerDPS.Charged" :max-value="meleeMaximums['Stagger DPS']" :original-value="melee.staggerDPS.Charged"/>
                 <template v-if="showMore">
                     <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
                         <div class="row" v-if="melee.Type === 'Knife'">
