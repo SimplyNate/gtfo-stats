@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { meleeMaximums, EnhancedMeleeWeapon } from '../data/melee';
-import enemies, { Enemy } from '../data/enemies';
+import enemies from '../data/enemies';
 import { ref, onMounted } from 'vue';
 import Stat from './Stat.vue';
 import EnemyTargetStat from './EnemyTargetStat.vue';
@@ -23,14 +23,6 @@ function toggleMore() {
             }
         }
     }, 1);
-}
-
-function weakPointDamage(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon.precision.Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
-}
-
-function weakPointStealth(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon.stealthPrecision.Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
 }
 
 onMounted(() => {
