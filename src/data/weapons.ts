@@ -1,5 +1,3 @@
-import Weapon from "../components/Weapon.vue";
-
 export interface Weapon {
     [index: string]: string | number | boolean;
     Name: string;

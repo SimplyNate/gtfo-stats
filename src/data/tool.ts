@@ -73,8 +73,7 @@ const toolData = {
         "Detection Speed": 0.5,
         "Biotracked Speed": 0.125,
         "Biotracked Ammo Usage Multiplier": 0.5
-    }
-] as SentryTool[],
+    }] as SentryTool[],
     "tracker": {
         "Name": "D-Tek Optron IV",
         "Type": "Bio Tracker",
@@ -111,7 +110,6 @@ export interface SentryTool extends DamageTool {
     Firemode: string;
     'Precision Multiplier': number;
     'Stagger Multiplier': number;
-    'Total Damage': number;
     'Rate of Fire': number;
     Range: number;
     'Detection Range': number;
