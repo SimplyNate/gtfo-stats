@@ -1,3 +1,5 @@
+import { Equipment, EnhancedEquipment } from './equipment';
+
 const toolData = {
     sentry: [
     {
@@ -95,13 +97,7 @@ const toolData = {
     } as MineDeployer
 };
 
-export interface Tool {
-    [index: string]: string | number;
-    Name: string;
-    Type: string;
-}
-
-export interface AmmoTool extends Tool {
+export interface AmmoTool extends Equipment {
     'Max Ammo': number;
     'Starting Ammo': number;
     'Ammo Per Refill': number;
@@ -124,7 +120,7 @@ export interface SentryTool extends DamageTool {
     'Biotracked Ammo Usage Multiplier': number;
 }
 
-export interface BioTracker extends Tool {
+export interface BioTracker extends Equipment {
     Cooldown: number;
 }
 
@@ -132,30 +128,15 @@ export interface CFoamLauncher extends AmmoTool {}
 
 export interface MineDeployer extends DamageTool {}
 
-export abstract class EnhancedTool {
-    [index: string]: any;
-    public tool: Tool;
-
-    protected constructor(tool: Tool) {
-        this.tool = tool;
-    }
-    get Name(): string {
-        return this.tool.Name;
-    }
-    get Type(): string {
-        return this.tool.Type;
-    }
-}
-
-abstract class EnhancedAmmoTool extends EnhancedTool {
-    public tool: AmmoTool;
+abstract class EnhancedAmmoTool extends EnhancedEquipment {
+    public equipment: AmmoTool;
     protected toolAmmoModifier: number;
     protected toolRefillModifier: number;
 
     protected constructor(tool: AmmoTool) {
         super(tool);
         // Make VLS happy
-        this.tool = tool;
+        this.equipment = tool;
         this.toolAmmoModifier = 1;
         this.toolRefillModifier = 1;
     }
@@ -167,37 +148,37 @@ abstract class EnhancedAmmoTool extends EnhancedTool {
         this.toolRefillModifier = 1 + value;
     }
     get startingAmmo() {
-        return this.tool['Starting Ammo'] * this.toolAmmoModifier;
+        return this.equipment['Starting Ammo'] * this.toolAmmoModifier;
     }
     get ammoPerRefill() {
-        return this.tool['Ammo Per Refill'] * this.toolRefillModifier;
+        return this.equipment['Ammo Per Refill'] * this.toolRefillModifier;
     }
 }
 
 abstract class EnhancedDamageTool extends EnhancedAmmoTool {
-    public tool: DamageTool;
+    public equipment: DamageTool;
     protected toolDamageModifier: number;
 
     protected constructor(tool: DamageTool) {
         super(tool);
-        this.tool = tool;
+        this.equipment = tool;
         this.toolDamageModifier = 1;
     }
     set damageModifier(value: number) {
         this.toolDamageModifier = 1 + value;
     }
     get damage() {
-        return this.tool.Damage * this.toolDamageModifier;
+        return this.equipment.Damage * this.toolDamageModifier;
     }
 }
 
 export class EnhancedSentryTool extends EnhancedDamageTool {
-    public tool: SentryTool;
+    public equipment: SentryTool;
     private sentryCPUModifier: number;
     private shortRangeDamageModifier: number;
     constructor(tool: SentryTool) {
         super(tool);
-        this.tool = tool;
+        this.equipment = tool;
         this.sentryCPUModifier = 1;
         this.shortRangeDamageModifier = 1;
     }
@@ -205,56 +186,56 @@ export class EnhancedSentryTool extends EnhancedDamageTool {
         this.sentryCPUModifier = value;
     }
     get precision() {
-        return this.tool.Damage * this.tool['Precision Multiplier'] * this.sentryDamageModifier;
+        return this.equipment.Damage * this.equipment['Precision Multiplier'] * this.sentryDamageModifier;
     }
     get stagger() {
-        return this.tool.Damage * this.tool['Stagger Multiplier'] * this.sentryDamageModifier;
+        return this.equipment.Damage * this.equipment['Stagger Multiplier'] * this.sentryDamageModifier;
     }
     get cpuSpeed() {
-        return this.tool['Detection Speed'] - (this.tool['Detection Speed'] * this.sentryCPUModifier);
+        return this.equipment['Detection Speed'] - (this.equipment['Detection Speed'] * this.sentryCPUModifier);
     }
     get biotrackSpeed() {
-        return this.tool['Biotracked Speed'] - (this.tool['Biotracked Speed'] * this.sentryCPUModifier);
+        return this.equipment['Biotracked Speed'] - (this.equipment['Biotracked Speed'] * this.sentryCPUModifier);
     }
     get shortRangeDamage() {
-        return this.tool.Damage * this.shortRangeDamageModifier;
+        return this.equipment.Damage * this.shortRangeDamageModifier;
     }
     set srDamageModifier(value: number) {
         this.shortRangeDamageModifier = 1 + value;
     }
 }
 
-export class EnhancedBioTracker extends EnhancedTool {
-    tool: BioTracker;
+export class EnhancedBioTracker extends EnhancedEquipment {
+    equipment: BioTracker;
     cooldownModifier: number;
     constructor(tracker: BioTracker) {
         super(tracker);
-        this.tool = tracker;
+        this.equipment = tracker;
         this.cooldownModifier = 0;
     }
     set cooldown(value: number) {
         this.cooldownModifier = value;
     }
     get cooldown() {
-        return this.tool.Cooldown - (this.tool.Cooldown * this.cooldownModifier);
+        return this.equipment.Cooldown - (this.equipment.Cooldown * this.cooldownModifier / 2);
     }
 }
 
 export class EnhancedCFoamLauncher extends EnhancedAmmoTool {
-    tool: CFoamLauncher;
+    equipment: CFoamLauncher;
 
     constructor(launcher: CFoamLauncher) {
         super(launcher);
-        this.tool = launcher;
+        this.equipment = launcher;
     }
 }
 
 export class EnhancedMineDeployer extends EnhancedDamageTool {
-    tool: MineDeployer;
+    equipment: MineDeployer;
 
     constructor(deployer: MineDeployer) {
         super(deployer);
-        this.tool = deployer;
+        this.equipment = deployer;
     }
 }
 export const sentries: EnhancedSentryTool[] = [];

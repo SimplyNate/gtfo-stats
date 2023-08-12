@@ -19,7 +19,7 @@ const combinedTools = [
             <div class="col-9">
                 <div class="row" v-for="key of Object.keys(tool.tool)" :key="key">
                     <div class="col-6 text-end">{{ key }}</div>
-                    <div class="col-6 text-start">{{ tool.tool[key] }}</div>
+                    <div class="col-6 text-start">{{ tool.equipment[key] }}</div>
                 </div>
             </div>
         </div>
