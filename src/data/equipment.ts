@@ -73,4 +73,10 @@ export abstract class EnhancedDamageEquipment extends EnhancedAmmoEquipment {
     get damage() {
         return this.equipment.Damage * this.equipmentDamageModifier;
     }
+    get precision() {
+        return this.damage * this.equipment['Precision Multiplier'];
+    }
+    get stagger() {
+        return this.damage * this.equipment['Stagger Multiplier'];
+    }
 }
