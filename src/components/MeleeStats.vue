@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { EnhancedMeleeWeapon } from '../data/melee';
-import enemies, { Enemy } from '../data/enemies';
+import enemies from '../data/enemies';
 import { ref, computed } from 'vue';
 import Stat from './Stat.vue';
-import MeleeStatEnemy from './MeleeStatEnemy.vue';
+import EnemyTargetStat from "./EnemyTargetStat.vue";
 
 const props = defineProps<{
     weapon: EnhancedMeleeWeapon;
@@ -36,18 +36,6 @@ function toggleMore() {
         }
     }, 1);
 }
-function weakPointDamage(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon.precision.Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
-}
-
-function weakPointStealth(weapon: EnhancedMeleeWeapon, enemy: Enemy, enemyWeakPoint: string) {
-    return weapon.stealthPrecision.Charged * enemy['Weak Points'][enemyWeakPoint].Multiplier;
-}
-
-function neededBoost(baseDamage: number, enemyHealth: number) {
-    // boost = (enemyHealth / damage) - 1
-    return Math.max(0, (enemyHealth / baseDamage) - 1 - props.damageBoost);
-}
 
 </script>
 
@@ -66,31 +54,7 @@ function neededBoost(baseDamage: number, enemyHealth: number) {
               :max-value="maximums[key].Charged"/>
         <template v-if="showMore">
             <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
-                <div class="row" v-if="weapon.Type === 'Knife' && !enemy.Name.includes('Scout')">
-                    <div class="fw-bold">{{ enemy.Name }} - Stealth</div>
-                    <melee-stat-enemy target="Body"
-                                      :damage-percent="effectedWeapon.stealth.Charged / enemy.Health * 100"
-                                      :to-kill="Math.ceil(enemy.Health / (effectedWeapon.stealth.Charged))"
-                                      :booster-needed="neededBoost(weapon.stealth.Charged, enemy.Health) * 100"/>
-                    <melee-stat-enemy v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint"
-                                      :target="weakPoint"
-                                      :damage-percent="weakPointStealth(effectedWeapon, enemy, weakPoint) / enemy.Health * 100"
-                                      :to-kill="Math.ceil(enemy.Health / weakPointStealth(effectedWeapon, enemy, weakPoint))"
-                                      :booster-needed="neededBoost(weakPointStealth(weapon, enemy, weakPoint), enemy.Health) * 100"/>
-                </div>
-                <div class="row">
-                    <div class="fw-bold">{{ enemy.Name }}<span v-if="weapon.Type === 'Knife'"> - Loud</span></div>
-                    <melee-stat-enemy target="Body"
-                                      :damage-percent="effectedWeapon.damage.Charged / enemy.Health * 100"
-                                      :to-kill="Math.ceil(enemy.Health / effectedWeapon.damage.Charged)"
-                                      :booster-needed="neededBoost(weapon.damage.Charged, enemy.Health) * 100"/>
-                    <melee-stat-enemy v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint"
-                                      :target="weakPoint"
-                                      :damage-percent="weakPointDamage(effectedWeapon, enemy, weakPoint) / enemy.Health * 100"
-                                      :to-kill="Math.ceil(enemy.Health / weakPointDamage(effectedWeapon, enemy, weakPoint))"
-                                      :booster-needed="neededBoost(weakPointDamage(weapon, enemy, weakPoint), enemy.Health) * 100"
-                                      />
-                </div>
+                <enemy-target-stat :enemy="enemy" :melee="effectedWeapon" :damage-boost="damageBoost"/>
             </div>
         </template>
     </div>
