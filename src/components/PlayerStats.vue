@@ -4,14 +4,14 @@ import { Booster } from '../data/boosters';
 import { EnhancedWeapon, mainMaximums, specialMaximums } from '../data/weapons';
 import {EnhancedMeleeWeapon, meleeMaximums} from '../data/melee';
 import MeleeStats from './MeleeStats.vue';
-import { EnhancedTool } from '../data/tool';
+import { EnhancedEquipment } from '../data/equipment';
 import WeaponStats from "./WeaponStats.vue";
 import ToolStats from "./ToolStats.vue";
 
 const props = defineProps<{
     mainWeapon?: EnhancedWeapon;
     specialWeapon?: EnhancedWeapon;
-    tool?: EnhancedTool;
+    tool?: EnhancedEquipment;
     meleeWeapon?: EnhancedMeleeWeapon;
     mutedBooster?: Booster;
     boldBooster?: Booster;

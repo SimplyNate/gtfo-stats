@@ -2,8 +2,8 @@
 
 import {Enemy} from '../data/enemies';
 import {EnhancedWeapon} from '../data/weapons';
-import {computed} from "vue";
-import {EnhancedMeleeWeapon} from "../data/melee.ts";
+import {computed} from 'vue';
+import {EnhancedMeleeWeapon} from '../data/melee';
 
 const props = defineProps<{
     enemy: Enemy;
@@ -68,20 +68,20 @@ function waste(health: number, damage: number): number {
             <div class="fw-bold">{{ enemy.Name }} - Stealth</div>
             <div>
                 <div class="row">
-                    <div class="col">Body: {{ damagePercent(enemy.Health, melee.stealthNormal.Charged).toFixed(2) }}%</div>
-                    <div class="col">To Kill: {{ toKill(enemy.Health, melee.stealthNormal.Charged) }}</div>
-                    <div class="col">To 1-Shot: {{ neededBoost(melee.weapon['Stealth Damage'].Charged, enemy.Health).toFixed(2) }}%</div>
+                    <div class="col">Body: {{ damagePercent(enemy.Health, melee.stealth.Charged).toFixed(2) }}%</div>
+                    <div class="col">To Kill: {{ toKill(enemy.Health, melee.stealth.Charged) }}</div>
+                    <div class="col">To 1-Shot: {{ neededBoost(melee.equipment.Damage.Charged * melee.equipment["Stealth Multiplier"].Charged, enemy.Health).toFixed(2) }}%</div>
                 </div>
                 <div class="progress bg-dark" role="progressbar" style="height: 5px;">
-                    <div v-if="damagePercent(enemy.Health, melee.stealthNormal.Charged) >= 100" class="progress-bar chart-bg-best ps-0" :style="`width: ${damagePercent(enemy.Health, melee.stealthNormal.Charged)}%`"></div>
-                    <div v-else class="progress-bar chart-bg ps-0" :style="`width: ${damagePercent(enemy.Health, melee.stealthNormal.Charged)}%`"></div>
+                    <div v-if="damagePercent(enemy.Health, melee.stealth.Charged) >= 100" class="progress-bar chart-bg-best ps-0" :style="`width: ${damagePercent(enemy.Health, melee.stealth.Charged)}%`"></div>
+                    <div v-else class="progress-bar chart-bg ps-0" :style="`width: ${damagePercent(enemy.Health, melee.stealth.Charged)}%`"></div>
                 </div>
             </div>
             <div v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">
                 <div class="row">
                     <div class="col">{{ weakPoint }}: {{ damagePercent(enemy.Health, melee.stealthPrecision.Charged * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
                     <div class="col">To Kill: {{ toKill(enemy.Health, melee.stealthPrecision.Charged * enemy["Weak Points"][weakPoint].Multiplier) }}</div>
-                    <div class="col">To 1-Shot: {{ neededBoost(melee.weapon['Stealth Damage'].Charged * melee.weapon['Precision Multiplier'].Charged * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
+                    <div class="col">To 1-Shot: {{ neededBoost(melee.equipment.Damage.Charged * melee.equipment['Stealth Multiplier'].Charged * melee.equipment['Precision Multiplier'].Charged * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
                 </div>
                 <div class="progress bg-dark" role="progressbar" style="height: 5px;">
                     <div v-if="damagePercent(enemy.Health, melee.stealthPrecision.Charged * enemy['Weak Points'][weakPoint].Multiplier) >= 100" class="progress-bar chart-bg-best" :style="`width: ${damagePercent(enemy.Health, melee.stealthPrecision.Charged * enemy['Weak Points'][weakPoint].Multiplier)}%`"></div>
@@ -94,7 +94,7 @@ function waste(health: number, damage: number): number {
             <div class="row">
                 <div class="col">Body: {{ damagePercent(enemy.Health, melee.damage.Charged).toFixed(2) }}%</div>
                 <div class="col">To Kill: {{ toKill(enemy.Health, melee.damage.Charged) }}</div>
-                <div class="col">To 1-Shot: {{ neededBoost(melee.weapon.Damage.Charged, enemy.Health).toFixed(2) }}%</div>
+                <div class="col">To 1-Shot: {{ neededBoost(melee.equipment.Damage.Charged, enemy.Health).toFixed(2) }}%</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">
                 <div v-if="damagePercent(enemy.Health, melee.damage.Charged) >= 100" class="progress-bar chart-bg-best ps-0" :style="`width: ${damagePercent(enemy.Health, melee.damage.Charged)}%`"></div>
@@ -105,7 +105,7 @@ function waste(health: number, damage: number): number {
             <div class="row">
                 <div class="col">{{ weakPoint }}: {{ damagePercent(enemy.Health, melee.precision.Charged * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
                 <div class="col">To Kill: {{ toKill(enemy.Health, melee.precision.Charged * enemy["Weak Points"][weakPoint].Multiplier) }}</div>
-                <div class="col">To 1-Shot: {{ neededBoost(melee.weapon['Precision Damage'].Charged * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
+                <div class="col">To 1-Shot: {{ neededBoost(melee.equipment.Damage.Charged * melee.equipment['Precision Multiplier'].Charged * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">
                 <div v-if="damagePercent(enemy.Health, melee.precision.Charged * enemy['Weak Points'][weakPoint].Multiplier) >= 100" class="progress-bar chart-bg-best" :style="`width: ${damagePercent(enemy.Health, melee.precision.Charged * enemy['Weak Points'][weakPoint].Multiplier)}%`"></div>

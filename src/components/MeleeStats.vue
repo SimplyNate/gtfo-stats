@@ -12,7 +12,7 @@ const props = defineProps<{
 }>();
 
 const effectedWeapon = computed(() => {
-    const newWeapon = new EnhancedMeleeWeapon(props.weapon.weapon);
+    const newWeapon = new EnhancedMeleeWeapon(props.weapon.equipment);
     newWeapon.modifier = props.damageBoost;
     return newWeapon;
 });
@@ -58,20 +58,20 @@ function neededBoost(baseDamage: number, enemyHealth: number) {
               :title="`${displayKeys[key]} - Uncharged`"
               :original-value="weapon[key].Uncharged"
               :new-value="effectedWeapon[key].Uncharged"
-              :max-value="maximums[displayKeys[key]].Uncharged"/>
+              :max-value="maximums[key].Uncharged"/>
         <stat v-for="key of Object.keys(displayKeys)" :key="key"
               :title="`${displayKeys[key]} - Charged`"
               :original-value="weapon[key].Charged"
               :new-value="effectedWeapon[key].Charged"
-              :max-value="maximums[displayKeys[key]].Charged"/>
+              :max-value="maximums[key].Charged"/>
         <template v-if="showMore">
             <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
                 <div class="row" v-if="weapon.Type === 'Knife' && !enemy.Name.includes('Scout')">
                     <div class="fw-bold">{{ enemy.Name }} - Stealth</div>
                     <melee-stat-enemy target="Body"
-                                      :damage-percent="effectedWeapon.stealthNormal.Charged / enemy.Health * 100"
-                                      :to-kill="Math.ceil(enemy.Health / (effectedWeapon.stealthNormal.Charged))"
-                                      :booster-needed="neededBoost(weapon.stealthNormal.Charged, enemy.Health) * 100"/>
+                                      :damage-percent="effectedWeapon.stealth.Charged / enemy.Health * 100"
+                                      :to-kill="Math.ceil(enemy.Health / (effectedWeapon.stealth.Charged))"
+                                      :booster-needed="neededBoost(weapon.stealth.Charged, enemy.Health) * 100"/>
                     <melee-stat-enemy v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint"
                                       :target="weakPoint"
                                       :damage-percent="weakPointStealth(effectedWeapon, enemy, weakPoint) / enemy.Health * 100"
@@ -90,7 +90,6 @@ function neededBoost(baseDamage: number, enemyHealth: number) {
                                       :to-kill="Math.ceil(enemy.Health / weakPointDamage(effectedWeapon, enemy, weakPoint))"
                                       :booster-needed="neededBoost(weakPointDamage(weapon, enemy, weakPoint), enemy.Health) * 100"
                                       />
-
                 </div>
             </div>
         </template>

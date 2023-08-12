@@ -1,5 +1,5 @@
 export interface Equipment {
-    [index: string]: string | number;
+    [index: string]: any;
     Name: string;
     Type: string;
 }

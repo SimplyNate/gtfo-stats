@@ -51,15 +51,15 @@ onMounted(() => {
                 <h4>{{ melee.Name }}</h4>
             </div>
             <div class="col-9 text-start">
-                <stat title="Uncharged Damage" :new-value="melee.damage.Uncharged" :max-value="meleeMaximums.Damage.Uncharged" :original-value="melee.damage.Uncharged"/>
-                <stat title="Charged Damage" :new-value="melee.damage.Charged" :max-value="meleeMaximums.Damage.Charged" :original-value="melee.damage.Charged"/>
-                <stat title="Charged Precision" :new-value="melee.precision.Charged" :max-value="meleeMaximums['Precision Damage'].Charged" :original-value="melee.precision.Charged"/>
-                <stat title="Charged Stagger" :new-value="melee.stagger.Charged" :max-value="meleeMaximums['Stagger Damage'].Charged" :original-value="melee.stagger.Charged"/>
-                <stat title="Range" :new-value="melee.weapon.Range" :max-value="meleeMaximums.Range" :original-value="melee.weapon.Range"/>
-                <stat title="Charge Time" :new-value="melee.weapon['Charge Time']" :max-value="meleeMaximums['Charge Time']" :original-value="melee.weapon['Charge Time']"/>
-                <stat title="Charge Hold Duration" :new-value="melee.weapon['Charge Hold Duration']" :max-value="meleeMaximums['Charge Hold Duration']" :original-value="melee.weapon['Charge Hold Duration']"/>
-                <stat title="Charged DPS" :new-value="melee.dps.Charged" :max-value="meleeMaximums.DPS" :original-value="melee.dps.Charged"/>
-                <stat title="Stagger DPS" :new-value="melee.staggerDPS.Charged" :max-value="meleeMaximums['Stagger DPS']" :original-value="melee.staggerDPS.Charged"/>
+                <stat title="Uncharged Damage" :new-value="melee.damage.Uncharged" :max-value="meleeMaximums.damage.Uncharged" :original-value="melee.damage.Uncharged"/>
+                <stat title="Charged Damage" :new-value="melee.damage.Charged" :max-value="meleeMaximums.damage.Charged" :original-value="melee.damage.Charged"/>
+                <stat title="Charged Precision" :new-value="melee.precision.Charged" :max-value="meleeMaximums.precision.Charged" :original-value="melee.precision.Charged"/>
+                <stat title="Charged Stagger" :new-value="melee.stagger.Charged" :max-value="meleeMaximums.stagger.Charged" :original-value="melee.stagger.Charged"/>
+                <stat title="Range" :new-value="melee.equipment.Range" :max-value="meleeMaximums.equipment.Range" :original-value="melee.equipment.Range"/>
+                <stat title="Charge Time" :new-value="melee.equipment['Charge Time']" :max-value="meleeMaximums.equipment['Charge Time']" :original-value="melee.equipment['Charge Time']"/>
+                <stat title="Charge Hold Duration" :new-value="melee.equipment['Charge Hold Duration']" :max-value="meleeMaximums.equipment['Charge Hold Duration']" :original-value="melee.equipment['Charge Hold Duration']"/>
+                <stat title="Charged DPS" :new-value="melee.dps.Charged" :max-value="meleeMaximums.dps.Charged" :original-value="melee.dps.Charged"/>
+                <stat title="Stagger DPS" :new-value="melee.staggerDPS.Charged" :max-value="meleeMaximums.staggerDPS.Charged" :original-value="melee.staggerDPS.Charged"/>
                 <template v-if="showMore">
                     <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
                         <enemy-target-stat :enemy="enemy" :melee="melee"/>
