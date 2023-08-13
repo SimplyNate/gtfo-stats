@@ -29,6 +29,12 @@ export abstract class EnhancedEquipment {
     get Type(): string {
         return this.equipment.Type;
     }
+    get keys(): {[index: string]: string} {
+        return {
+            Name: 'Name',
+            'Type': 'Type',
+        };
+    }
 }
 
 export abstract class EnhancedAmmoEquipment extends EnhancedEquipment {
@@ -55,6 +61,13 @@ export abstract class EnhancedAmmoEquipment extends EnhancedEquipment {
     }
     get ammoPerRefill() {
         return this.equipment['Ammo Per Refill'] * this.equipmentRefillModifier;
+    }
+    get keys(): {[index: string]: string} {
+        return {
+            ...super.keys,
+            startingAmmo: 'Starting Ammo',
+            ammoPerRefill: 'Ammo Per Refill',
+        };
     }
 }
 
