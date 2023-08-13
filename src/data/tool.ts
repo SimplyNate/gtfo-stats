@@ -1,4 +1,4 @@
-import { Equipment, EnhancedEquipment } from './equipment';
+import { Equipment, EnhancedEquipment, EnhancedAmmoEquipment, EnhancedDamageEquipment, AmmoEquipment, DamageEquipment } from './equipment';
 
 const toolData = {
     sentry: [
@@ -12,7 +12,6 @@ const toolData = {
         "Damage": 2.01,
         "Precision Multiplier": 1,
         "Stagger Multiplier": 1,
-        "Total Damage": 540.69,
         "Rate of Fire": 165.14,
         "Range": 15,
         "Detection Range": 25,
@@ -30,7 +29,6 @@ const toolData = {
         "Damage": 0.71,
         "Precision Multiplier": 0.834,
         "Stagger Multiplier": 8,
-        "Total Damage": 621.25,
         "Rate of Fire": 750,
         "Range": 10,
         "Detection Range": 25,
@@ -48,7 +46,6 @@ const toolData = {
         "Damage": 48.1,
         "Precision Multiplier": 1,
         "Stagger Multiplier": 1,
-        "Total Damage": 1539.2,
         "Rate of Fire": 20,
         "Range": 20,
         "Detection Range": 50,
@@ -66,7 +63,6 @@ const toolData = {
         "Damage": 15.05,
         "Precision Multiplier": 1,
         "Stagger Multiplier": 1,
-        "Total Damage": 872.9,
         "Rate of Fire": 80,
         "Range": 4,
         "Detection Range": 10,
@@ -92,21 +88,13 @@ const toolData = {
         "Max Ammo": 8,
         "Starting Ammo": 5.5,
         "Ammo Per Refill": 1.5,
-        "Damage": 50
+        "Damage": 50,
+        "Precision Multiplier": 1,
+        "Stagger Multiplier": 1
     } as MineDeployer
 };
 
-export interface AmmoTool extends Equipment {
-    'Max Ammo': number;
-    'Starting Ammo': number;
-    'Ammo Per Refill': number;
-}
-
-export interface DamageTool extends AmmoTool {
-    Damage: number;
-}
-
-export interface SentryTool extends DamageTool {
+export interface SentryTool extends DamageEquipment {
     Firemode: string;
     'Precision Multiplier': number;
     'Stagger Multiplier': number;
@@ -122,55 +110,11 @@ export interface BioTracker extends Equipment {
     Cooldown: number;
 }
 
-export interface CFoamLauncher extends AmmoTool {}
+export interface CFoamLauncher extends AmmoEquipment {}
 
-export interface MineDeployer extends DamageTool {}
+export interface MineDeployer extends DamageEquipment {}
 
-abstract class EnhancedAmmoTool extends EnhancedEquipment {
-    public equipment: AmmoTool;
-    protected toolAmmoModifier: number;
-    protected toolRefillModifier: number;
-
-    protected constructor(tool: AmmoTool) {
-        super(tool);
-        // Make VLS happy
-        this.equipment = tool;
-        this.toolAmmoModifier = 1;
-        this.toolRefillModifier = 1;
-    }
-
-    set ammoModifier(value: number) {
-        this.toolAmmoModifier = 1 + value;
-    }
-    set refillModifier(value: number) {
-        this.toolRefillModifier = 1 + value;
-    }
-    get startingAmmo() {
-        return this.equipment['Starting Ammo'] * this.toolAmmoModifier;
-    }
-    get ammoPerRefill() {
-        return this.equipment['Ammo Per Refill'] * this.toolRefillModifier;
-    }
-}
-
-abstract class EnhancedDamageTool extends EnhancedAmmoTool {
-    public equipment: DamageTool;
-    protected toolDamageModifier: number;
-
-    protected constructor(tool: DamageTool) {
-        super(tool);
-        this.equipment = tool;
-        this.toolDamageModifier = 1;
-    }
-    set damageModifier(value: number) {
-        this.toolDamageModifier = 1 + value;
-    }
-    get damage() {
-        return this.equipment.Damage * this.toolDamageModifier;
-    }
-}
-
-export class EnhancedSentryTool extends EnhancedDamageTool {
+export class EnhancedSentryTool extends EnhancedDamageEquipment {
     public equipment: SentryTool;
     private sentryCPUModifier: number;
     private shortRangeDamageModifier: number;
@@ -219,7 +163,7 @@ export class EnhancedBioTracker extends EnhancedEquipment {
     }
 }
 
-export class EnhancedCFoamLauncher extends EnhancedAmmoTool {
+export class EnhancedCFoamLauncher extends EnhancedAmmoEquipment {
     equipment: CFoamLauncher;
 
     constructor(launcher: CFoamLauncher) {
@@ -228,7 +172,7 @@ export class EnhancedCFoamLauncher extends EnhancedAmmoTool {
     }
 }
 
-export class EnhancedMineDeployer extends EnhancedDamageTool {
+export class EnhancedMineDeployer extends EnhancedDamageEquipment {
     equipment: MineDeployer;
 
     constructor(deployer: MineDeployer) {
