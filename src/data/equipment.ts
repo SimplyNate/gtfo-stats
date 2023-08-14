@@ -92,4 +92,12 @@ export abstract class EnhancedDamageEquipment extends EnhancedAmmoEquipment {
     get stagger() {
         return this.damage * this.equipment['Stagger Multiplier'];
     }
+    get keys() {
+        return {
+            ...super.keys,
+            damage: 'Damage',
+            precision: 'Precision',
+            stagger: 'Stagger',
+        };
+    }
 }
