@@ -134,16 +134,32 @@ export class EnhancedSentryTool extends EnhancedDamageEquipment {
         return this.equipment.Damage * this.equipment['Stagger Multiplier'] * this.sentryDamageModifier;
     }
     get cpuSpeed() {
-        return this.equipment['Detection Speed'] - (this.equipment['Detection Speed'] * this.sentryCPUModifier);
+        return this.equipment['Detection Speed'] - (this.equipment['Detection Speed'] * this.sentryCPUModifier / 2);
     }
     get biotrackSpeed() {
-        return this.equipment['Biotracked Speed'] - (this.equipment['Biotracked Speed'] * this.sentryCPUModifier);
+        return this.equipment['Biotracked Speed'] - (this.equipment['Biotracked Speed'] * this.sentryCPUModifier / 2);
     }
     get shortRangeDamage() {
         return this.equipment.Damage * this.shortRangeDamageModifier;
     }
     set srDamageModifier(value: number) {
         this.shortRangeDamageModifier = 1 + value;
+    }
+    get keys() {
+        return {
+            ...super.keys,
+            cpuSpeed: 'Detection Speed',
+            biotrackSpeed: 'Biotracked Detection Speed',
+            shortRangeDamage: 'Short Range Damage',
+        }
+    }
+    get equipmentKeys() {
+        return [
+            'Rate of Fire',
+            'Range',
+            'Detection Range',
+            'Biotracked Ammo Usage Multiplier',
+        ];
     }
 }
 

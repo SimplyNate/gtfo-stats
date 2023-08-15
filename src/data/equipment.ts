@@ -35,6 +35,9 @@ export abstract class EnhancedEquipment {
             'Type': 'Type',
         };
     }
+    get equipmentKeys(): string[] {
+        return [];
+    }
 }
 
 export abstract class EnhancedAmmoEquipment extends EnhancedEquipment {
