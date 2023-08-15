@@ -177,6 +177,11 @@ export class EnhancedBioTracker extends EnhancedEquipment {
     get cooldown() {
         return this.equipment.Cooldown - (this.equipment.Cooldown * this.cooldownModifier / 2);
     }
+    get keys() {
+        return {
+            cooldown: 'Cooldown',
+        }
+    }
 }
 
 export class EnhancedCFoamLauncher extends EnhancedAmmoEquipment {
