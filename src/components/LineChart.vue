@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed, watch } from 'vue';
+import { onMounted, watch } from 'vue';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto';
 
@@ -31,6 +31,12 @@ onMounted(() => {
             },
         },
     });
+});
+
+watch(props, () => {
+    chart.data.labels = props.labels;
+    chart.data.datasets = props.datasets;
+    chart.update();
 });
 
 </script>
