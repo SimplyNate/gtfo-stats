@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto';
 
-Chart.register(ChartDataLabels);
 Chart.defaults.color = '#d3f7ff';
 
 const props = defineProps<{
@@ -24,10 +22,15 @@ onMounted(() => {
         },
         options: {
             responsive: true,
+            animation: false,
             plugins: {
                 legend: {
                     position: 'top',
                 },
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false,
             },
         },
     });

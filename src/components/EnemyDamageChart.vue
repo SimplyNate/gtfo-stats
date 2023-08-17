@@ -16,7 +16,7 @@ function numShots(health: number, damage: number) {
 function neededBoostForShots(health: number, baseDamage: number, target: number) {
     const healthPerShot = health / target;
     const boost = healthPerShot / baseDamage - 1;
-    return Math.max(0, boost);
+    return Number((Math.max(0, boost) * 100).toFixed(2));
 }
 
 const datasets = computed(() => {
@@ -30,6 +30,7 @@ const datasets = computed(() => {
         labels.push(i.toString());
         bodyData.data.push(neededBoostForShots(props.enemy.Health, props.weapon.damage, i));
     }
+    ds.push(bodyData);
     for (const weakPoint of Object.keys(props.enemy["Weak Points"])) {
         const damage = props.weapon.precision * props.enemy["Weak Points"][weakPoint].Multiplier;
         const ns = numShots(props.enemy.Health, damage);
@@ -37,6 +38,10 @@ const datasets = computed(() => {
             label: weakPoint,
             data: [],
         };
+        const diff = labels.length - ns;
+        for (let i = 0; i < diff; i++) {
+            set.data.push(Number.NaN);
+        }
         for (let i = ns; i > 0; i--) {
             set.data.push(neededBoostForShots(props.enemy.Health, damage, i));
         }

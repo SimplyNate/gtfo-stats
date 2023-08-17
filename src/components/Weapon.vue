@@ -22,6 +22,7 @@
                 <template v-if="showMore">
                     <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
                         <enemy-target-stat :weapon="weapon" :enemy="enemy"/>
+                        <enemy-damage-chart v-if="enemy.Name !== 'Immortal' && enemy.Name !== 'Kraken'" :weapon="weapon" :enemy="enemy"/>
                     </div>
                 </template>
             </div>
@@ -34,6 +35,7 @@ import { EnhancedWeapon, MinMax } from '../data/weapons';
 import enemies from '../data/enemies';
 import Stat from './Stat.vue';
 import EnemyTargetStat from './EnemyTargetStat.vue';
+import EnemyDamageChart from './EnemyDamageChart.vue';
 import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
