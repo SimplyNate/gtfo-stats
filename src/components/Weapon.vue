@@ -19,20 +19,23 @@
                 <stat title="Max Ammo" :original-value="weapon.weapon['Max Ammo']" :new-value="weapon.weapon['Max Ammo']" :max-value="totalValues['Max Ammo']"/>
                 <stat title="Starting Ammo" :original-value="weapon.weapon['Starting Ammo']" :new-value="weapon.weapon['Starting Ammo']" :max-value="totalValues['Starting Ammo']"/>
                 <stat title="Rate of Fire" :original-value="weapon.weapon['Rate of Fire']" :new-value="weapon.weapon['Rate of Fire']" :max-value="totalValues['Rate of Fire']"/>
-                <template v-if="showMore">
-                    <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">
-                        <enemy-target-stat :weapon="weapon" :enemy="enemy"/>
-                        <enemy-damage-chart v-if="enemy.Name !== 'Immortal' && enemy.Name !== 'Kraken'" :weapon="weapon" :enemy="enemy"/>
-                    </div>
-                </template>
             </div>
+        </div>
+    </div>
+    <div class="container-fluid border rounded p-3" v-if="showMore">
+        <div class="row mt-3">
+            <select class="form-select w-25" v-model="selectedEnemy">
+                <option v-for="enemy of enemies" :key="enemy.Name" :value="enemy">{{ enemy.Name }}</option>
+            </select>
+            <enemy-target-stat :weapon="weapon" :enemy="selectedEnemy"/>
+            <enemy-damage-chart v-if="selectedEnemy.Name !== 'Immortal' && selectedEnemy.Name !== 'Kraken'" :weapon="weapon" :enemy="selectedEnemy"/>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { EnhancedWeapon, MinMax } from '../data/weapons';
-import enemies from '../data/enemies';
+import enemies, { Enemy } from '../data/enemies';
 import Stat from './Stat.vue';
 import EnemyTargetStat from './EnemyTargetStat.vue';
 import EnemyDamageChart from './EnemyDamageChart.vue';
@@ -47,6 +50,8 @@ const props = defineProps<{
 const weapon = props.weaponValues;
 
 const showMore = ref<boolean>(false);
+
+const selectedEnemy = ref<Enemy>(enemies[0]);
 
 function toggleMore() {
     showMore.value = !showMore.value;
