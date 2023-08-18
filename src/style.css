@@ -54,3 +54,8 @@
 .menu-item-text {
   transform: translateX(-1px);
 }
+
+.custom-select {
+  font-family: monospace;
+  border: 2px solid;
+}

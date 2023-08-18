@@ -24,7 +24,7 @@
     </div>
     <div class="container-fluid border rounded p-3" v-if="showMore">
         <div class="row mt-3">
-            <select class="form-select w-25" v-model="selectedEnemy">
+            <select class="custom-select rounded w-25" v-model="selectedEnemy">
                 <option v-for="enemy of enemies" :key="enemy.Name" :value="enemy">{{ enemy.Name }}</option>
             </select>
             <enemy-target-stat :weapon="weapon" :enemy="selectedEnemy"/>
