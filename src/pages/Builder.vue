@@ -9,6 +9,7 @@ import PlayerStats from '../components/PlayerStats.vue';
 import {Booster, effectData, negativeData, conditions, EffectRange} from '../data/boosters';
 import { useBuilderStore } from '../store';
 import { EnhancedEquipment } from '../data/equipment';
+import WeaponStats from "../components/WeaponStats.vue";
 
 const allTools = [
     ...tools.sentries,
@@ -199,9 +200,16 @@ function saveBooster() {
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
-                        <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedEquipment | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal">
-                            <div class="col pt-1 pb-1">
-                                {{ weapon.Type }}
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedEquipment | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal">
+                                    <div class="pt-1 pb-1">
+                                        {{ weapon.Type }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="container-fluid">Weapon Preview</div>
                             </div>
                         </div>
                     </div>
