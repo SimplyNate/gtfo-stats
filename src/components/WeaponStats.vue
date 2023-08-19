@@ -15,9 +15,9 @@ const props = defineProps<{
 
 const effectedWeapon = computed(() => {
     const newWeapon = new EnhancedWeapon(props.weapon.weapon);
-    newWeapon.modifier = props.damageBoost;
-    newWeapon.ammoMod = props.ammoBoost;
-    newWeapon.refillMod = props.refillBoost;
+    newWeapon.damageModifier = props.damageBoost;
+    newWeapon.ammoModifier = props.ammoBoost;
+    newWeapon.refillModifier = props.refillBoost;
     return newWeapon;
 });
 

@@ -9,7 +9,6 @@ import PlayerStats from '../components/PlayerStats.vue';
 import {Booster, effectData, negativeData, conditions, EffectRange} from '../data/boosters';
 import { useBuilderStore } from '../store';
 import { EnhancedEquipment } from '../data/equipment';
-import WeaponStats from "../components/WeaponStats.vue";
 
 const allTools = [
     ...tools.sentries,

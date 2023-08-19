@@ -1,67 +1,22 @@
-export interface Weapon {
-    [index: string]: string | number | boolean;
-    Name: string;
-    Type: string;
+import { DamageEquipment, EnhancedDamageEquipment } from './equipment';
+
+export interface Weapon extends DamageEquipment {
     Firemode: string;
-    'Max Ammo': number;
     'Magazine Size': number;
-    'Starting Ammo': number;
-    'Ammo Per Refill': number;
-    Damage: number;
-    'Precision Multiplier': number;
-    'Precision Damage': number;
-    'Stagger Multiplier': number;
     'Damage Per Mag': number;
     'Precision Per Mag': number;
-    'Headshot Damage': number;
-    'Back Headshot Damage': number;
     'Reload Time (s)': number;
     'Range (m)': number;
     'Rate of Fire': number;
     Pierces: boolean;
 }
 
-export class EnhancedWeapon {
+export class EnhancedWeapon extends EnhancedDamageEquipment {
     [index: string]: any;
     public weapon: Weapon;
-    private damageModifier: number;
-    private ammoModifier: number;
-    private refillModifier: number;
     constructor(weapon: Weapon) {
+        super(weapon);
         this.weapon = weapon;
-        this.damageModifier = 1;
-        this.ammoModifier = 1;
-        this.refillModifier = 1;
-    }
-    get Name(): string {
-        return this.weapon.Name;
-    }
-    get Type(): string {
-        return this.weapon.Type;
-    }
-    get damage(): number {
-        return this.weapon.Damage * this.damageModifier;
-    }
-    set modifier(value: number) {
-        this.damageModifier = 1 + value;
-    }
-    get startingAmmo(): number {
-        return this.weapon['Starting Ammo'] * this.ammoModifier;
-    }
-    set ammoMod(value: number) {
-        this.ammoModifier = 1 + value;
-    }
-    get ammoPerRefill(): number {
-        return this.weapon['Ammo Per Refill'] * this.refillModifier;
-    }
-    set refillMod(value: number) {
-        this.refillModifier = 1 + value;
-    }
-    get precision(): number {
-        return this.damage * this.weapon['Precision Multiplier'];
-    }
-    get stagger(): number {
-        return this.damage * this.weapon['Stagger Multiplier'];
     }
     get damagePerMag(): number {
         return this.damage * this.weapon['Magazine Size'];
@@ -101,11 +56,9 @@ export const mainWeapons: EnhancedWeapon[] = [];
 
 export interface MinMax {
     [index: string]: number;
-    'Back Headshot Damage': number;
     'Damage Per Mag': number;
     'Effective DPS': number;
     'Effective Precision DPS': number;
-    'Headshot Damage': number;
     'Magazine Size': number;
     'Starting Ammo': number;
     'Ammo Per Refill': number;
@@ -124,11 +77,9 @@ export interface MinMax {
     Damage: number;
 }
 export const mainMaximums: MinMax = {
-    'Back Headshot Damage': 0,
     'Damage Per Mag': 0,
     'Effective DPS': 0,
     'Effective Precision DPS': 0,
-    'Headshot Damage': 0,
     'Magazine Size': 0,
     'Starting Ammo': 0,
     'Ammo Per Refill': 0,
@@ -147,11 +98,9 @@ export const mainMaximums: MinMax = {
     Damage: 0,
 };
 export const mainMinimums: MinMax = {
-    'Back Headshot Damage': Infinity,
     'Damage Per Mag': Infinity,
     'Effective DPS': Infinity,
     'Effective Precision DPS': Infinity,
-    'Headshot Damage': Infinity,
     'Magazine Size': Infinity,
     'Starting Ammo': Infinity,
     'Ammo Per Refill': Infinity,
@@ -195,11 +144,9 @@ for (const item of _main) {
 import _special from './special.json';
 export const specialWeapons: EnhancedWeapon[] = [];
 export const specialMaximums: MinMax = {
-    'Back Headshot Damage': 0,
     'Damage Per Mag': 0,
     'Effective DPS': 0,
     'Effective Precision DPS': 0,
-    'Headshot Damage': 0,
     'Magazine Size': 0,
     'Max Ammo': 0,
     'Starting Ammo': 0,
@@ -218,11 +165,9 @@ export const specialMaximums: MinMax = {
     Damage: 0,
 };
 export const specialMinimums: MinMax = {
-    'Back Headshot Damage': Infinity,
     'Damage Per Mag': Infinity,
     'Effective DPS': Infinity,
     'Effective Precision DPS': Infinity,
-    'Headshot Damage': Infinity,
     'Magazine Size': Infinity,
     'Max Ammo': Infinity,
     'Starting Ammo': Infinity,
