@@ -52,7 +52,7 @@ function chargeNecessary(health: number, unchargedDamage: number, chargedDamage:
             <div class="row">
                 <div class="col">Body: {{ damagePercent(enemy.Health, weapon.damage).toFixed(2) }}%</div>
                 <div class="col">To Kill: {{ toKill(enemy.Health, weapon.damage) }}</div>
-                <div class="col">To 1-Shot: {{ neededBoost(weapon.weapon.Damage, enemy.Health).toFixed(2) }}%</div>
+                <div class="col">To 1-Shot: {{ neededBoost(weapon.equipment.Damage, enemy.Health).toFixed(2) }}%</div>
                 <div class="col">Waste: {{ waste(enemy.Health, weapon.damage).toFixed(2) }}%</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">
@@ -64,7 +64,7 @@ function chargeNecessary(health: number, unchargedDamage: number, chargedDamage:
             <div class="row">
                 <div class="col">{{ weakPoint }}: {{ damagePercent(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
                 <div class="col">To Kill: {{ toKill(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier) }}</div>
-                <div class="col">To 1-Shot: {{ neededBoost(weapon.weapon['Precision Damage'] * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
+                <div class="col">To 1-Shot: {{ neededBoost(weapon.equipment['Precision Damage'] * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
                 <div class="col">Waste: {{ waste(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">

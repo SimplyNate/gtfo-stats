@@ -13,36 +13,36 @@ export interface Weapon extends DamageEquipment {
 
 export class EnhancedWeapon extends EnhancedDamageEquipment {
     [index: string]: any;
-    public weapon: Weapon;
+    public equipment: Weapon;
     constructor(weapon: Weapon) {
         super(weapon);
-        this.weapon = weapon;
+        this.equipment = weapon;
     }
     get damagePerMag(): number {
-        return this.damage * this.weapon['Magazine Size'];
+        return this.damage * this.equipment['Magazine Size'];
     }
     get precisionPerMag(): number {
-        return this.precision * this.weapon['Magazine Size'];
+        return this.precision * this.equipment['Magazine Size'];
     }
     get totalDamage(): number {
-        return this.damage * this.weapon['Max Ammo'];
+        return this.damage * this.equipment['Max Ammo'];
     }
     get dps(): number {
-        return this.damage * this.weapon['Rate of Fire'] / 60;
+        return this.damage * this.equipment['Rate of Fire'] / 60;
     }
     get effectiveDPS(): number {
-        const bulletsPerSecond = this.weapon['Rate of Fire'] / 60;
-        const secondsPerMag = this.weapon['Magazine Size'] / bulletsPerSecond;
-        const totalTime = secondsPerMag + this.weapon['Reload Time (s)'];
+        const bulletsPerSecond = this.equipment['Rate of Fire'] / 60;
+        const secondsPerMag = this.equipment['Magazine Size'] / bulletsPerSecond;
+        const totalTime = secondsPerMag + this.equipment['Reload Time (s)'];
         return this.damagePerMag / totalTime;
     }
     get precisionDPS(): number {
-        return this.precision * this.weapon['Rate of Fire'] / 60;
+        return this.precision * this.equipment['Rate of Fire'] / 60;
     }
     get effectivePrecisionDPS(): number {
-        const bulletsPerSecond = this.weapon['Rate of Fire'] / 60;
-        const secondsPerMag = this.weapon['Magazine Size'] / bulletsPerSecond;
-        const totalTime = secondsPerMag + this.weapon['Reload Time (s)'];
+        const bulletsPerSecond = this.equipment['Rate of Fire'] / 60;
+        const secondsPerMag = this.equipment['Magazine Size'] / bulletsPerSecond;
+        const totalTime = secondsPerMag + this.equipment['Reload Time (s)'];
         return this.precisionPerMag / totalTime;
     }
 }
@@ -120,10 +120,10 @@ export const mainMinimums: MinMax = {
 };
 for (const item of _main) {
     const processed: EnhancedWeapon = processWeapon(<Weapon>item);
-    for (const key of Object.keys(processed.weapon)) {
-        if (Number.isFinite(processed.weapon[key])) {
-            mainMaximums[key] = Math.max(mainMaximums[key], <number>processed.weapon[key]);
-            mainMinimums[key] = Math.min(mainMinimums[key], <number>processed.weapon[key]);
+    for (const key of Object.keys(processed.equipment)) {
+        if (Number.isFinite(processed.equipment[key])) {
+            mainMaximums[key] = Math.max(mainMaximums[key], <number>processed.equipment[key]);
+            mainMinimums[key] = Math.min(mainMinimums[key], <number>processed.equipment[key]);
         }
     }
     mainMaximums.DPS = Math.max(mainMaximums.DPS, processed.dps);
@@ -187,10 +187,10 @@ export const specialMinimums: MinMax = {
 };
 for (const item of _special) {
     const processed: EnhancedWeapon = processWeapon(<Weapon>item);
-    for (const key of Object.keys(processed.weapon)) {
-        if (Number.isFinite(processed.weapon[key])) {
-            specialMaximums[key] = Math.max(specialMaximums[key], <number>processed.weapon[key])
-            specialMinimums[key] = Math.min(specialMinimums[key], <number>processed.weapon[key]);
+    for (const key of Object.keys(processed.equipment)) {
+        if (Number.isFinite(processed.equipment[key])) {
+            specialMaximums[key] = Math.max(specialMaximums[key], <number>processed.equipment[key])
+            specialMinimums[key] = Math.min(specialMinimums[key], <number>processed.equipment[key]);
         }
     }
     specialMaximums.DPS = Math.max(specialMaximums.DPS, processed.dps);

@@ -155,6 +155,10 @@ function saveBooster() {
     store.setBooster(boosterSelectionCategory.value, booster);
 }
 
+function setComparator(equipment: EnhancedEquipment) {
+    console.log(equipment);
+}
+
 </script>
 
 <template>
@@ -201,7 +205,7 @@ function saveBooster() {
                     <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
                         <div class="row">
                             <div class="col-2">
-                                <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedEquipment | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal">
+                                <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedEquipment | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal" @mouseover="setComparator(weapon)">
                                     <div class="pt-1 pb-1">
                                         {{ weapon.Type }}
                                     </div>

@@ -8,8 +8,8 @@ const props = defineProps<{
 }>();
 
 const validKeys: string[] = [];
-for (const key of Object.keys(props.weapons[0].weapon)) {
-    if (Number.isFinite(props.weapons[0].weapon[key])) {
+for (const key of Object.keys(props.weapons[0].equipment)) {
+    if (Number.isFinite(props.weapons[0].equipment[key])) {
         validKeys.push(key);
     }
 }
@@ -22,11 +22,11 @@ const barData = computed(() => {
         data: [],
     };
     const sortedWeapons = [ ...props.weapons ];
-    sortedWeapons.sort((a, b) => <number>b.weapon[key.value] - <number>a.weapon[key.value]);
+    sortedWeapons.sort((a, b) => <number>b.equipment[key.value] - <number>a.equipment[key.value]);
     for (const mainWeapon of sortedWeapons) {
         labels.push(mainWeapon.Type);
         // @ts-ignore
-        mainDataset.data.push(Number(mainWeapon.weapon[key.value].toFixed(2)));
+        mainDataset.data.push(Number(mainWeapon.equipment[key.value].toFixed(2)));
     }
     return {dataset: [mainDataset], labels};
 });

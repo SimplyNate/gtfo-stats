@@ -1,24 +1,24 @@
 <template>
-    <div :id="`${weapon.weapon.Name}`" class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
+    <div :id="`${weapon.Name}`" class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
         <div class="row">
             <div class="col-3">
-                <h3>{{ weapon.weapon.Type }}</h3>
-                <h4>{{ weapon.weapon.Name }}</h4>
+                <h3>{{ weapon.Type }}</h3>
+                <h4>{{ weapon.Name }}</h4>
             </div>
             <div class="col-9 text-start">
-                <stat title="Damage" :original-value="weapon.weapon.Damage" :new-value="weapon.weapon.Damage" :max-value="totalValues.Damage"/>
+                <stat title="Damage" :original-value="weapon.equipment.Damage" :new-value="weapon.equipment.Damage" :max-value="totalValues.Damage"/>
                 <stat title="DPS" :original-value="weapon.dps" :new-value="weapon.dps" :max-value="totalValues.DPS"/>
                 <stat title="Effective DPS" :original-value="weapon.effectiveDPS" :new-value="weapon.effectiveDPS" :max-value="totalValues['Effective DPS']"/>
                 <stat title="Damage Per Mag" :original-value="weapon.damagePerMag" :new-value="weapon.damagePerMag" :max-value="totalValues['Damage Per Mag']"/>
                 <stat title="Total Damage" :original-value="weapon.totalDamage" :new-value="weapon.totalDamage" :max-value="totalValues['Total Damage']"/>
                 <stat title="Precision" :original-value="weapon.precision" :new-value="weapon.precision" :max-value="totalValues['Precision Damage']"/>
                 <stat title="Stagger" :original-value="weapon.stagger" :new-value="weapon.stagger" :max-value="totalValues['Stagger Damage']"/>
-                <stat title="Reload Time" :original-value="weapon.weapon['Reload Time (s)']" :new-value="weapon.weapon['Reload Time (s)']" :max-value="totalValues['Reload Time (s)']"/>
-                <stat title="Range" :original-value="weapon.weapon['Range (m)']" :new-value="weapon.weapon['Range (m)']" :max-value="totalValues['Range (m)']"/>
-                <stat title="Magazine Size" :original-value="weapon.weapon['Magazine Size']" :new-value="weapon.weapon['Magazine Size']" :max-value="totalValues['Magazine Size']"/>
-                <stat title="Max Ammo" :original-value="weapon.weapon['Max Ammo']" :new-value="weapon.weapon['Max Ammo']" :max-value="totalValues['Max Ammo']"/>
-                <stat title="Starting Ammo" :original-value="weapon.weapon['Starting Ammo']" :new-value="weapon.weapon['Starting Ammo']" :max-value="totalValues['Starting Ammo']"/>
-                <stat title="Rate of Fire" :original-value="weapon.weapon['Rate of Fire']" :new-value="weapon.weapon['Rate of Fire']" :max-value="totalValues['Rate of Fire']"/>
+                <stat title="Reload Time" :original-value="weapon.equipment['Reload Time (s)']" :new-value="weapon.equipment['Reload Time (s)']" :max-value="totalValues['Reload Time (s)']"/>
+                <stat title="Range" :original-value="weapon.equipment['Range (m)']" :new-value="weapon.equipment['Range (m)']" :max-value="totalValues['Range (m)']"/>
+                <stat title="Magazine Size" :original-value="weapon.equipment['Magazine Size']" :new-value="weapon.equipment['Magazine Size']" :max-value="totalValues['Magazine Size']"/>
+                <stat title="Max Ammo" :original-value="weapon.equipment['Max Ammo']" :new-value="weapon.equipment['Max Ammo']" :max-value="totalValues['Max Ammo']"/>
+                <stat title="Starting Ammo" :original-value="weapon.equipment['Starting Ammo']" :new-value="weapon.equipment['Starting Ammo']" :max-value="totalValues['Starting Ammo']"/>
+                <stat title="Rate of Fire" :original-value="weapon.equipment['Rate of Fire']" :new-value="weapon.equipment['Rate of Fire']" :max-value="totalValues['Rate of Fire']"/>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@ function toggleMore() {
 }
 
 onMounted(() => {
-    const parent: HTMLElement = document.getElementById(props.weaponValues.weapon.Name)!;
+    const parent: HTMLElement = document.getElementById(props.weaponValues.Name)!;
     const progressBars = parent.querySelectorAll('.progress-bar');
     for (const elem of progressBars) {
         const name = <string>elem.getAttribute('name');

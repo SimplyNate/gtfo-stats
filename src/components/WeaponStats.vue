@@ -14,7 +14,7 @@ const props = defineProps<{
 }>();
 
 const effectedWeapon = computed(() => {
-    const newWeapon = new EnhancedWeapon(props.weapon.weapon);
+    const newWeapon = new EnhancedWeapon(props.weapon.equipment);
     newWeapon.damageModifier = props.damageBoost;
     newWeapon.ammoModifier = props.ammoBoost;
     newWeapon.refillModifier = props.refillBoost;
@@ -51,7 +51,7 @@ function toggleMore() {
 
 function calculateAmmoPercentage(key: string) {
     if (key === 'ammoPerRefill') {
-        return effectedWeapon.value.ammoPerRefill / (effectedWeapon.value.weapon['Max Ammo'] - effectedWeapon.value.weapon['Magazine Size']);
+        return effectedWeapon.value.ammoPerRefill / (effectedWeapon.value.equipment['Max Ammo'] - effectedWeapon.value.equipment['Magazine Size']);
     }
     return undefined;
 }
