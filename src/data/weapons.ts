@@ -27,6 +27,9 @@ export class EnhancedWeapon extends EnhancedDamageEquipment {
     get totalDamage(): number {
         return this.damage * this.equipment['Max Ammo'];
     }
+    get totalPrecision(): number {
+        return this.precision * this.equipment['Max Ammo'];
+    }
     get dps(): number {
         return this.damage * this.equipment['Rate of Fire'] / 60;
     }

@@ -43,6 +43,11 @@ function chargeNecessary(health: number, unchargedDamage: number, chargedDamage:
     return Math.min((health - unchargedDamage) / (chargedDamage - unchargedDamage), 1);
 }
 
+function totalKill(health: number, damage: number, totalDamage: number) {
+    const bulletsPerKill = toKill(health, damage);
+    return Math.floor(totalDamage / bulletsPerKill);
+}
+
 </script>
 
 <template>
@@ -54,6 +59,7 @@ function chargeNecessary(health: number, unchargedDamage: number, chargedDamage:
                 <div class="col">To Kill: {{ toKill(enemy.Health, weapon.damage) }}</div>
                 <div class="col">To 1-Shot: {{ neededBoost(weapon.equipment.Damage, enemy.Health).toFixed(2) }}%</div>
                 <div class="col">Waste: {{ waste(enemy.Health, weapon.damage).toFixed(2) }}%</div>
+                <div class="col">Total Kill: {{ totalKill(enemy.Health, weapon.damage, weapon.totalDamage) }}</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">
                 <div v-if="damagePercent(enemy.Health, weapon.damage) >= 100" class="progress-bar chart-bg-best ps-0" :style="`width: ${damagePercent(enemy.Health, weapon.damage)}%`"></div>
