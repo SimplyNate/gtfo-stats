@@ -43,9 +43,9 @@ function chargeNecessary(health: number, unchargedDamage: number, chargedDamage:
     return Math.min((health - unchargedDamage) / (chargedDamage - unchargedDamage), 1);
 }
 
-function totalKill(health: number, damage: number, totalDamage: number) {
+function totalKill(health: number, damage: number, maxAmmo: number) {
     const bulletsPerKill = toKill(health, damage);
-    return Math.floor(totalDamage / bulletsPerKill);
+    return Math.floor(maxAmmo / bulletsPerKill);
 }
 
 </script>
@@ -59,7 +59,7 @@ function totalKill(health: number, damage: number, totalDamage: number) {
                 <div class="col">To Kill: {{ toKill(enemy.Health, weapon.damage) }}</div>
                 <div class="col">To 1-Shot: {{ neededBoost(weapon.equipment.Damage, enemy.Health).toFixed(2) }}%</div>
                 <div class="col">Waste: {{ waste(enemy.Health, weapon.damage).toFixed(2) }}%</div>
-                <div class="col">Total Kill: {{ totalKill(enemy.Health, weapon.damage, weapon.totalDamage) }}</div>
+                <div class="col">Total Kill: {{ totalKill(enemy.Health, weapon.damage, weapon.equipment['Max Ammo']) }}</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">
                 <div v-if="damagePercent(enemy.Health, weapon.damage) >= 100" class="progress-bar chart-bg-best ps-0" :style="`width: ${damagePercent(enemy.Health, weapon.damage)}%`"></div>
@@ -72,6 +72,7 @@ function totalKill(health: number, damage: number, totalDamage: number) {
                 <div class="col">To Kill: {{ toKill(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier) }}</div>
                 <div class="col">To 1-Shot: {{ neededBoost(weapon.equipment['Precision Damage'] * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
                 <div class="col">Waste: {{ waste(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
+                <div class="col">Total Kill: {{ totalKill(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier, weapon.equipment['Max Ammo']) }}</div>
             </div>
             <div class="progress bg-dark" role="progressbar" style="height: 5px;">
                 <div v-if="damagePercent(enemy.Health, weapon.precision * enemy['Weak Points'][weakPoint].Multiplier) >= 100" class="progress-bar chart-bg-best" :style="`width: ${damagePercent(enemy.Health, weapon.precision * enemy['Weak Points'][weakPoint].Multiplier)}%`"></div>
