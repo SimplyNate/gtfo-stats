@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue';
+import { onMounted, watch, computed } from 'vue';
 import Chart from 'chart.js/auto';
 
 Chart.defaults.color = '#d3f7ff';
@@ -10,10 +10,14 @@ const props = defineProps<{
     title: string;
 }>();
 
+const id = computed(() => {
+    return props.title.replaceAll(' ', '-') + 'lineChart';
+});
+
 let chart: Chart;
 
 onMounted(() => {
-    const ctx = <HTMLCanvasElement>document.getElementById(props.title + 'lineChart');
+    const ctx = <HTMLCanvasElement>document.getElementById(id.value);
     chart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -45,7 +49,7 @@ watch(props, () => {
 </script>
 
 <template>
-    <canvas :id="title + 'lineChart'"></canvas>
+    <canvas :id="id"></canvas>
 </template>
 
 <style scoped>

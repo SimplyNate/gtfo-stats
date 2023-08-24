@@ -56,7 +56,7 @@ const datasets = computed(() => {
     <line-chart v-if="props.enemy && props.weapon"
         :datasets="datasets.ds"
         :labels="datasets.labels"
-        :title="`${enemy.Name} - Damage Chart`"/>
+        :title="`${enemy.Name} - ${props.weapon.Type} - Damage Chart`"/>
 </template>
 
 <style scoped>
