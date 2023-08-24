@@ -24,9 +24,12 @@
     </div>
     <div class="container-fluid border rounded p-3" v-if="showMore">
         <div class="row mt-3">
-            <select class="custom-select rounded w-25" v-model="selectedEnemy">
-                <option v-for="enemy of enemies" :key="enemy.Name" :value="enemy">{{ enemy.Name }}</option>
-            </select>
+            <div class="d-flex justify-content-between">
+                <select class="custom-select rounded w-25" v-model="selectedEnemy">
+                    <option v-for="enemy of enemies" :key="enemy.Name" :value="enemy">{{ enemy.Name }}</option>
+                </select>
+                <div class="menu-button m-0 font-main ps-3 pe-3 clickable" @click="toggleMore">CLOSE</div>
+            </div>
             <enemy-target-stat :weapon="weapon" :enemy="selectedEnemy"/>
             <enemy-damage-chart v-if="selectedEnemy.Name !== 'Immortal' && selectedEnemy.Name !== 'Kraken'" :weapon="weapon" :enemy="selectedEnemy"/>
         </div>

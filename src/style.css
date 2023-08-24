@@ -26,6 +26,9 @@
 .font-yellow {
   color: #c7ad24;
 }
+.font-main {
+  color: #d3f7ff;
+}
 .clickable:hover {
   cursor: pointer;
   background-color: #191f24;
