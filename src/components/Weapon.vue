@@ -1,5 +1,5 @@
 <template>
-    <div :id="`${weapon.Name}`" class="container-fluid border rounded text-center p-3 clickable" @click="toggleMore">
+    <div :id="`${weapon.Name}`" class="container-fluid border-top border-bottom border-start border-end rounded text-center p-3 clickable" @click="toggleMore">
         <div class="row">
             <div class="col-3">
                 <h3>{{ weapon.Type }}</h3>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid border rounded p-3" v-if="showMore">
+    <div class="container-fluid border-start border-end border-bottom rounded p-3" v-if="showMore">
         <div class="row mt-3">
             <div class="d-flex justify-content-between">
                 <select class="custom-select rounded w-25" v-model="selectedEnemy">
@@ -58,6 +58,13 @@ const selectedEnemy = ref<Enemy>(enemies[0]);
 
 function toggleMore() {
     showMore.value = !showMore.value;
+    const weaponDiv = <HTMLElement>document.getElementById(weapon.Name);
+    if (showMore.value) {
+        weaponDiv.classList.remove('border-bottom');
+    }
+    else {
+        weaponDiv.classList.add('border-bottom');
+    }
     setTimeout(() => {
         const progressBars = document.querySelectorAll('.enemy-bar');
         for (const elem of progressBars) {
