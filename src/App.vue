@@ -1,29 +1,29 @@
 <template>
     <div class="app" id="parallax">
         <div class="left-menu ps-3 pe-3">
-            <ul class="nav flex-column">
-                <li class="nav-item menu-item clickable">
+            <ul class="nav flex-column user-select-none">
+                <li id="main" class="nav-item menu-item clickable selected">
                     <h3 class="menu-item-text" @click="setView('main')">MAIN WEAPONS</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="special" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('special')">SPECIAL WEAPONS</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="melee" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('melee')">MELEE WEAPONS</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="tools" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('tools')">TOOLS</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="enemies" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('enemies')">ENEMIES</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="main-graph" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('main-graph')">MAIN CHART</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="special-graph" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('special-graph')">SPECIAL CHART</h3>
                 </li>
-                <li class="nav-item menu-item clickable">
+                <li id="builder" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('builder')">BUILDER</h3>
                 </li>
             </ul>
@@ -62,7 +62,11 @@ const view = ref<string>('main');
 const enableParallax = ref(false);
 
 function setView(v: string) {
+    const currentElem = <HTMLElement>document.getElementById(view.value);
+    currentElem.classList.remove('selected');
     view.value = v;
+    const newElement = <HTMLElement>document.getElementById(v);
+    newElement.classList.add('selected');
 }
 
 let elem: HTMLElement;
@@ -126,5 +130,8 @@ onBeforeUnmount(() => {
 }
 .aberration-red {
     text-shadow: 2px -2px 0 #3e0406;
+}
+.selected {
+    box-shadow: inset 0 0 15px #d3f7ff;
 }
 </style>
