@@ -30,10 +30,7 @@ export abstract class EnhancedEquipment {
         return this.equipment.Type;
     }
     get keys(): {[index: string]: string} {
-        return {
-            Name: 'Name',
-            'Type': 'Type',
-        };
+        return {};
     }
     get equipmentKeys(): string[] {
         return [];
@@ -72,6 +69,11 @@ export abstract class EnhancedAmmoEquipment extends EnhancedEquipment {
             ammoPerRefill: 'Ammo Per Refill',
         };
     }
+    get equipmentKeys() {
+        return [
+            'Max Ammo',
+        ];
+    }
 }
 
 export abstract class EnhancedDamageEquipment extends EnhancedAmmoEquipment {
@@ -95,7 +97,7 @@ export abstract class EnhancedDamageEquipment extends EnhancedAmmoEquipment {
     get stagger() {
         return this.damage * this.equipment['Stagger Multiplier'];
     }
-    get keys() {
+    get keys(): {[index: string]: string} {
         return {
             ...super.keys,
             damage: 'Damage',
