@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import { EnhancedEquipment } from '../data/equipment';
-import { EnhancedWeapon } from '../data/weapons';
-import { EnhancedMeleeWeapon } from '../data/melee';
+import Stat from './Stat.vue';
 
-const props = defineProps<{
+defineProps<{
     currentWeapon?: EnhancedEquipment;
     comparator?: EnhancedEquipment;
+    totalValues: any;
 }>();
+
 </script>
 
 <template>
-    <div></div>
+    <div v-if="currentWeapon && comparator">
+        <stat v-for="key of Object.keys(currentWeapon.keys)" :title="currentWeapon.keys[key]" :original-value="currentWeapon[key]" :new-value="comparator[key]" :max-value="totalValues[key]"/>
+        <stat v-for="key of currentWeapon.equipmentKeys" :title="key" :original-value="currentWeapon.equipment[key]" :new-value="comparator.equipment[key]" :max-value="totalValues[key]"/>
+    </div>
+    <div v-else-if="currentWeapon">
+        <stat v-for="key of Object.keys(currentWeapon.keys)" :title="currentWeapon.keys[key]" :original-value="currentWeapon[key]" :new-value="currentWeapon[key]" :max-value="totalValues[key]"/>
+        <stat v-for="key of currentWeapon.equipmentKeys" :title="key" :original-value="currentWeapon.equipment[key]" :new-value="currentWeapon.equipment[key]" :max-value="totalValues[key]"/>
+    </div>
+    <div v-else-if="comparator">
+        <stat v-for="key of Object.keys(comparator.keys)" :title="comparator.keys[key]" :original-value="comparator[key]" :new-value="comparator[key]" :max-value="totalValues[key]"/>
+        <stat v-for="key of comparator.equipmentKeys" :title="key" :original-value="comparator.equipment[key]" :new-value="comparator.equipment[key]" :max-value="totalValues[key]"/>
+    </div>
 </template>
 
 <style scoped>

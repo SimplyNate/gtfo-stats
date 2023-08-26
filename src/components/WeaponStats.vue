@@ -21,20 +21,6 @@ const effectedWeapon = computed(() => {
     return newWeapon;
 });
 
-const displayKeys: {[index: string]: string} = {
-    damage: 'Damage',
-    precision: 'Precision Damage',
-    stagger: 'Stagger Damage',
-    damagePerMag: 'Damage Per Mag',
-    totalDamage: 'Total Damage',
-    dps: 'DPS',
-    effectiveDPS: 'Effective DPS',
-    precisionDPS: 'Precision DPS',
-    effectivePrecisionDPS: 'Effective Precision DPS',
-    startingAmmo: 'Starting Ammo',
-    ammoPerRefill: 'Ammo Per Refill',
-};
-
 const showMore = ref<boolean>(false);
 
 function toggleMore() {
@@ -61,11 +47,11 @@ function calculateAmmoPercentage(key: string) {
 <template>
     <div class="p-2 clickable rounded" @click="toggleMore">
         <h5 class="fw-bold">{{ weapon.Type }}</h5>
-        <stat v-for="key of Object.keys(displayKeys)" :key="key"
-              :title="displayKeys[key]"
+        <stat v-for="key of Object.keys(weapon.keys)" :key="key"
+              :title="weapon.keys[key]"
               :original-value="weapon[key]"
               :new-value="effectedWeapon[key]"
-              :max-value="maximums[displayKeys[key]]"
+              :max-value="maximums[key]"
               :percentage="calculateAmmoPercentage(key)"/>
         <template v-if="showMore">
             <div class="row mt-3" v-for="enemy of enemies" :key="enemy.Name">

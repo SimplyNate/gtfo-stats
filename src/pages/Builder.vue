@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import WeaponSelection from '../components/WeaponSelection.vue';
 import BoosterSelection from '../components/BoosterSelection.vue';
-import { ref } from 'vue';
-import { EnhancedWeapon, mainWeapons, specialWeapons } from '../data/weapons';
-import meleeWeapons, { EnhancedMeleeWeapon } from '../data/melee';
+import { ref, computed } from 'vue';
+import { EnhancedWeapon, mainWeapons, specialWeapons, mainMaximums, specialMaximums } from '../data/weapons';
+import meleeWeapons, { EnhancedMeleeWeapon, meleeMaximums } from '../data/melee';
 import tools from '../data/tool';
 import PlayerStats from '../components/PlayerStats.vue';
 import {Booster, effectData, negativeData, conditions, EffectRange} from '../data/boosters';
 import { useBuilderStore } from '../store';
 import { EnhancedEquipment } from '../data/equipment';
+import WeaponComparator from '../components/WeaponComparator.vue';
 
 const allTools = [
     ...tools.sentries,
@@ -155,9 +156,39 @@ function saveBooster() {
     store.setBooster(boosterSelectionCategory.value, booster);
 }
 
+const equipmentComparator = ref<EnhancedEquipment>();
+const equipmentTotalValues = computed(() => {
+    if (selectionCategory.value === 'main') {
+        return mainMaximums;
+    }
+    else if (selectionCategory.value === 'special') {
+        return specialMaximums;
+    }
+    else if (selectionCategory.value === 'tool') {
+        return {};
+    }
+    else {
+        return meleeMaximums;
+    }
+});
 function setComparator(equipment: EnhancedEquipment) {
-    console.log(equipment);
+    equipmentComparator.value = equipment;
 }
+
+const currentEquipment = computed(() => {
+    if (selectionCategory.value === 'main') {
+        return store.selectedMainWeapon;
+    }
+    else if (selectionCategory.value === 'special') {
+        return store.selectedSpecialWeapon;
+    }
+    else if (selectionCategory.value === 'tool') {
+        return store.selectedTool;
+    }
+    else {
+        return store.selectedMeleeWeapon;
+    }
+});
 
 </script>
 
@@ -204,15 +235,16 @@ function setComparator(equipment: EnhancedEquipment) {
                 <div class="modal-content">
                     <div class="container-fluid" style="background-color: #010508; color: #d3f7ff;">
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedEquipment | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal" @mouseover="setComparator(weapon)">
                                     <div class="pt-1 pb-1">
                                         {{ weapon.Type }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-10">
-                                <div class="container-fluid">Weapon Preview</div>
+                            <div class="col-10" v-if="selectionCategory === 'main' || selectionCategory === 'special'">
+                                <div class="container-fluid">Weapon Preview - {{ currentEquipment?.Type}} vs {{ equipmentComparator?.Type }}</div>
+                                <weapon-comparator :current-weapon="currentEquipment" :comparator="equipmentComparator" :total-values="equipmentTotalValues"/>
                             </div>
                         </div>
                     </div>
