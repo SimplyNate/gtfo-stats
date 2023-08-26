@@ -20,16 +20,16 @@ const allTools = [
 
 const store = useBuilderStore();
 
-const selectedWeapons = ref<(EnhancedWeapon | EnhancedMeleeWeapon | EnhancedEquipment)[]>(mainWeapons);
+const selectedWeapons = ref<EnhancedEquipment[]>(mainWeapons);
 const selectionCategory = ref<string>();
 const boosterSelectionCategory = ref<string>('muted');
 
-function setSelection(selection: (EnhancedWeapon | EnhancedMeleeWeapon | EnhancedEquipment)[], category: string) {
+function setSelection(selection: EnhancedEquipment[], category: string) {
     selectedWeapons.value = selection;
     selectionCategory.value = category;
 }
 
-function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | EnhancedEquipment) {
+function setChoice(choice: EnhancedEquipment) {
     if (selectionCategory.value === 'main') {
         store.setMainWeapon(<EnhancedWeapon>choice);
     }
@@ -42,6 +42,7 @@ function setChoice(choice: EnhancedWeapon | EnhancedMeleeWeapon | EnhancedEquipm
     else if (selectionCategory.value === 'melee') {
         store.setMeleeWeapon(<EnhancedMeleeWeapon>choice);
     }
+    equipmentComparator.value = undefined;
 }
 
 interface EffectChoice {
