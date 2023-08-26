@@ -6,19 +6,8 @@
                 <h4>{{ weapon.Name }}</h4>
             </div>
             <div class="col-9 text-start">
-                <stat title="Damage" :original-value="weapon.equipment.Damage" :new-value="weapon.equipment.Damage" :max-value="totalValues.Damage"/>
-                <stat title="DPS" :original-value="weapon.dps" :new-value="weapon.dps" :max-value="totalValues.DPS"/>
-                <stat title="Effective DPS" :original-value="weapon.effectiveDPS" :new-value="weapon.effectiveDPS" :max-value="totalValues['Effective DPS']"/>
-                <stat title="Damage Per Mag" :original-value="weapon.damagePerMag" :new-value="weapon.damagePerMag" :max-value="totalValues['Damage Per Mag']"/>
-                <stat title="Total Damage" :original-value="weapon.totalDamage" :new-value="weapon.totalDamage" :max-value="totalValues['Total Damage']"/>
-                <stat title="Precision" :original-value="weapon.precision" :new-value="weapon.precision" :max-value="totalValues['Precision Damage']"/>
-                <stat title="Stagger" :original-value="weapon.stagger" :new-value="weapon.stagger" :max-value="totalValues['Stagger Damage']"/>
-                <stat title="Reload Time" :original-value="weapon.equipment['Reload Time (s)']" :new-value="weapon.equipment['Reload Time (s)']" :max-value="totalValues['Reload Time (s)']"/>
-                <stat title="Range" :original-value="weapon.equipment['Range (m)']" :new-value="weapon.equipment['Range (m)']" :max-value="totalValues['Range (m)']"/>
-                <stat title="Magazine Size" :original-value="weapon.equipment['Magazine Size']" :new-value="weapon.equipment['Magazine Size']" :max-value="totalValues['Magazine Size']"/>
-                <stat title="Max Ammo" :original-value="weapon.equipment['Max Ammo']" :new-value="weapon.equipment['Max Ammo']" :max-value="totalValues['Max Ammo']"/>
-                <stat title="Starting Ammo" :original-value="weapon.equipment['Starting Ammo']" :new-value="weapon.equipment['Starting Ammo']" :max-value="totalValues['Starting Ammo']"/>
-                <stat title="Rate of Fire" :original-value="weapon.equipment['Rate of Fire']" :new-value="weapon.equipment['Rate of Fire']" :max-value="totalValues['Rate of Fire']"/>
+                <stat v-for="key of Object.keys(weapon.keys)" :title="weapon.keys[key]" :original-value="weapon[key]" :new-value="weapon[key]" :max-value="totalValues[key]"/>
+                <stat v-for="key of weapon.equipmentKeys" :title="key" :original-value="weapon.equipment[key]" :new-value="weapon.equipment[key]" :max-value="totalValues[key]"/>
             </div>
         </div>
     </div>
