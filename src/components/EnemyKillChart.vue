@@ -38,6 +38,12 @@ const barData = computed(() => {
 </script>
 
 <template>
+    <div>
+        <select class="form-select w-50">
+            <option>Body</option>
+            <option v-for="weakPoint of Object.keys(enemy['Weak Points'])" :key="weakPoint">{{ weakPoint }}</option>
+        </select>
+    </div>
     <bar-chart :datasets="barData.datasets" :labels="barData.labels" />
 </template>
 
