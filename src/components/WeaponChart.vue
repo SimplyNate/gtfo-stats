@@ -7,13 +7,7 @@ const props = defineProps<{
     weapons: EnhancedWeapon[]
 }>();
 
-const validKeys: string[] = [];
-for (const key of Object.keys(props.weapons[0].equipment)) {
-    if (Number.isFinite(props.weapons[0].equipment[key])) {
-        validKeys.push(key);
-    }
-}
-const key = ref('Damage');
+const key = ref('damage');
 
 const barData = computed(() => {
     const labels = [];
@@ -22,11 +16,20 @@ const barData = computed(() => {
         data: [],
     };
     const sortedWeapons = [ ...props.weapons ];
-    sortedWeapons.sort((a, b) => <number>b.equipment[key.value] - <number>a.equipment[key.value]);
+    sortedWeapons.sort((a, b) => {
+        if (a[key.value]) {
+            return b[key.value] - a[key.value];
+        }
+        return b.equipment[key.value] - a.equipment[key.value]
+    });
     for (const mainWeapon of sortedWeapons) {
         labels.push(mainWeapon.Type);
-        // @ts-ignore
-        mainDataset.data.push(Number(mainWeapon.equipment[key.value].toFixed(2)));
+        if (mainWeapon[key.value]) {
+            mainDataset.data.push(Number(mainWeapon[key.value].toFixed(2)));
+        }
+        else {
+            mainDataset.data.push(Number(mainWeapon.equipment[key.value].toFixed(2)));
+        }
     }
     return {dataset: [mainDataset], labels};
 });
@@ -37,7 +40,8 @@ const barData = computed(() => {
 <template>
     <div class="container">
         <select class="form-select" v-model="key">
-            <option v-for="key of validKeys" :key="key">{{ key }}</option>
+            <option v-for="key of Object.keys(weapons[0].keys)" :key="key" :value="key">{{ weapons[0].keys[key] }}</option>
+            <option v-for="key of weapons[0].equipmentKeys" :key="key" :value="key">{{ key }}</option>
         </select>
     </div>
     <bar-chart :datasets="barData.dataset" :labels="barData.labels" />
