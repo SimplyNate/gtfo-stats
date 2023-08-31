@@ -15,8 +15,8 @@ function toggleChart() {
 </script>
 
 <template>
-    <div class="container-fluid border rounded clickable" @click="toggleChart">
-        <div class="row">
+    <div class="container-fluid border rounded">
+        <div class="row clickable" @click="toggleChart">
             <div class="col">
                 <h4>{{ enemy.Name }}</h4>
             </div>
@@ -29,9 +29,9 @@ function toggleChart() {
                     {{ weakPoint }}: {{ enemy['Weak Points'][weakPoint].Multiplier }}x
                 </div>
             </div>
-            <div v-if="showMore">
-                <enemy-kill-chart :enemy="enemy"/>
-            </div>
+        </div>
+        <div v-if="showMore">
+            <enemy-kill-chart :enemy="enemy"/>
         </div>
     </div>
 </template>
