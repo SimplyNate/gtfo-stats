@@ -38,8 +38,8 @@ const barData = computed(() => {
 </script>
 
 <template>
-    <div class="container">
-        <select class="form-select" v-model="key">
+    <div class="mt-1">
+        <select class="custom-select rounded w-25" v-model="key">
             <option v-for="key of Object.keys(weapons[0].keys)" :key="key" :value="key">{{ weapons[0].keys[key] }}</option>
             <option v-for="key of weapons[0].equipmentKeys" :key="key" :value="key">{{ key }}</option>
         </select>

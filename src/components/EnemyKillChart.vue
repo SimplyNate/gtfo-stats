@@ -52,7 +52,7 @@ const weakPointSelection = ref<string>('Body');
 
 <template>
     <div>
-        <select class="form-select w-50" v-model="weakPointSelection">
+        <select class="custom-select rounded w-25" v-model="weakPointSelection">
             <option>Body</option>
             <option v-for="weakPoint of weakPoints" :key="weakPoint">{{ weakPoint }}</option>
         </select>
