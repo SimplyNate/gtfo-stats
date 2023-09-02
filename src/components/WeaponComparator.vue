@@ -23,6 +23,9 @@ defineProps<{
         <stat v-for="key of Object.keys(comparator.keys)" :title="comparator.keys[key]" :original-value="comparator[key]" :new-value="comparator[key]" :max-value="totalValues[key]"/>
         <stat v-for="key of comparator.equipmentKeys" :title="key" :original-value="comparator.equipment[key]" :new-value="comparator.equipment[key]" :max-value="totalValues[key]"/>
     </div>
+    <div v-else>
+        Hover over a weapon to preview the stats.
+    </div>
 </template>
 
 <style scoped>
