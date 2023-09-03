@@ -237,13 +237,13 @@ const currentEquipment = computed(() => {
                     <div class="container-fluid border" style="background-color: #010508; color: #d3f7ff;">
                         <div class="row">
                             <div class="col">
-                                <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(<EnhancedWeapon | EnhancedEquipment | EnhancedMeleeWeapon>weapon)" data-bs-dismiss="modal" @mouseover="setComparator(weapon)">
+                                <div class="row border clickable" v-for="weapon of selectedWeapons" :key="weapon.Name" @click="setChoice(weapon)" data-bs-dismiss="modal" @mouseover="setComparator(weapon)">
                                     <div class="pt-1 pb-1">
                                         {{ weapon.Type }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-10 mb-3" v-if="selectionCategory === 'main' || selectionCategory === 'special'">
+                            <div class="col-10 mb-3" v-if="selectionCategory === 'main' || selectionCategory === 'special' || selectionCategory === 'melee'">
                                 <weapon-comparator :current-weapon="currentEquipment" :comparator="equipmentComparator" :total-values="equipmentTotalValues"/>
                             </div>
                         </div>
