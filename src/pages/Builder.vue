@@ -244,7 +244,6 @@ const currentEquipment = computed(() => {
                                 </div>
                             </div>
                             <div class="col-10 mb-3" v-if="selectionCategory === 'main' || selectionCategory === 'special'">
-                                <div class="container-fluid">Weapon Preview - {{ currentEquipment?.Type}} vs {{ equipmentComparator?.Type }}</div>
                                 <weapon-comparator :current-weapon="currentEquipment" :comparator="equipmentComparator" :total-values="equipmentTotalValues"/>
                             </div>
                         </div>

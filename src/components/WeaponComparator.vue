@@ -11,6 +11,7 @@ defineProps<{
 </script>
 
 <template>
+    <div class="container-fluid">Weapon Preview - {{ currentWeapon?.Type}} vs {{ comparator?.Type }}</div>
     <div v-if="currentWeapon && comparator">
         <stat v-for="key of Object.keys(currentWeapon.keys)" :title="currentWeapon.keys[key]" :original-value="currentWeapon[key]" :new-value="comparator[key]" :max-value="totalValues[key]"/>
         <stat v-for="key of currentWeapon.equipmentKeys" :title="key" :original-value="currentWeapon.equipment[key]" :new-value="comparator.equipment[key]" :max-value="totalValues[key]"/>
