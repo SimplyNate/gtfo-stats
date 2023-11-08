@@ -3,8 +3,6 @@ import { DamageEquipment, EnhancedDamageEquipment } from './equipment';
 export interface Weapon extends DamageEquipment {
     Firemode: string;
     'Magazine Size': number;
-    'Damage Per Mag': number;
-    'Precision Per Mag': number;
     'Reload Time (s)': number;
     'Range (m)': number;
     'Rate of Fire': number;

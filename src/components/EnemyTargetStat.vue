@@ -70,7 +70,7 @@ function totalKill(health: number, damage: number, maxAmmo: number) {
             <div class="row">
                 <div class="col">{{ weakPoint }}: {{ damagePercent(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
                 <div class="col">To Kill: {{ toKill(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier) }}</div>
-                <div class="col">To 1-Shot: {{ neededBoost(weapon.equipment['Precision Damage'] * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
+                <div class="col">To 1-Shot: {{ neededBoost((weapon.equipment.Damage * weapon.equipment["Precision Multiplier"]) * enemy["Weak Points"][weakPoint].Multiplier, enemy.Health).toFixed(2) }}%</div>
                 <div class="col">Waste: {{ waste(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier).toFixed(2) }}%</div>
                 <div class="col">Total Kill: {{ totalKill(enemy.Health, weapon.precision * enemy["Weak Points"][weakPoint].Multiplier, weapon.equipment['Max Ammo']) }}</div>
             </div>
