@@ -26,6 +26,9 @@
                 <li id="builder" class="nav-item menu-item clickable">
                     <h3 class="menu-item-text" @click="setView('builder')">BUILDER</h3>
                 </li>
+                <li id="rundowns" class="nav-item menu-item clickable">
+                    <h3 class="menu-item-text" @click="setView('rundowns')">RUNDOWNS</h3>
+                </li>
             </ul>
             <div class="ms-3 mt-2 opacity-25">
                 <div class="form-check form-switch">
@@ -43,6 +46,7 @@
             <main-weapon-chart v-if="view === 'main-graph'"/>
             <special-chart v-if="view === 'special-graph'"/>
             <home v-if="view === 'builder'"/>
+            <rundowns v-if="view === 'rundowns'"/>
         </div>
     </div>
 </template>
@@ -56,7 +60,8 @@ import Tools from './pages/Tools.vue';
 import Enemies from './pages/Enemies.vue';
 import MainWeaponChart from './pages/MainWeaponChart.vue';
 import SpecialChart from './pages/SpecialChart.vue';
-import Home from "./pages/Builder.vue";
+import Home from './pages/Builder.vue';
+import Rundowns from './pages/Rundowns.vue';
 
 const view = ref<string>('main');
 const enableParallax = ref(false);
