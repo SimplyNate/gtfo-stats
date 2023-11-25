@@ -110,6 +110,10 @@ function setSelectedRundown(rundown: string) {
     if (selectedRundown.value) {
         const previous = document.querySelector(`#rundowns-${selectedRundown.value}`);
         previous?.classList.remove('yellow');
+        if (selectedExpedition.value) {
+            const expedition = document.querySelector(`#expeditions-${selectedRundown.value + selectedExpedition.value}`);
+            expedition?.classList.remove('yellow');
+        }
     }
     selectedRundown.value = rundown;
     const current = document.querySelector(`#rundowns-${rundown}`);
@@ -121,11 +125,11 @@ const selectedImage = ref<string>();
 
 function setSelectedExpedition(expedition: string) {
     if (selectedExpedition.value) {
-        const previous = document.querySelector(`#expeditions-${selectedExpedition.value}`);
+        const previous = document.querySelector(`#expeditions-${selectedRundown.value + selectedExpedition.value}`);
         previous?.classList.remove('yellow');
     }
     selectedExpedition.value = expedition;
-    const current = document.querySelector(`#expeditions-${expedition}`);
+    const current = document.querySelector(`#expeditions-${selectedRundown.value + expedition}`);
     current?.classList.add('yellow');
     if (selectedRundown.value) {
         selectedImage.value = rundownData.value[selectedRundown.value][selectedExpedition.value]
@@ -155,14 +159,14 @@ function setSelectedExpedition(expedition: string) {
                     <h5 class="menu-item clickable"
                         v-for="key of expeditionList(selectedRundown)"
                         :key="key"
-                        :id="`expeditions-${key}`"
+                        :id="`expeditions-${selectedRundown + key}`"
                         @click="setSelectedExpedition(key)"
                     >{{ selectedRundown + key }}</h5>
                 </div>
             </div>
         </div>
         <div class="ms-auto" v-if="selectedImage">
-            <img :src="selectedImage" :alt="`${selectedRundown}${selectedExpedition} Map`" style="max-height: 100vh; max-width: 100%;"/>
+            <img :src="selectedImage" :alt="`${selectedRundown}${selectedExpedition} Map`" style="max-width: 100%;"/>
         </div>
     </div>
 </template>
