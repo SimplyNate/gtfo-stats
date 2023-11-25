@@ -107,14 +107,26 @@ function expeditionList(rundown: string) {
 const selectedRundown = ref<string>();
 
 function setSelectedRundown(rundown: string) {
+    if (selectedRundown.value) {
+        const previous = document.querySelector(`#rundowns-${selectedRundown.value}`);
+        previous?.classList.remove('yellow');
+    }
     selectedRundown.value = rundown;
+    const current = document.querySelector(`#rundowns-${rundown}`);
+    current?.classList.add('yellow');
 }
 
 const selectedExpedition = ref<string>();
 const selectedImage = ref<string>();
 
 function setSelectedExpedition(expedition: string) {
+    if (selectedExpedition.value) {
+        const previous = document.querySelector(`#expeditions-${selectedExpedition.value}`);
+        previous?.classList.remove('yellow');
+    }
     selectedExpedition.value = expedition;
+    const current = document.querySelector(`#expeditions-${expedition}`);
+    current?.classList.add('yellow');
     if (selectedRundown.value) {
         selectedImage.value = rundownData.value[selectedRundown.value][selectedExpedition.value]
     }
@@ -129,14 +141,23 @@ function setSelectedExpedition(expedition: string) {
     <div class="d-flex">
         <div>
             <h3 class="fw-bold">RUNDOWNS</h3>
-            <div style="font-size: 0.8em">Map credits: </div>
-            <div style="font-size: 0.8em">Hunter48RUS, Artefas, livinghell</div>
+            <div class="mb-2" style="font-size: 0.8em">Map credits: Hunter48RUS, Artefas, livinghell</div>
             <div class="d-flex">
-                <div class="">
-                    <div class="border pe-5" v-for="rundown of rundowns" :key="rundown" @click="setSelectedRundown(rundown)">{{ rundown }}</div>
+                <div class="me-3" style="width: 100px;">
+                    <h5 class="menu-item clickable"
+                        v-for="rundown of rundowns"
+                        :key="rundown"
+                        :id="`rundowns-${rundown}`"
+                        @click="setSelectedRundown(rundown)"
+                    >{{ rundown }}</h5>
                 </div>
-                <div v-if="selectedRundown">
-                    <div v-for="key of expeditionList(selectedRundown)" :key="key" @click="setSelectedExpedition(key)">{{ selectedRundown + key }}</div>
+                <div v-if="selectedRundown" style="width: 100px;">
+                    <h5 class="menu-item clickable"
+                        v-for="key of expeditionList(selectedRundown)"
+                        :key="key"
+                        :id="`expeditions-${key}`"
+                        @click="setSelectedExpedition(key)"
+                    >{{ selectedRundown + key }}</h5>
                 </div>
             </div>
         </div>
@@ -147,5 +168,7 @@ function setSelectedExpedition(expedition: string) {
 </template>
 
 <style scoped>
-
+.yellow {
+    color: yellow;
+}
 </style>

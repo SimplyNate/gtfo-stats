@@ -54,9 +54,6 @@
   margin-bottom: 2em;
 }
 
-.menu-item-text {
-  transform: translateX(-1px);
-}
 
 .custom-select {
   font-family: monospace;
