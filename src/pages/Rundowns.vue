@@ -141,7 +141,7 @@ function setSelectedExpedition(expedition: string) {
             </div>
         </div>
         <div class="ms-auto" v-if="selectedImage">
-            <img :src="selectedImage" :alt="`${selectedRundown}${selectedExpedition} Map`" style="max-height: 100vh;"/>
+            <img :src="selectedImage" :alt="`${selectedRundown}${selectedExpedition} Map`" style="max-height: 100vh; max-width: 100%;"/>
         </div>
     </div>
 </template>
