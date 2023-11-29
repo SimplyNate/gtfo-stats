@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed, ref, onMounted} from 'vue';
 
 interface Expeditions {
     [index: string]: string;
@@ -143,6 +143,34 @@ function cleanExpeditionName(expedition: string) {
     return expedition.replace('://', '---');
 }
 
+onMounted(() => {
+    const imgContainer = document.querySelector('#imgContainer');
+    const zoomedArea = document.querySelector('#zoomedImage');
+    const image = document.querySelector('#image');
+
+    imgContainer?.addEventListener('mousemove', (e) => {
+        if (imgContainer && zoomedArea && image) {
+            const offset = imgContainer.getBoundingClientRect();
+            const mouseX = e.pageX - offset.left;
+            const mouseY = e.pageY - offset.top;
+            const imageWidth = image.clientWidth;
+            const imageHeight = image.clientHeight;
+            const zoomX = (mouseX / imageWidth) * 100;
+            const zoomY = (mouseY / imageHeight) * 100;
+            const width = 400;
+            const height = 400;
+            const style = `width: ${width}px; height: ${height}px; left: ${e.pageX - (width / 2)}px; top: ${e.pageY - (height / 2)}px; background: url(${image.getAttribute('src')}); backgroundSize: 100% 100%; backgroundPosition: ${zoomX}% ${zoomY}%; display: block;`;
+            console.log(style);
+
+            zoomedArea.setAttribute('style', style);
+        }
+    });
+    imgContainer?.addEventListener('mouseleave', () => {
+        zoomedArea?.setAttribute('style', 'display: none;');
+    })
+
+});
+
 </script>
 
 <template>
@@ -169,13 +197,21 @@ function cleanExpeditionName(expedition: string) {
                 </div>
             </div>
         </div>
-        <div class="ms-auto" v-if="selectedImage">
-            <img :src="selectedImage" :alt="`${selectedExpedition} Map`" style="max-width: 100%;"/>
+        <div id="imgContainer" class="ms-auto">
+            <img id="image" :src="selectedImage" :alt="`${selectedExpedition} Map`" style="max-width: 100%; height: auto; object-fit: cover;"/>
         </div>
     </div>
-</template>R6
+    <div id="zoomedImage"></div>
+</template>
 
 <style scoped>
+#zoomedImage {
+    overflow: hidden;
+    position: absolute;
+    border: 2px solid black;
+    pointer-events: none;
+    display: none;
+}
 .yellow {
     color: yellow;
 }
