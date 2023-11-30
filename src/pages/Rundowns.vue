@@ -157,9 +157,11 @@ onMounted(() => {
             const imageHeight = image.clientHeight;
             const zoomX = (mouseX / imageWidth) * 100;
             const zoomY = (mouseY / imageHeight) * 100;
-            const width = 400;
-            const height = 400;
-            const style = `width: ${width}px; height: ${height}px; left: ${e.pageX - (width / 2)}px; top: ${e.pageY - (height / 2)}px; background: url(${image.getAttribute('src')}); backgroundSize: 100% 100%; backgroundPosition: ${zoomX}% ${zoomY}%; display: block;`;
+            const width = imageWidth / 3;
+            const height = imageHeight / 3;
+            const left = Math.max(Math.min(e.pageX - (width / 2), window.innerWidth - width), 0);
+            const top = Math.max(Math.min(e.pageY - (height / 2), window.innerHeight - height), 0);
+            const style = `width: ${width}px; height: ${height}px; left: ${left}px; top: ${top}px; background: url(${image.getAttribute('src')}); background-size: 1000% 1000%; background-position: ${zoomX}% ${zoomY}%; display: block;`;
             console.log(style);
 
             zoomedArea.setAttribute('style', style);
