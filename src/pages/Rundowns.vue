@@ -148,7 +148,7 @@ onMounted(() => {
     const zoomedArea = document.querySelector('#zoomedImage');
     const image = document.querySelector('#image');
 
-    imgContainer?.addEventListener('mousemove', (e) => {
+    imgContainer?.addEventListener('mousemove', ((e: MouseEvent) => {
         if (imgContainer && zoomedArea && image) {
             const offset = imgContainer.getBoundingClientRect();
             const mouseX = e.pageX - offset.left;
@@ -164,7 +164,7 @@ onMounted(() => {
 
             zoomedArea.setAttribute('style', style);
         }
-    });
+    }) as EventListener);
     imgContainer?.addEventListener('mouseleave', () => {
         zoomedArea?.setAttribute('style', 'display: none;');
     })
