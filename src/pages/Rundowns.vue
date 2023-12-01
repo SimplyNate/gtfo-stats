@@ -144,10 +144,11 @@ function cleanExpeditionName(expedition: string) {
 }
 
 onMounted(() => {
-    const imgContainer = document.querySelector('#imgContainer');
-    const zoomedArea = document.querySelector('#zoomedImage');
-    const image = document.querySelector('#image');
-
+    const imgContainer = document.querySelector<HTMLDivElement>('#imgContainer');
+    const zoomedArea = document.querySelector<HTMLDivElement>('#zoomedImage');
+    const image = document.querySelector<HTMLImageElement>('#image');
+    const width = 500;
+    const height = 500;
     imgContainer?.addEventListener('mousemove', ((e: MouseEvent) => {
         if (imgContainer && zoomedArea && image) {
             const offset = imgContainer.getBoundingClientRect();
@@ -157,13 +158,11 @@ onMounted(() => {
             const imageHeight = image.clientHeight;
             const zoomX = (mouseX / imageWidth) * 100;
             const zoomY = (mouseY / imageHeight) * 100;
-            const width = imageWidth / 3;
-            const height = imageHeight / 3;
+            const widthScale = image.naturalWidth / width * 100;
+            const heightScale = image.naturalHeight / height * 100;
             const left = Math.max(Math.min(e.pageX - (width / 2), window.innerWidth - width), 0);
             const top = Math.max(Math.min(e.pageY - (height / 2), window.innerHeight - height), 0);
-            const style = `width: ${width}px; height: ${height}px; left: ${left}px; top: ${top}px; background: url(${image.getAttribute('src')}); background-size: 1000% 1000%; background-position: ${zoomX}% ${zoomY}%; display: block;`;
-            console.log(style);
-
+            const style = `width: ${width}px; height: ${height}px; left: ${left}px; top: ${top}px; background: url(${image.getAttribute('src')}); background-size: ${widthScale}% ${heightScale}%; background-position: ${zoomX}% ${zoomY}%; display: block;`;
             zoomedArea.setAttribute('style', style);
         }
     }) as EventListener);
