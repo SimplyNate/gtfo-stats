@@ -171,7 +171,6 @@ onMounted(() => {
     })
 });
 
-const fit = ref<string>('width');
 const enableHover = ref<boolean>(false);
 
 </script>
@@ -181,10 +180,6 @@ const enableHover = ref<boolean>(false);
         <div>
             <h3 class="fw-bold">RUNDOWNS</h3>
             <div class="mb-2" style="font-size: 0.8em">Map credits: Hunter48RUS, Artefas, livinghell</div>
-            <div>
-                <input type="radio" v-model="fit" :value="'width'"> Fit Width
-                <input type="radio" v-model="fit" :value="'height'"> Fit Height
-            </div>
             <div style="margin-bottom: 1em;">
                 <input type="checkbox" v-model="enableHover"> Enable Zoom on Hover
             </div>
@@ -208,7 +203,7 @@ const enableHover = ref<boolean>(false);
             </div>
         </div>
         <div id="imgContainer" class="ms-auto">
-            <img id="image" :src="selectedImage" :alt="`${selectedExpedition} Map`" style="max-width: 100%; height: auto; object-fit: cover;"/>
+            <img id="image" :src="selectedImage" :alt="`${selectedExpedition} Map`" :style="`max-width: 100%;`"/>
         </div>
     </div>
     <div id="zoomedImage"></div>
