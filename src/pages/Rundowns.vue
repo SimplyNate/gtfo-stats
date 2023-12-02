@@ -147,10 +147,10 @@ onMounted(() => {
     const imgContainer = document.querySelector<HTMLDivElement>('#imgContainer');
     const zoomedArea = document.querySelector<HTMLDivElement>('#zoomedImage');
     const image = document.querySelector<HTMLImageElement>('#image');
-    const width = 500;
+    const width = 888;
     const height = 500;
     imgContainer?.addEventListener('mousemove', ((e: MouseEvent) => {
-        if (imgContainer && zoomedArea && image) {
+        if (imgContainer && zoomedArea && image && enableHover.value) {
             const offset = imgContainer.getBoundingClientRect();
             const mouseX = e.pageX - offset.left;
             const mouseY = e.pageY - offset.top;
