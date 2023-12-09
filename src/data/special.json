@@ -16,6 +16,22 @@
         "Pierces": false
     },
     {
+        "Name": "Drekker CLR",
+        "Type": "Short Rifle",
+        "Firemode": "Semi-Automatic",
+        "Max Ammo": 196,
+        "Magazine Size": 30,
+        "Starting Ammo": 108.7,
+        "Ammo Per Refill": 65.22,
+        "Damage": 4.81,
+        "Precision Multiplier": 0.7413,
+        "Stagger Multiplier": 0.5,
+        "Reload Time (s)": 1.7,
+        "Range (m)": 8,
+        "Rate of Fire": 631.58,
+        "Pierces": false
+    },
+    {
         "Name": "Buckland S870",
         "Type": "Shotgun",
         "Firemode": "Semi-Automatic",

@@ -16,6 +16,22 @@
         "Pierces": false
     },
     {
+        "Name": "Shelling Nano",
+        "Type": "Burst Pistol",
+        "Firemode": "Burst-Fire",
+        "Max Ammo": 283,
+        "Magazine Size": 28,
+        "Starting Ammo": 166.67,
+        "Ammo Per Refill": 50,
+        "Damage": 3.05,
+        "Precision Multiplier": 0.8667,
+        "Stagger Multiplier": 1,
+        "Reload Time (s)": 1.25,
+        "Range (m)": 7,
+        "Rate of Fire": 461.54,
+        "Pierces": false
+    },
+    {
         "Name": "Bataldo 3RB",
         "Type": "HEL Revolver",
         "Firemode": "Semi-Automatic",
@@ -254,5 +270,21 @@
         "Range (m)": 4,
         "Rate of Fire": 228.57,
         "Pierces": true
+    },
+    {
+        "Name": "Bataldo Custom K330",
+        "Type": "Slug Shotgun",
+        "Firemode": "Semi-Automatic",
+        "Max Ammo": 44,
+        "Magazine Size": 6,
+        "Starting Ammo": 25,
+        "Ammo Per Refill": 7.5,
+        "Damage": 21,
+        "Precision Multiplier": 0.7413,
+        "Stagger Multiplier": 2,
+        "Reload Time (s)": 2.5,
+        "Range (m)": 6,
+        "Rate of Fire": 80,
+        "Pierces": false
     }
 ]
