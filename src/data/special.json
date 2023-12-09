@@ -67,17 +67,17 @@
         "Name": "Drekker INEX Drei",
         "Type": "Scattergun",
         "Firemode": "Semi-Automatic",
-        "Max Ammo": 14,
+        "Max Ammo": 16,
         "Magazine Size": 2,
-        "Starting Ammo": 7.83,
-        "Ammo Per Refill": 4.7,
-        "Damage": 128.32,
+        "Starting Ammo": 9.2,
+        "Ammo Per Refill": 5.52,
+        "Damage": 153.6,
         "Precision Multiplier": 0.7333,
         "Stagger Multiplier": 2,
         "Reload Time (s)": 2.66,
         "Range (m)": 4,
         "Rate of Fire": 92.31,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Buckland XDIST2",
@@ -147,16 +147,16 @@
         "Name": "Techman Klust 6",
         "Type": "Burst Cannon",
         "Firemode": "Burst",
-        "Max Ammo": 65,
+        "Max Ammo": 66,
         "Magazine Size": 20,
-        "Starting Ammo": 29.41,
-        "Ammo Per Refill": 17.65,
+        "Starting Ammo": 30,
+        "Ammo Per Refill": 18,
         "Damage": 22,
         "Precision Multiplier": 0.73,
         "Stagger Multiplier": 1,
-        "Reload Time (s)": 3.5,
+        "Reload Time (s)": 3.7,
         "Range (m)": 15,
-        "Rate of Fire": 241.94,
+        "Rate of Fire": 160.71,
         "Pierces": false
     },
     {
@@ -172,8 +172,8 @@
         "Stagger Multiplier": 1,
         "Reload Time (s)": 3.3,
         "Range (m)": 15,
-        "Rate of Fire": 150,
-        "Pierces": true
+        "Rate of Fire": 200,
+        "Pierces": 4
     },
     {
         "Name": "Shelling Arid 5",
@@ -195,8 +195,8 @@
         "Name": "Drekker Del P1",
         "Type": "Precision Rifle",
         "Firemode": "Automatic",
-        "Max Ammo": 53,
-        "Magazine Size": 12,
+        "Max Ammo": 51,
+        "Magazine Size": 10,
         "Starting Ammo": 27.27,
         "Ammo Per Refill": 16.36,
         "Damage": 13,
@@ -205,23 +205,23 @@
         "Reload Time (s)": 3.3,
         "Range (m)": 30,
         "Rate of Fire": 214.29,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Koning PR 11",
         "Type": "Sniper",
         "Firemode": "Semi-Automatic",
-        "Max Ammo": 13,
-        "Magazine Size": 3,
-        "Starting Ammo": 6.52,
-        "Ammo Per Refill": 3.91,
+        "Max Ammo": 15,
+        "Magazine Size": 2,
+        "Starting Ammo": 8.57,
+        "Ammo Per Refill": 5.14,
         "Damage": 40.01,
         "Precision Multiplier": 2.0025,
         "Stagger Multiplier": 1,
         "Reload Time (s)": 3.5,
         "Range (m)": 60,
-        "Rate of Fire": 120,
-        "Pierces": false
+        "Rate of Fire": 46.15,
+        "Pierces": 0
     },
     {
         "Name": "Omneco LRG",

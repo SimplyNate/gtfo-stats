@@ -11,6 +11,7 @@ export interface MeleeWeapon extends Equipment {
     'Stagger Multiplier': MeleeDamageType;
     'Environmental Multiplier': MeleeDamageType;
     'Stealth Multiplier': MeleeDamageType;
+    'Backstab Multiplier': MeleeDamageType;
     Range: number;
     'Charge Time': number;
     'Charge Hold Duration': number;
