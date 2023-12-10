@@ -6,7 +6,7 @@ export interface Weapon extends DamageEquipment {
     'Reload Time (s)': number;
     'Range (m)': number;
     'Rate of Fire': number;
-    Pierces: boolean;
+    Pierces: number;
 }
 
 export class EnhancedWeapon extends EnhancedDamageEquipment {

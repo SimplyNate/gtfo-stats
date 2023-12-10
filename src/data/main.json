@@ -13,7 +13,7 @@
         "Reload Time (s)": 1.3,
         "Range (m)": 9,
         "Rate of Fire": 600,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Shelling Nano",
@@ -29,7 +29,7 @@
         "Reload Time (s)": 1.25,
         "Range (m)": 7,
         "Rate of Fire": 461.54,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Bataldo 3RB",
@@ -45,7 +45,7 @@
         "Reload Time (s)": 2.3,
         "Range (m)": 10,
         "Rate of Fire": 300,
-        "Pierces": true
+        "Pierces": 2
     },
     {
         "Name": "Raptus Treffen 2",
@@ -61,7 +61,7 @@
         "Reload Time (s)": 1.25,
         "Range (m)": 5,
         "Rate of Fire": 1500,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Raptus Steigro",
@@ -93,7 +93,7 @@
         "Reload Time (s)": 2.3,
         "Range (m)": 10,
         "Rate of Fire": 1090.91,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Van Auken LTC5",
@@ -109,7 +109,7 @@
         "Reload Time (s)": 1.4,
         "Range (m)": 6,
         "Rate of Fire": 909.09,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Accrat STB",
@@ -125,7 +125,7 @@
         "Reload Time (s)": 1.4,
         "Range (m)": 5,
         "Rate of Fire": 1000,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Accrat ND6",
@@ -141,7 +141,7 @@
         "Reload Time (s)": 1.55,
         "Range (m)": 7,
         "Rate of Fire": 769.23,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Van Auken CAB F4",
@@ -157,7 +157,7 @@
         "Reload Time (s)": 1.6,
         "Range (m)": 10,
         "Rate of Fire": 1170.73,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "TR22 Hanaway",
@@ -173,7 +173,7 @@
         "Reload Time (s)": 2.3,
         "Range (m)": 50,
         "Rate of Fire": 240,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Hanaway PSB",
@@ -189,7 +189,7 @@
         "Reload Time (s)": 2.15,
         "Range (m)": 40,
         "Rate of Fire": 428.57,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Malatack LX",
@@ -205,7 +205,7 @@
         "Reload Time (s)": 1.8,
         "Range (m)": 10,
         "Rate of Fire": 697.67,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Malatack CH 4",
@@ -221,7 +221,7 @@
         "Reload Time (s)": 2,
         "Range (m)": 20,
         "Rate of Fire": 782.61,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Drekker Pres MOD 556",
@@ -237,7 +237,7 @@
         "Reload Time (s)": 1.9,
         "Range (m)": 25,
         "Rate of Fire": 375,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Buckland SBS III",
@@ -253,7 +253,7 @@
         "Reload Time (s)": 1.6,
         "Range (m)": 6,
         "Rate of Fire": 240,
-        "Pierces": false
+        "Pierces": 0
     },
     {
         "Name": "Bataldo J 300",
@@ -269,7 +269,7 @@
         "Reload Time (s)": 3,
         "Range (m)": 4,
         "Rate of Fire": 228.57,
-        "Pierces": true
+        "Pierces": 2
     },
     {
         "Name": "Bataldo Custom K330",
@@ -285,6 +285,6 @@
         "Reload Time (s)": 2.5,
         "Range (m)": 6,
         "Rate of Fire": 80,
-        "Pierces": false
+        "Pierces": 0
     }
 ]
