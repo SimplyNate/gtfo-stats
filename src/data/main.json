@@ -23,11 +23,11 @@
         "Magazine Size": 28,
         "Starting Ammo": 166.67,
         "Ammo Per Refill": 50,
-        "Damage": 3.05,
+        "Damage": 3.2,
         "Precision Multiplier": 0.8667,
         "Stagger Multiplier": 1,
         "Reload Time (s)": 1.25,
-        "Range (m)": 7,
+        "Range (m)": 10,
         "Rate of Fire": 461.54,
         "Pierces": 0
     },
@@ -59,7 +59,7 @@
         "Precision Multiplier": 0.7413,
         "Stagger Multiplier": 1,
         "Reload Time (s)": 1.25,
-        "Range (m)": 5,
+        "Range (m)": 7,
         "Rate of Fire": 1500,
         "Pierces": 0
     },
