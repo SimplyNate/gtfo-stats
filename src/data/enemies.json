@@ -462,5 +462,148 @@
 				"Health": 1200
 			}
 		}
+	},
+	{
+		"Name": "Nightmare Striker",
+		"Damage": [
+			{
+				"Name": "Tongue",
+				"Type": "Melee",
+				"Value": 0.08
+			},
+			{
+				"Name": "Punch",
+				"Type": "Melee",
+				"Value": 0.16
+			}
+		],
+		"Health": 37,
+		"Stagger HP": 20,
+		"Speed": "Average",
+		"Weak Points": {
+			"Back": {
+				"Multiplier": 2
+			},
+			"Tumor": {
+				"Multiplier": 2
+			}
+		}
+	},
+	{
+		"Name": "Nightmare Shooter",
+		"Damage": [
+			{
+				"Name": "Tongue",
+				"Type": "Melee",
+				"Value": 0.12
+			},
+			{
+				"Name": "Shoot",
+				"Type": "Projectile",
+				"Value": 0.0555
+			}
+		],
+		"Health": 18,
+		"Stagger HP": 8,
+		"Speed": "Average",
+		"Weak Points": {
+			"Back": {
+				"Multiplier": 2
+			},
+			"Tumor": {
+				"Multiplier": 3
+			}
+		}
+	},
+	{
+		"Name": "Nightmare Giant",
+		"Damage": [
+			{
+				"Name": "Punch",
+				"Type": "Melee",
+				"Value": 0.40
+			},
+			{
+				"Name": "Shoot",
+				"Type": "Projectile",
+				"Value": 0.0555
+			}
+		],
+		"Health": 640,
+		"Stagger HP": 400,
+		"Speed": "Slow",
+		"Weak Points": {
+			"Back": {
+				"Multiplier": 2
+			}
+		}
+	},
+	{
+		"Name": "Nightmare Scout",
+		"Damage": [
+			{
+				"Name": "Shoot",
+				"Type": "Projectile",
+				"Value": 0.04
+			}
+		],
+		"Health": 161,
+		"Stagger HP": 15,
+		"Speed": "Average",
+		"Weak Points": {
+			"Back": {
+				"Multiplier": 2
+			},
+			"Tumor": {
+				"Multiplier": 1
+			}
+		}
+	},
+	{
+		"Name": "Zoomer Scout",
+		"Damage": [
+			{
+				"Name": "Shoot",
+				"Type": "Projectile",
+				"Value": 0.04
+			}
+		],
+		"Health": 33,
+		"Stagger HP": 5,
+		"Speed": "Medium",
+		"Weak Points": {
+			"Back": {
+				"Multiplier": 2
+			},
+			"Head": {
+				"Multiplier": 3
+			},
+			"Occipital": {
+				"Multiplier": 6
+			}
+		}
+	},
+	{
+		"Name": "Mega Mother",
+		"Damage": [
+			{
+				"Name": "Shoot",
+				"Type": "Projectile",
+				"Value": 0.0555
+			},
+			{
+				"Name": "Tongue",
+				"Type": "Melee",
+				"Value": 0.12
+			}
+		],
+		"Health": 5000,
+		"Stagger HP": 5000,
+		"Speed": "Very Slow",
+		"Weak Points": {
+			"Tumor": {
+				"Multiplier": 3
+			}
+		}
 	}
 ]
