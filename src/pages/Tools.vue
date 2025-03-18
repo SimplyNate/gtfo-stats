@@ -15,12 +15,15 @@ const combinedTools = [
             <div class="col-3">
                 <h3>{{ tool.Type }}</h3>
                 <h4>{{ tool.Name }}</h4>
+                <img :src="tool.equipment.Image" :alt="tool.Type">
             </div>
             <div class="col-9">
-                <div class="row" v-for="key of Object.keys(tool.equipment)" :key="key">
-                    <div class="col-6 text-end">{{ key }}</div>
-                    <div class="col-6 text-start">{{ tool.equipment[key] }}</div>
-                </div>
+                <template  v-for="key of Object.keys(tool.equipment)" :key="key">
+                    <div class="row" v-if="key !== 'Image'">
+                        <div class="col-6 text-end">{{ key }}</div>
+                        <div class="col-6 text-start">{{ tool.equipment[key] }}</div>
+                    </div>
+                </template>
             </div>
         </div>
     </div>

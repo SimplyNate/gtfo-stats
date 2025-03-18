@@ -29,7 +29,8 @@
         "Range": 1.8,
         "Charge Time": 1.8,
         "Charge Hold Duration": 4.2,
-        "Noise Level": "Normal"
+        "Noise Level": "Normal",
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/c/c6/SantonianHDHSledgehammer.png"
     },
     {
         "Name": "Mastaba Fixed Blade",
@@ -61,7 +62,8 @@
         "Range": 1.75,
         "Charge Time": 0.6,
         "Charge Hold Duration": 7,
-        "Noise Level": "Low"
+        "Noise Level": "Low",
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/3/36/MastabaFixedBladeKnife.png"
     },
     {
         "Name": "Kovac Peacekeeper",
@@ -93,7 +95,8 @@
         "Range": 1.75,
         "Charge Time": 1,
         "Charge Hold Duration": 7,
-        "Noise Level": "Normal"
+        "Noise Level": "Normal",
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/5/5e/KovacPeacekeeperBat.png"
     },
     {
         "Name": "MACO Drillhead",
@@ -125,6 +128,7 @@
         "Range": 3.2,
         "Charge Time": 1.8,
         "Charge Hold Duration": 4.5,
-        "Noise Level": "Normal"
+        "Noise Level": "Normal",
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/0/07/MacoDrillheadSpear.png"
     }
 ]

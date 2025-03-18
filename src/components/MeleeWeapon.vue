@@ -49,6 +49,7 @@ onMounted(() => {
             <div class="col-3">
                 <h3>{{ melee.Type }}</h3>
                 <h4>{{ melee.Name }}</h4>
+                <img :src="melee.equipment.Image" :alt="melee.Type">
             </div>
             <div class="col-9 text-start">
                 <stat title="Uncharged Damage" :new-value="melee.damage.Uncharged" :max-value="meleeMaximums.damage.Uncharged" :original-value="melee.damage.Uncharged"/>

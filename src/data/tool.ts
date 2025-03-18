@@ -17,7 +17,8 @@ const toolData = {
         "Detection Range": 25,
         "Detection Speed": 1,
         "Biotracked Speed": 1,
-        "Biotracked Ammo Usage Multiplier": 1
+        "Biotracked Ammo Usage Multiplier": 1,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/2/20/SentryGunInfobox.png"
     },
     {
         "Name": "Rad Labs Meduza",
@@ -34,7 +35,8 @@ const toolData = {
         "Detection Range": 25,
         "Detection Speed": 1,
         "Biotracked Speed": 1,
-        "Biotracked Ammo Usage Multiplier": 1
+        "Biotracked Ammo Usage Multiplier": 1,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/f/f4/AutosentryInfobox.png"
     },
     {
         "Name": "AutoTek 51 RSG",
@@ -51,7 +53,8 @@ const toolData = {
         "Detection Range": 50,
         "Detection Speed": 2.8,
         "Biotracked Speed": 1.4,
-        "Biotracked Ammo Usage Multiplier": 0.7
+        "Biotracked Ammo Usage Multiplier": 0.7,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/e/eb/SniperSentryInfobox.png"
     },
     {
         "Name": "Mechatronic B5 LFR",
@@ -68,19 +71,22 @@ const toolData = {
         "Detection Range": 10,
         "Detection Speed": 0.5,
         "Biotracked Speed": 0.125,
-        "Biotracked Ammo Usage Multiplier": 0.5
+        "Biotracked Ammo Usage Multiplier": 0.5,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/3/30/ShotgunSentryGunInfobox.png"
     }] as SentryTool[],
     "tracker": {
         "Name": "D-Tek Optron IV",
         "Type": "Bio Tracker",
-        "Cooldown": 8.5
+        "Cooldown": 8.5,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/d/d3/TrackerInfobox.png"
     } as BioTracker,
     "c-foam": {
         "Name": "Stalwart G2",
         "Type": "C-Foam Launcher",
         "Max Ammo": 60,
         "Starting Ammo": 40,
-        "Ammo Per Refill": 12
+        "Ammo Per Refill": 12,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/7/75/CFoamLauncherinfobox.png"
     } as CFoamLauncher,
     "mine-deployer": {
         "Name": "Krieger 04",
@@ -90,7 +96,8 @@ const toolData = {
         "Ammo Per Refill": 1.5,
         "Damage": 50,
         "Precision Multiplier": 1,
-        "Stagger Multiplier": 1
+        "Stagger Multiplier": 1,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/4/44/MineDeployerInfobox.png"
     } as MineDeployer
 };
 
