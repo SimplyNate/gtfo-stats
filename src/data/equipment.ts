@@ -2,6 +2,7 @@ export interface Equipment {
     [index: string]: any;
     Name: string;
     Type: string;
+    Image: string;
 }
 
 export interface AmmoEquipment extends Equipment {
