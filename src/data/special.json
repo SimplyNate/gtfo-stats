@@ -13,7 +13,8 @@
         "Reload Time (s)": 2.3,
         "Range (m)": 12,
         "Rate of Fire": 631.58,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/0/04/HeavyAssaultRifleInfobox.png"
     },
     {
         "Name": "Drekker CLR",
@@ -29,7 +30,8 @@
         "Reload Time (s)": 1.7,
         "Range (m)": 8,
         "Rate of Fire": 631.58,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/e/ee/Short_Rifle.png"
     },
     {
         "Name": "Buckland S870",
@@ -45,7 +47,8 @@
         "Reload Time (s)": 3,
         "Range (m)": 4,
         "Rate of Fire": 100,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/1/10/BucklandShotLobby.png"
     },
     {
         "Name": "Buckland AF6",
@@ -61,7 +64,8 @@
         "Reload Time (s)": 2.83,
         "Range (m)": 5,
         "Rate of Fire": 240,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/e/ed/BucklandAF6infobox.png"
     },
     {
         "Name": "Drekker INEX Drei",
@@ -77,7 +81,8 @@
         "Reload Time (s)": 2.66,
         "Range (m)": 4,
         "Rate of Fire": 92.31,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/3/3d/Scattergun_Semi.png"
     },
     {
         "Name": "Buckland XDIST2",
@@ -93,7 +98,8 @@
         "Reload Time (s)": 2.72,
         "Range (m)": 15,
         "Rate of Fire": 1200,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/f/fe/ChokeModShotgunInfobox.png"
     },
     {
         "Name": "Mastaba R66",
@@ -109,7 +115,8 @@
         "Reload Time (s)": 1.75,
         "Range (m)": 12,
         "Rate of Fire": 600,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/d/d0/Mastabainfobox.png"
     },
     {
         "Name": "Techman Arbalist V",
@@ -125,7 +132,8 @@
         "Reload Time (s)": 3.5,
         "Range (m)": 15,
         "Rate of Fire": 428.57,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/c/c0/Techmaninfobox.png"
     },
     {
         "Name": "Techman Veruta XII",
@@ -141,7 +149,8 @@
         "Reload Time (s)": 4,
         "Range (m)": 15,
         "Rate of Fire": 692.31,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/4/4c/Machinegun.png"
     },
     {
         "Name": "Techman Klust 6",
@@ -157,7 +166,8 @@
         "Reload Time (s)": 3.7,
         "Range (m)": 15,
         "Rate of Fire": 160.71,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/7/71/Burst_Cannon.png"
     },
     {
         "Name": "Omneco EXP1",
@@ -173,7 +183,8 @@
         "Reload Time (s)": 3.3,
         "Range (m)": 15,
         "Rate of Fire": 200,
-        "Pierces": 4
+        "Pierces": 4,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/c/c1/HelGun.png"
     },
     {
         "Name": "Shelling Arid 5",
@@ -189,7 +200,8 @@
         "Reload Time (s)": 2.5,
         "Range (m)": 8,
         "Rate of Fire": 133.33,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/1/16/High_Caliber_Pistol.png"
     },
     {
         "Name": "Drekker Del P1",
@@ -205,7 +217,8 @@
         "Reload Time (s)": 3.3,
         "Range (m)": 30,
         "Rate of Fire": 214.29,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/6/69/Precision_Rifle.png"
     },
     {
         "Name": "Koning PR 11",
@@ -221,7 +234,8 @@
         "Reload Time (s)": 3.5,
         "Range (m)": 60,
         "Rate of Fire": 75,
-        "Pierces": 0
+        "Pierces": 0,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/1/12/Koninginfobox.png"
     },
     {
         "Name": "Omneco LRG",
@@ -237,6 +251,7 @@
         "Reload Time (s)": 3.2,
         "Range (m)": 40,
         "Rate of Fire": 68.97,
-        "Pierces": 6
+        "Pierces": 6,
+        "Image": "https://static.wikia.nocookie.net/gtfo_gamepedia_en/images/9/9f/HelRifle.png"
     }
 ]

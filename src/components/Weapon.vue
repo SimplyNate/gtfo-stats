@@ -4,6 +4,7 @@
             <div class="col-3">
                 <h3>{{ weapon.Type }}</h3>
                 <h4>{{ weapon.Name }}</h4>
+                <img :src="weapon.equipment.Image" :alt="weapon.Name">
             </div>
             <div class="col-9 text-start">
                 <stat v-for="key of Object.keys(weapon.keys)" :title="weapon.keys[key]" :original-value="weapon[key]" :new-value="weapon[key]" :max-value="totalValues[key]"/>
