@@ -25,8 +25,12 @@ const name = computed(() => {
     <div>
         <div class="weapon-type">{{ header }}</div>
         <div class="image-box">
-            <div class="img-container d-flex align-items-center justify-content-center">
-                <div class="plus fs-1" v-if="!props.weapon">&plus;</div>
+            <div class="img-container d-flex align-items-center justify-content-center p-5">
+                <div class="plus fs-1" v-if="!weapon">&plus;</div>
+                <template v-else>
+                    <img :src="weapon.equipment.Image" :alt="weapon.Name" style="max-height: 175px; transform: rotate(60deg);" v-if="weapon.equipment['Charge Time']">
+                    <img :src="weapon.equipment.Image" :alt="weapon.Name" style="max-height: 150px;" v-else>
+                </template>
             </div>
             <div class="weapon-name ms-1">{{ name }}</div>
         </div>
